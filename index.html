@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</title>
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --muted:#666;
+    --link:#1f6feb;
+    --rule:#e2e2e2;
+    --bg:#ffffff;
+    --soft:#f7f7f8;
+    --maxw:780px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Computer Modern Serif",Georgia,"Times New Roman",serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 22px 96px;}
+  a{color:var(--link);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Header */
+  header{text-align:center;margin-bottom:8px;}
+  h1{
+    font-size:30px;
+    line-height:1.3;
+    font-weight:700;
+    margin:0 0 18px;
+    letter-spacing:-.01em;
+  }
+  .authors{font-size:18px;margin:6px 0;}
+  .affil{font-size:15px;color:var(--muted);margin:4px 0 2px;}
+  .venue{font-size:15px;color:var(--muted);font-style:italic;margin:10px 0 18px;}
+  .links{font-size:17px;margin:14px 0 4px;line-height:2;}
+  .links a{white-space:nowrap;}
+  .links .sep{color:#bbb;}
+
+  /* Separator */
+  .stars{
+    text-align:center;
+    color:#bbb;
+    letter-spacing:.7em;
+    margin:40px 0;
+    font-size:16px;
+    user-select:none;
+  }
+
+  /* Sections */
+  section{margin:0;}
+  h2{
+    font-size:23px;
+    font-weight:700;
+    margin:0 0 14px;
+    text-align:center;
+  }
+  h3{
+    font-size:19px;
+    font-weight:700;
+    margin:30px 0 8px;
+  }
+  p{margin:0 0 16px;text-align:justify;}
+  .lead{font-size:18px;}
+
+  ul,ol{margin:0 0 16px;padding-left:1.4em;}
+  li{margin:0 0 9px;}
+
+  .small{font-size:14px;color:var(--muted);}
+  em.term{font-style:italic;}
+  strong{font-weight:700;}
+
+  /* Figures */
+  figure{margin:26px 0;text-align:center;}
+  figure img{
+    max-width:100%;
+    height:auto;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:#fff;
+  }
+  figure img.bare{border:none;}
+  figcaption{
+    font-size:14px;
+    color:var(--muted);
+    margin-top:10px;
+    text-align:left;
+    line-height:1.5;
+  }
+  figcaption b{color:var(--ink);}
+
+  /* Key numbers */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin:26px 0 8px;
+  }
+  .stat{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:16px 10px;
+    text-align:center;
+    background:var(--soft);
+  }
+  .stat .num{font-size:26px;font-weight:700;line-height:1.1;}
+  .stat .lab{font-size:13px;color:var(--muted);margin-top:6px;}
+  @media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+  /* Tables */
+  .tablewrap{overflow-x:auto;margin:22px 0;}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    font-size:13.5px;
+    font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  th,td{
+    border-bottom:1px solid var(--rule);
+    padding:7px 9px;
+    text-align:center;
+    white-space:nowrap;
+  }
+  th{font-weight:700;border-bottom:1.5px solid #ccc;}
+  td.model,th.model{text-align:left;white-space:nowrap;}
+  thead tr.grp th{
+    background:var(--soft);
+    font-size:12.5px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  tr.divider td{
+    background:var(--soft);
+    text-align:left;
+    font-weight:700;
+    font-size:12.5px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  td.best{font-weight:700;}
+  td.second{text-decoration:underline;}
+  tbody tr:hover{background:#fafafe;}
+
+  /* mode cards */
+  .modes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0;}
+  .mode{border:1px solid var(--rule);border-radius:6px;padding:14px 16px;background:#fff;}
+  .mode .tag{font-family:-apple-system,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--link);text-transform:uppercase;}
+  .mode h4{margin:6px 0 6px;font-size:16px;}
+  .mode p{font-size:14px;color:var(--muted);text-align:left;margin:0;}
+  @media(max-width:620px){.modes{grid-template-columns:1fr;}}
+
+  /* archetypes */
+  .arch{border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0;}
+  .arch h4{margin:0 0 4px;font-size:17px;}
+  .arch h4 .rn{color:var(--link);font-family:-apple-system,Arial,sans-serif;font-size:13px;margin-right:8px;}
+  .arch p{margin:0;font-size:15px;color:#444;}
+
+  /* findings */
+  .takeaway{
+    background:var(--soft);
+    border-left:3px solid var(--link);
+    padding:12px 18px;
+    margin:18px 0;
+    font-size:16px;
+  }
+  .takeaway b{color:var(--ink);}
+
+  /* citation */
+  pre.cite{
+    background:var(--soft);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:16px;
+    font-size:13px;
+    line-height:1.5;
+    overflow-x:auto;
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+    white-space:pre;
+    text-align:left;
+  }
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:50px;}
+  .anon-note{font-size:13.5px;color:var(--muted);text-align:center;font-style:italic;margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <h1>Trip+: Benchmarking Agents in<br>Personalized Interactive Travel Planning</h1>
+    <div class="authors">Anonymous ACL submission</div>
+    <div class="venue">Under review · A personalized, multi-turn travel-planning benchmark for language agents</div>
+    <div class="links">
+      [&nbsp;<a href="assets/Trip_Plus_paper.pdf">Paper</a>&nbsp;]
+      <span class="sep">·</span>
+      [&nbsp;<a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a>&nbsp;]
+      <span class="sep">·</span>
+      [&nbsp;<a href="#benchmark">Benchmark</a>&nbsp;]
+      <span class="sep">·</span>
+      [&nbsp;<a href="#results">Results</a>&nbsp;]
+      <span class="sep">·</span>
+      [&nbsp;<a href="#cite">BibTeX</a>&nbsp;]
+    </div>
+    <div class="anon-note">Code and data are released anonymously and will be fully open-sourced.</div>
+  </header>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== ABSTRACT ===================== -->
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p class="lead">
+      Interactive travel planning is a popular use case for language models: agents must manage
+      evolving preferences and unexpected disruptions over many turns, making complex,
+      profile-conditioned decisions. Existing benchmarks tend to evaluate feasibility,
+      personalization, or interaction in relatively isolated settings. We introduce
+      <strong>Trip+</strong> to measure whether agents can plan travel <em class="term">holistically</em>.
+      Given traveler profiles and dynamic interactions, agents must generate and revise
+      minute-level itineraries. End-to-end traveler experience is evaluated through an
+      LLM-based simulator, enabling subjective metrics such as fatigue. Scenarios range from
+      simple request resolutions to complex environment-driven replanning. Evaluating
+      <strong>18 language models</strong>, we find a consistent gap in experiential quality:
+      models favor technically feasible but exhausting itineraries that diverge sharply from
+      profiled traveler preferences.
+    </p>
+
+    <figure>
+      <img src="assets/figures/fig1_positioning.png" alt="Positioning of travel-planning benchmarks" style="max-width:420px">
+      <figcaption><b>Figure 1.</b> Positioning travel-planning benchmarks along two axes —
+        <em>personalization richness</em> (constraints → profiles → experience) and
+        <em>interaction richness</em> (one-shot → targeted → diverse). Trip+ targets the
+        joint frontier of rich personalization and diverse long-horizon interaction.</figcaption>
+    </figure>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== OVERVIEW ===================== -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>
+      As language agents move toward real-world products, travel planning has emerged as a
+      representative task that goes well beyond one-shot execution. Itinerary design unfolds
+      through multi-turn interaction: travelers refine preferences, introduce constraints,
+      resolve conflicts, and react to changing conditions. This makes travel planning an ideal
+      testbed for personalized agents — requiring itineraries that are simultaneously
+      <strong>executable</strong>, <strong>profile-aligned</strong>, and
+      <strong>consistent with accumulated user intent</strong>.
+    </p>
+    <p>
+      The underexplored frontier is the <em>joint</em> handling of rich personalization and
+      diverse long-horizon interaction. Profile-aware benchmarks typically evaluate static
+      preference matching and neglect stateful, cross-turn evaluation; interactive replanning
+      benchmarks often focus on isolated patterns (asking a clarifying question, incorporating
+      one piece of feedback, or a single replan). Trip+ unifies them by treating the active
+      user state, profile-derived suitability rules, expected response mode, and the
+      activity-level experience trace as jointly constructed oracle fields.
+    </p>
+
+    <figure>
+      <img src="assets/figures/fig2_overview.png" alt="Overall design of Trip+">
+      <figcaption><b>Figure 2.</b> The overall design of Trip+. A fixed 40-city travel-data
+        sandbox and 11 traveler profiles drive four diverse multi-turn interaction archetypes.
+        At every turn the agent chooses a response mode (<b>Plan / Clarification / NoSolution</b>),
+        and minute-level itineraries are checked by a four-layer verifier:
+        itinerary feasibility, requirement satisfaction, profile-conditioned user simulation,
+        and stateful multi-turn evaluation.</figcaption>
+    </figure>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== KEY NUMBERS ===================== -->
+  <section id="numbers">
+    <h2>Key Numbers</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">153</div><div class="lab">multi-turn instances</div></div>
+      <div class="stat"><div class="num">570</div><div class="lab">user turns</div></div>
+      <div class="stat"><div class="num">11</div><div class="lab">traveler profiles</div></div>
+      <div class="stat"><div class="num">40</div><div class="lab">cities in sandbox</div></div>
+      <div class="stat"><div class="num">11</div><div class="lab">domain-specific tools</div></div>
+      <div class="stat"><div class="num">4</div><div class="lab">interaction archetypes</div></div>
+      <div class="stat"><div class="num">18</div><div class="lab">LMs evaluated</div></div>
+      <div class="stat"><div class="num">7.2M</div><div class="lab">in-city transit records</div></div>
+    </div>
+    <p class="small" style="text-align:center;">
+      The fixed sandbox additionally contains 309K train rows, 38K flight rows, and thousands of
+      attractions, restaurants, hotels, subway stations, and weather-day records — a reproducible
+      evidence snapshot shared by both agents and evaluators.
+    </p>
+
+    <figure>
+      <img src="assets/figures/fig3_stats.png" alt="Dataset statistics of Trip+">
+      <figcaption><b>Figure 3.</b> Dataset statistics: (a) instances per traveler profile
+        (8–23 each), (b) 40-city sandbox evidence volume, and (c) expected response modes by
+        interaction type. Planning dominates; clarification and no-solution cases appear mainly
+        in request-resolution and long-horizon interactions.</figcaption>
+    </figure>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== BENCHMARK CONSTRUCTION ===================== -->
+  <section id="benchmark">
+    <h2>How Trip+ Is Built</h2>
+    <p>
+      Trip+ is constructed in three stages, using a <strong>state-first pipeline</strong>:
+      each turn first gets a structured hidden state (state delta, expected response mode,
+      evaluation target) and is only then rendered into a natural-language user utterance.
+    </p>
+
+    <h3>1 · Fixed travel-data sandbox</h3>
+    <p>
+      A normalized evidence snapshot over <strong>40 diverse Chinese cities</strong> covering
+      different destination types, seasons, and local conditions. It provides reproducible
+      evidence for POIs, hotels, restaurants, weather, local mobility, and intercity transport,
+      exposed through <strong>11 OpenAI-compatible tools</strong> (train/flight query, hotel,
+      attractions, restaurants, location search, road route, city transport plan, city weather).
+      Evaluators verify grounding against the same fixed snapshot.
+    </p>
+
+    <h3>2 · Eleven traveler profiles</h3>
+    <p>
+      Each profile template varies long-term user context — party composition, budget
+      sensitivity, mobility constraints, pace, interests, accommodation style, and transport
+      preferences. An <em>observable</em> profile is given to the agent as long-term user memory;
+      the same cues activate <em>hidden</em> profile-derived rule IDs used only for
+      soft-preference scoring. Profiles include Backpacker, Honeymoon Couple, Three-Generation
+      Family, Family with Child, Slow-Paced Senior, Cultural Explorer, Budget Student, Business
+      Traveler, Food-First, Nature Lover, and Friend Group.
+    </p>
+
+    <h3>3 · Four multi-turn interaction archetypes</h3>
+    <div class="arch">
+      <h4><span class="rn">I</span>User-State Evolution</h4>
+      <p>User needs change across turns — party composition, budget, schedule, added must-visit
+        attractions, dietary restrictions. (4 turns)</p>
+    </div>
+    <div class="arch">
+      <h4><span class="rn">II</span>Request Resolution</h4>
+      <p>The agent must clarify or resolve under-specified, conflicting, or infeasible requests,
+        choosing the correct response mode. (3 turns)</p>
+    </div>
+    <div class="arch">
+      <h4><span class="rn">III</span>Environment-Driven Replanning</h4>
+      <p>External disruptions — weather risk, crowding, traffic peaks, closures, availability
+        changes — require itinerary revisions while preserving prior constraints. (3 turns)</p>
+    </div>
+    <div class="arch">
+      <h4><span class="rn">IV</span>Long-Horizon Alignment</h4>
+      <p>Multiple updates are handled in sequence while preserving all earlier commitments — the
+        hardest scenario as constraints accumulate. (5 turns)</p>
+    </div>
+
+    <h3>Three response modes</h3>
+    <p>At each turn the agent must strategically navigate its action space:</p>
+    <div class="modes">
+      <div class="mode">
+        <div class="tag">Plan</div>
+        <h4>Generate itinerary</h4>
+        <p>Return a complete minute-level itinerary: transport, lodging, meals, local movement,
+          timing, and costs — for complete requests, normal updates, and tool-verifiable revisions.</p>
+      </div>
+      <div class="mode">
+        <div class="tag">Clarification</div>
+        <h4>Ask a question</h4>
+        <p>Used only for unresolved blocking ambiguity: a missing edit target, a hard-constraint
+          conflict, or a conflict with hard profile facts.</p>
+      </div>
+      <div class="mode">
+        <div class="tag">NoSolution</div>
+        <h4>Report infeasibility</h4>
+        <p>Returned only when tool evidence proves hard constraints are unsatisfiable and the user
+          explicitly asks for an impossibility judgment.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== EVALUATION PROTOCOL ===================== -->
+  <section id="evaluation">
+    <h2>Four-Layer Evaluation Protocol</h2>
+    <p>
+      Every turn is evaluated against its hidden state — the expected response mode, active hard
+      requirements, profile-derived expectations, environment conditions, and items to preserve
+      across turns. Evaluation proceeds in two stages: first the response-mode gate, then, for
+      eligible plan turns, the remaining itinerary-level layers.
+    </p>
+    <ol>
+      <li><strong>Response-Mode Gating.</strong> Checks whether the chosen mode matches the
+        expectation. A mismatch is recorded as a mode error and itinerary metrics are skipped.</li>
+      <li><strong>Itinerary Feasibility.</strong> Deterministic atomic checks for structural
+        completeness, entity grounding, temporal coherence, venue opening hours, supported
+        transfers, and cost arithmetic — averaged over structure, evidence, and operability.</li>
+      <li><strong>Requirement Satisfaction.</strong> Separately measures <em>hard-constraint</em>
+        satisfaction (dates, destinations, party size, budget, required lodging/dining/transport)
+        and <em>soft-preference</em> satisfaction (pace, walking tolerance, budget sensitivity,
+        comfort, interests), both via deterministic rules.</li>
+      <li><strong>Profile-Conditioned User Simulation.</strong> An LLM simulator replays the
+        minute-level activity sequence from the traveler's perspective, scoring 1–5 with rationales
+        across physical, schedule, environmental, budget comfort, and preference dimensions.</li>
+    </ol>
+    <p>
+      A <strong>stateful multi-turn</strong> layer judges each response against accumulated state:
+      <em>request fulfillment</em> (are new turn changes incorporated?) and <em>intent
+      preservation</em> (do ongoing constraints, preferences, and environment conditions remain
+      satisfied?). Reliability is supported by four profile-conditioned judges (Qwen, Claude,
+      Gemini, GPT families, median-aggregated) and human verification over 50 sampled cases
+      spanning 1,825 activities.
+    </p>
+
+    <figure>
+      <img src="assets/figures/fig8_judges.png" alt="Reliability and verification of the four user-simulation judges">
+      <figcaption><b>Figure 8.</b> Reliability and verification of the four user-simulation judges
+        used for median aggregation. <b>(a)</b> Pairwise Spearman rank alignment across the Qwen,
+        Gemini, GPT, and Claude judges; <b>(b)</b> overall ensemble reliability — Cronbach's
+        &alpha; = 0.833 ("good reliability") across 4 judges and 18 models; <b>(c)</b> human rationale
+        verification, where judge rationales agree with human review on &ge;89.8% of cases per
+        dimension (96.5% for preference satisfaction), over 50 sampled cases covering 1,825
+        activity-level evaluations. <span style="font-style:normal">Reproduced from the paper
+        appendix.</span></figcaption>
+    </figure>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section id="results">
+    <h2>Main Results</h2>
+    <p>
+      We evaluate 18 agentic models under the same lightweight OpenAI-compatible function-calling
+      scaffold. <em>Plan Avg.</em> averages the four valid-plan quality metrics;
+      <em>Win(%)</em> is the share of non-aggregate metrics on which a model ranks first.
+      <b>Bold</b> = best, <u>underline</u> = second-best in each column.
+    </p>
+
+    <figure>
+      <img src="assets/figures/table2_results.png" alt="Table 2: main results on Trip+">
+      <figcaption><b>Table 2.</b> Main results on Trip+, with models grouped into frontier and
+        lightweight families. <em>Plan Avg.</em> averages the four valid-plan quality metrics;
+        <em>Win(%)</em> is the share of non-aggregate metrics on which a model ranks first.
+        <b>Bold</b> = best, <u>underline</u> = second-best in each column.
+        <span style="font-style:normal">Reproduced from the paper.</span></figcaption>
+    </figure>
+    <p class="small">
+      Two headline findings: <b>(1)</b> current LLM agents remain unreliable in realistic
+      multi-turn planning — they still err in deciding whether to plan, clarify, or report
+      infeasibility, and often fail to preserve earlier user needs.
+      <b>(2)</b> feasible itineraries are not necessarily user-aligned: even the strongest model
+      scores only ~0.64 on soft preferences, and the best user-simulation score (GPT-5.4) is just
+      <b>0.518</b>. Satisfying explicit constraints is insufficient for matching implicit,
+      evolving preferences.
+    </p>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== IN-DEPTH ANALYSIS ===================== -->
+  <section id="analysis">
+    <h2>In-Depth Analysis</h2>
+    <p>
+      We focus on <strong>Gemini-3.1-Pro-Preview</strong>, the strongest overall model, to
+      diagnose two remaining gaps: unreliable interaction and unsuitable plans.
+    </p>
+
+    <figure>
+      <img src="assets/figures/fig4_reliability.png" alt="Interaction reliability across scenarios">
+      <figcaption><b>Figure 4.</b> Interaction reliability of Gemini-3.1-Pro-Preview across the
+        four scenario types. The model handles early updates but struggles as requirements
+        accumulate; clarification remains a bottleneck, and long-horizon alignment is hardest —
+        at the ambiguous Turn 3, request fulfillment plummets to 0.41.</figcaption>
+    </figure>
+
+    <div class="takeaway"><b>Takeaway 1.</b> Better interaction requires revising plans reliably
+      as constraints grow — unreliability comes mainly from state-consistent revision, not
+      response-mode selection.</div>
+
+    <figure>
+      <img src="assets/figures/fig5_erroranalysis.png" alt="Performance scores and error analysis">
+      <figcaption><b>Figure 5.</b> Component scores (left) and error rates (right) for valid plans.
+        Hard constraints like dates, hotels, and party size score ≥0.95, but itinerary-level
+        choices (transport, attractions, meals) are weaker. <b>Pace is the most systematic
+        personalization failure</b> — comfort &amp; pace scores only 0.39, and 99% of valid plans
+        contain pacing burden. Traveler fatigue appears in 97% of plans, environmental exposure in 95%.</figcaption>
+    </figure>
+
+    <div class="takeaway"><b>Takeaway 2.</b> Better personalization depends on pacing and burden
+      control — many feasible itineraries are still exhausting or environmentally unsuitable.</div>
+
+    <figure>
+      <img src="assets/figures/fig6_cost.png" alt="Inference cost vs plan quality" style="max-width:560px">
+      <figcaption><b>Figure 6.</b> Turn-1 inference cost (avg. LLM / tool calls per first turn) vs.
+        Plan Avg. for frontier models. There is no monotonic relationship: Gemini Pro achieves the
+        highest Turn-1 Plan Avg. with moderate usage, while heavier-calling models (e.g. DS-V4, Kimi)
+        do not pull ahead.</figcaption>
+    </figure>
+
+    <div class="takeaway"><b>Takeaway 3.</b> Better planning depends on effective evidence use,
+      not more calls.</div>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== BENCHMARK COMPARISON ===================== -->
+  <section id="comparison">
+    <h2>How Trip+ Compares</h2>
+    <p>
+      Existing travel-planning benchmarks fall short of comprehensive evaluation. Profile-aware
+      benchmarks evaluate static preference matching; interactive replanning benchmarks focus on
+      isolated patterns. Trip+ is the only benchmark supporting grounding, profiles, interaction,
+      fine-grained itineraries, feasibility, stateful evaluation, user simulation, and open
+      sourcing together.
+    </p>
+    <figure>
+      <img src="assets/figures/table1_compare.png" alt="Table 1: comparison of travel-planning benchmarks">
+      <figcaption><b>Table 1.</b> Comparison of travel-planning benchmarks across task
+        construction, evaluation, and resource dimensions (✓ supported · ~ partial / indirect ·
+        ✗ not supported). Trip+ is the only benchmark that jointly supports grounding, profiles,
+        interaction, fine-grained itineraries, feasibility, stateful evaluation, user simulation,
+        and open sourcing. <span style="font-style:normal">Reproduced from the paper.</span></figcaption>
+    </figure>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== CONCLUSION ===================== -->
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+      Trip+ evaluates travel-planning agents on generating feasible, traveler-suitable, and
+      intent-consistent itineraries under dynamic user needs and environments. Our evaluation
+      reveals a clear gap: while current models satisfy basic feasibility and explicit constraints,
+      they struggle with stateful revisions, user alignment, and effective evidence use. We hope
+      Trip+ drives the development of agents that plan adaptive, profile-aligned
+      <em>experiences</em> — rather than merely executable trips.
+    </p>
+  </section>
+
+  <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
+
+  <!-- ===================== CITATION ===================== -->
+  <section id="cite">
+    <h2>BibTeX</h2>
+    <pre class="cite">@inproceedings{tripplus2026,
+  title     = {Trip+: Benchmarking Agents in Personalized
+               Interactive Travel Planning},
+  author    = {Anonymous ACL submission},
+  booktitle = {Under review at ACL},
+  year      = {2026},
+  note      = {Code and data: https://anonymous.4open.science/r/trip-plus-BE40}
+}</pre>
+    <p class="small" style="text-align:center;">
+      This is an anonymous submission. Author and venue metadata will be updated upon
+      de-anonymization. Code and data will be fully open-sourced regardless of acceptance.
+    </p>
+  </section>
+
+  <footer>
+    Project page for <i>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</i>.
+    Figures reproduced from the paper for academic illustration.
+  </footer>
+
+</div>
+</body>
+</html>
