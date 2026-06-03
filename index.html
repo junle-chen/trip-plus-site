@@ -232,6 +232,14 @@
     box-shadow:0 14px 34px rgba(15,23,42,.08);
   }
   figure img.bare{border:none;box-shadow:none;}
+  .wide-figure{
+    width:min(var(--maxw), calc(100vw - 48px));
+    margin-left:50%;
+    transform:translateX(-50%);
+  }
+  .wide-figure img{
+    width:100%;
+  }
   figcaption{
     max-width:760px;
     margin:12px auto 0;
@@ -326,6 +334,77 @@
   .arch h4{margin:0 0 5px;font-size:17px;}
   .arch h4 .rn{color:var(--blue);font-size:13px;margin-right:8px;font-weight:850;}
   .arch p{margin:0;font-size:15px;color:#475569;}
+  .construction-flow{
+    width:min(var(--maxw), calc(100vw - 48px));
+    margin:30px 0 34px 50%;
+    transform:translateX(-50%);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    position:relative;
+  }
+  .construction-flow:before{
+    content:"";
+    position:absolute;
+    left:9%;
+    right:9%;
+    top:32px;
+    height:2px;
+    background:linear-gradient(90deg,var(--teal),var(--blue),var(--gold),var(--coral));
+    opacity:.42;
+  }
+  .construction-flow:after{
+    content:"";
+    position:absolute;
+    top:27px;
+    left:8%;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--blue);
+    box-shadow:0 0 0 7px rgba(37,99,235,.13);
+    animation:flow-dot 4.8s ease-in-out infinite;
+  }
+  .flow-card{
+    position:relative;
+    z-index:1;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+    min-height:168px;
+    box-shadow:0 12px 32px rgba(15,23,42,.07);
+    animation:flow-float 5.6s ease-in-out infinite;
+  }
+  .flow-card:nth-child(2){animation-delay:.18s;}
+  .flow-card:nth-child(3){animation-delay:.36s;}
+  .flow-card:nth-child(4){animation-delay:.54s;}
+  .flow-step{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#f8fafc;
+    border:1px solid var(--line);
+    color:var(--blue);
+    font-weight:850;
+    font-size:14px;
+    margin-bottom:18px;
+  }
+  .flow-card h4{margin:0 0 7px;font-size:16px;}
+  .flow-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5;}
+  @keyframes flow-dot{
+    0%,100%{left:8%;background:var(--teal);}
+    33%{background:var(--blue);}
+    66%{background:var(--gold);}
+    92%{left:91%;background:var(--coral);}
+  }
+  @keyframes flow-float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
+  }
   .takeaway{
     background:#fff;
     border:1px solid var(--line);
@@ -365,6 +444,9 @@
     header.hero{grid-template-columns:1fr;min-height:auto;padding:38px 0;}
     h1{font-size:42px;}
     .subtitle{font-size:18px;}
+    .construction-flow{grid-template-columns:1fr 1fr;}
+    .construction-flow:before,
+    .construction-flow:after{display:none;}
   }
   @media(max-width:620px){
     body{font-size:16px;}
@@ -378,6 +460,14 @@
     .modes{grid-template-columns:1fr;}
     .lead{padding:18px;}
     figure{margin:26px -2px;}
+    .wide-figure,
+    .construction-flow{width:100%;margin-left:0;transform:none;}
+    .construction-flow{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .construction-flow:after,
+    .flow-card{animation:none;}
   }
 </style>
 </head>
@@ -406,8 +496,6 @@
         profile-aligned, and intent-consistent travel itineraries across evolving multi-turn
         conversations.
       </p>
-      <div class="authors">Anonymous ACL submission</div>
-      <div class="venue">Under review · Code and data released anonymously</div>
       <div class="links">
         <a href="assets/Trip_Plus_paper.pdf">Paper</a>
         <a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a>
@@ -488,7 +576,34 @@
       activity-level experience trace as jointly constructed oracle fields.
     </p>
 
-    <figure>
+    <div class="construction-flow" aria-label="Trip+ benchmark construction pipeline">
+      <div class="flow-card">
+        <div class="flow-step">1</div>
+        <h4>Build the sandbox</h4>
+        <p>Freeze travel evidence for 40 cities: POIs, hotels, restaurants, routes, weather,
+          intercity transport, and local mobility tools.</p>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">2</div>
+        <h4>Seed traveler profiles</h4>
+        <p>Attach long-term user memory and hidden suitability rules covering pace, budget,
+          mobility, party composition, interests, and comfort.</p>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">3</div>
+        <h4>Generate interactions</h4>
+        <p>Render state-first turns for user updates, request resolution, environment-driven
+          replanning, and long-horizon alignment.</p>
+      </div>
+      <div class="flow-card">
+        <div class="flow-step">4</div>
+        <h4>Evaluate every turn</h4>
+        <p>Gate response mode, verify feasibility, score requirements, simulate user experience,
+          and check multi-turn state preservation.</p>
+      </div>
+    </div>
+
+    <figure class="wide-figure">
       <img src="assets/figures/fig2_overview.png" alt="Overall design of Trip+">
       <figcaption><b>Figure 2.</b> The overall design of Trip+. A fixed 40-city travel-data
         sandbox and 11 traveler profiles drive four diverse multi-turn interaction archetypes.
