@@ -66,9 +66,9 @@
   .navlinks a{color:#334155;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px 80px;}
   header.hero{
-    max-width:980px;
+    max-width:1080px;
     margin:0 auto;
-    padding:58px 0 34px;
+    padding:70px 0 42px;
     text-align:center;
   }
   .eyebrow{
@@ -81,75 +81,54 @@
   }
   h1{
     font-family:ui-serif,Georgia,"Times New Roman",serif;
-    font-size:56px;
+    font-size:48px;
     line-height:1.08;
     font-weight:800;
-    margin:0 auto 20px;
+    margin:0 auto 32px;
     letter-spacing:0;
-    max-width:930px;
+    max-width:1050px;
   }
   .subtitle{
-    max-width:790px;
-    color:#475569;
-    font-size:21px;
-    line-height:1.6;
-    margin:0 auto 22px;
+    max-width:1000px;
+    color:#6b7280;
+    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-size:24px;
+    font-style:italic;
+    line-height:1.5;
+    margin:24px auto 28px;
   }
-  .authors{font-size:16px;color:#475569;margin:10px 0 0;}
+  .authors{
+    color:#1f2937;
+    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-size:31px;
+    line-height:1.2;
+    margin:0;
+  }
   .venue{font-size:15px;color:var(--muted);font-style:normal;margin:4px 0 20px;}
   .links{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:10px;
-    margin:22px 0 0;
-    line-height:1;
+    gap:8px;
+    margin:26px 0 0;
+    color:#222;
+    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-size:25px;
+    line-height:1.4;
   }
-  .links .sep{display:none;}
-  .links a,
-  .button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:40px;
-    padding:10px 16px;
-    border:1px solid var(--line);
-    border-radius:8px;
-    background:#fff;
-    color:#17202a;
-    font-size:14px;
-    font-weight:700;
-    box-shadow:0 8px 22px rgba(15,23,42,.06);
-    text-decoration:none;
-  }
-  .links a:first-of-type{
-    background:var(--ink);
-    border-color:var(--ink);
-    color:#fff;
-  }
+  .links .sep{color:#9ca3af;}
+  .links a{color:#2563eb;text-decoration:none;}
+  .links a:hover{text-decoration:underline;}
+  .links .bracket{color:#111827;}
   .anon-note{
-    max-width:720px;
-    color:var(--muted);
-    font-size:15px;
+    max-width:920px;
+    color:#666;
+    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-size:22px;
+    font-style:italic;
+    line-height:1.45;
     margin:18px auto 0;
   }
-  .hero-metrics{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
-    margin:28px auto 0;
-    max-width:720px;
-  }
-  .hero-metric{
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:15px 12px;
-    background:rgba(255,255,255,.78);
-    text-align:center;
-    box-shadow:0 10px 26px rgba(15,23,42,.06);
-  }
-  .hero-metric b{display:block;font-size:25px;line-height:1.1;color:var(--ink);}
-  .hero-metric span{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
   .stars{
     height:1px;
     margin:18px auto 56px;
@@ -425,8 +404,10 @@
     .nav{align-items:flex-start;flex-direction:column;gap:8px;}
     .navlinks{flex-wrap:wrap;gap:12px;}
     header.hero{padding:44px 0 30px;}
-    h1{font-size:44px;}
-    .subtitle{font-size:18px;}
+    h1{font-size:40px;}
+    .authors{font-size:26px;}
+    .subtitle{font-size:20px;}
+    .links{font-size:22px;}
     .construction-flow{grid-template-columns:1fr 1fr;}
     .construction-flow:before,
     .construction-flow:after{display:none;}
@@ -436,9 +417,8 @@
     .wrap{padding:0 18px 64px;}
     .nav{padding:10px 18px;}
     .navlinks{font-size:13px;}
-    h1{font-size:36px;}
+    h1{font-size:31px;}
     h2{font-size:28px;}
-    .hero-metrics,
     .stats{grid-template-columns:repeat(2,1fr);}
     .modes{grid-template-columns:1fr;}
     .lead{padding:18px;}
@@ -472,29 +452,24 @@
   <!-- ===================== HEADER ===================== -->
   <header class="hero">
     <div>
-      <div class="eyebrow">Interactive travel-planning benchmark</div>
       <h1>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</h1>
+      <div class="authors">Anonymous submission</div>
       <p class="subtitle">
-        A stateful benchmark for evaluating whether language agents can build feasible,
-        profile-aligned, and intent-consistent travel itineraries across evolving multi-turn
-        conversations.
+        Under review · A personalized, multi-turn travel-planning benchmark for language agents
       </p>
       <div class="links">
-        <a href="assets/Trip_Plus_paper.pdf">Paper</a>
-        <a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a>
-        <a href="#benchmark">Benchmark</a>
-        <a href="#results">Results</a>
-        <a href="#cite">BibTeX</a>
+        <span class="bracket">[</span> <a href="assets/Trip_Plus_paper.pdf">Paper</a> <span class="bracket">]</span>
+        <span class="sep">·</span>
+        <span class="bracket">[</span> <a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a> <span class="bracket">]</span>
+        <span class="sep">·</span>
+        <span class="bracket">[</span> <a href="#benchmark">Benchmark</a> <span class="bracket">]</span>
+        <span class="sep">·</span>
+        <span class="bracket">[</span> <a href="#results">Results</a> <span class="bracket">]</span>
+        <span class="sep">·</span>
+        <span class="bracket">[</span> <a href="#cite">BibTeX</a> <span class="bracket">]</span>
       </div>
       <div class="anon-note">
-        Trip+ combines traveler profiles, fixed travel evidence, dynamic user turns, and a
-        four-layer verifier to test realistic personalized planning.
-      </div>
-      <div class="hero-metrics">
-        <div class="hero-metric"><b>153</b><span>instances</span></div>
-        <div class="hero-metric"><b>570</b><span>turns</span></div>
-        <div class="hero-metric"><b>18</b><span>models</span></div>
-        <div class="hero-metric"><b>40</b><span>cities</span></div>
+        Code and data are released anonymously and will be fully open-sourced.
       </div>
     </div>
   </header>
@@ -867,8 +842,8 @@
     <pre class="cite">@inproceedings{tripplus2026,
   title     = {Trip+: Benchmarking Agents in Personalized
                Interactive Travel Planning},
-  author    = {Anonymous ACL submission},
-  booktitle = {Under review at ACL},
+  author    = {Anonymous submission},
+  booktitle = {Under review},
   year      = {2026},
   note      = {Code and data: https://anonymous.4open.science/r/trip-plus-BE40}
 }</pre>
