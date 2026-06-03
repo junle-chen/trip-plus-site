@@ -66,11 +66,10 @@
   .navlinks a{color:#334155;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px 80px;}
   header.hero{
-    display:grid;
-    grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
-    gap:36px;
-    align-items:center;
-    padding:38px 0 30px;
+    max-width:980px;
+    margin:0 auto;
+    padding:58px 0 34px;
+    text-align:center;
   }
   .eyebrow{
     color:var(--teal);
@@ -81,24 +80,27 @@
     margin-bottom:16px;
   }
   h1{
-    font-size:48px;
-    line-height:1.05;
-    font-weight:850;
-    margin:0 0 18px;
+    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-size:56px;
+    line-height:1.08;
+    font-weight:800;
+    margin:0 auto 20px;
     letter-spacing:0;
+    max-width:930px;
   }
   .subtitle{
-    max-width:720px;
+    max-width:790px;
     color:#475569;
-    font-size:20px;
+    font-size:21px;
     line-height:1.6;
-    margin:0 0 22px;
+    margin:0 auto 22px;
   }
   .authors{font-size:16px;color:#475569;margin:10px 0 0;}
   .venue{font-size:15px;color:var(--muted);font-style:normal;margin:4px 0 20px;}
   .links{
     display:flex;
     flex-wrap:wrap;
+    justify-content:center;
     gap:10px;
     margin:22px 0 0;
     line-height:1;
@@ -126,46 +128,27 @@
     color:#fff;
   }
   .anon-note{
-    max-width:650px;
+    max-width:720px;
     color:var(--muted);
-    font-size:14px;
-    margin-top:18px;
-  }
-  .hero-visual{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:18px;
-    box-shadow:var(--shadow);
-  }
-  .hero-visual img{
-    display:block;
-    width:100%;
-    height:auto;
-    border-radius:6px;
-    border:1px solid var(--line);
-    background:#fff;
-  }
-  .hero-caption{
-    color:#64748b;
-    font-size:13px;
-    margin:12px 2px 0;
-    line-height:1.45;
+    font-size:15px;
+    margin:18px auto 0;
   }
   .hero-metrics{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:18px;
+    gap:14px;
+    margin:28px auto 0;
+    max-width:720px;
   }
   .hero-metric{
     border:1px solid var(--line);
     border-radius:8px;
-    padding:12px 10px;
-    background:#f8fafc;
+    padding:15px 12px;
+    background:rgba(255,255,255,.78);
     text-align:center;
+    box-shadow:0 10px 26px rgba(15,23,42,.06);
   }
-  .hero-metric b{display:block;font-size:21px;line-height:1.1;color:var(--ink);}
+  .hero-metric b{display:block;font-size:25px;line-height:1.1;color:var(--ink);}
   .hero-metric span{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
   .stars{
     height:1px;
@@ -441,8 +424,8 @@
   @media(max-width:900px){
     .nav{align-items:flex-start;flex-direction:column;gap:8px;}
     .navlinks{flex-wrap:wrap;gap:12px;}
-    header.hero{grid-template-columns:1fr;min-height:auto;padding:38px 0;}
-    h1{font-size:42px;}
+    header.hero{padding:44px 0 30px;}
+    h1{font-size:44px;}
     .subtitle{font-size:18px;}
     .construction-flow{grid-template-columns:1fr 1fr;}
     .construction-flow:before,
@@ -453,7 +436,7 @@
     .wrap{padding:0 18px 64px;}
     .nav{padding:10px 18px;}
     .navlinks{font-size:13px;}
-    h1{font-size:34px;}
+    h1{font-size:36px;}
     h2{font-size:28px;}
     .hero-metrics,
     .stats{grid-template-columns:repeat(2,1fr);}
@@ -507,13 +490,6 @@
         Trip+ combines traveler profiles, fixed travel evidence, dynamic user turns, and a
         four-layer verifier to test realistic personalized planning.
       </div>
-    </div>
-    <div class="hero-visual">
-      <img src="assets/figures/fig2_overview.png" alt="Overall design of Trip+">
-      <div class="hero-caption">
-        Trip+ evaluates the full loop: user state, travel evidence, agent response mode,
-        itinerary feasibility, profile suitability, and multi-turn preservation.
-      </div>
       <div class="hero-metrics">
         <div class="hero-metric"><b>153</b><span>instances</span></div>
         <div class="hero-metric"><b>570</b><span>turns</span></div>
@@ -543,8 +519,8 @@
       profiled traveler preferences.
     </p>
 
-    <figure>
-      <img src="assets/figures/fig1_positioning.png" alt="Positioning of travel-planning benchmarks" style="max-width:420px">
+    <figure class="wide-figure">
+      <img src="assets/figures/fig1_positioning.png" alt="Positioning of travel-planning benchmarks">
       <figcaption><b>Figure 1.</b> Positioning travel-planning benchmarks along two axes —
         <em>personalization richness</em> (constraints → profiles → experience) and
         <em>interaction richness</em> (one-shot → targeted → diverse). Trip+ targets the
