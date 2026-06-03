@@ -6,116 +6,260 @@
 <title>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</title>
 <style>
   :root{
-    --ink:#1a1a1a;
-    --muted:#666;
-    --link:#1f6feb;
-    --rule:#e2e2e2;
-    --bg:#ffffff;
-    --soft:#f7f7f8;
-    --maxw:780px;
+    --ink:#17202a;
+    --muted:#64748b;
+    --soft:#f5f7fb;
+    --panel:#ffffff;
+    --line:#dbe3ed;
+    --blue:#2563eb;
+    --teal:#0f766e;
+    --coral:#dc6b4a;
+    --gold:#b7791f;
+    --maxw:1120px;
+    --textw:850px;
+    --shadow:0 18px 48px rgba(15,23,42,.10);
   }
   *{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
+  html{scroll-behavior:smooth;scroll-padding-top:78px;-webkit-text-size-adjust:100%;}
   body{
     margin:0;
-    background:var(--bg);
+    background:
+      linear-gradient(180deg,#eef6ff 0,#fff 520px),
+      #fff;
     color:var(--ink);
-    font-family:"Computer Modern Serif",Georgia,"Times New Roman",serif;
-    font-size:18px;
-    line-height:1.6;
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.68;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 22px 96px;}
-  a{color:var(--link);text-decoration:none;}
+  a{color:var(--blue);text-decoration:none;}
   a:hover{text-decoration:underline;}
-
-  /* Header */
-  header{text-align:center;margin-bottom:8px;}
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(255,255,255,.88);
+    border-bottom:1px solid rgba(219,227,237,.9);
+    backdrop-filter:saturate(140%) blur(14px);
+  }
+  .nav{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .brand{
+    color:var(--ink);
+    font-weight:800;
+    letter-spacing:0;
+    white-space:nowrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    font-size:14px;
+  }
+  .navlinks a{color:#334155;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px 80px;}
+  header.hero{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+    gap:36px;
+    align-items:center;
+    padding:38px 0 30px;
+  }
+  .eyebrow{
+    color:var(--teal);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
   h1{
-    font-size:30px;
-    line-height:1.3;
-    font-weight:700;
+    font-size:48px;
+    line-height:1.05;
+    font-weight:850;
     margin:0 0 18px;
-    letter-spacing:-.01em;
+    letter-spacing:0;
   }
-  .authors{font-size:18px;margin:6px 0;}
-  .affil{font-size:15px;color:var(--muted);margin:4px 0 2px;}
-  .venue{font-size:15px;color:var(--muted);font-style:italic;margin:10px 0 18px;}
-  .links{font-size:17px;margin:14px 0 4px;line-height:2;}
-  .links a{white-space:nowrap;}
-  .links .sep{color:#bbb;}
-
-  /* Separator */
-  .stars{
-    text-align:center;
-    color:#bbb;
-    letter-spacing:.7em;
-    margin:40px 0;
-    font-size:16px;
-    user-select:none;
+  .subtitle{
+    max-width:720px;
+    color:#475569;
+    font-size:20px;
+    line-height:1.6;
+    margin:0 0 22px;
   }
-
-  /* Sections */
-  section{margin:0;}
-  h2{
-    font-size:23px;
+  .authors{font-size:16px;color:#475569;margin:10px 0 0;}
+  .venue{font-size:15px;color:var(--muted);font-style:normal;margin:4px 0 20px;}
+  .links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:22px 0 0;
+    line-height:1;
+  }
+  .links .sep{display:none;}
+  .links a,
+  .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:40px;
+    padding:10px 16px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fff;
+    color:#17202a;
+    font-size:14px;
     font-weight:700;
-    margin:0 0 14px;
+    box-shadow:0 8px 22px rgba(15,23,42,.06);
+    text-decoration:none;
+  }
+  .links a:first-of-type{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+  .anon-note{
+    max-width:650px;
+    color:var(--muted);
+    font-size:14px;
+    margin-top:18px;
+  }
+  .hero-visual{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px;
+    box-shadow:var(--shadow);
+  }
+  .hero-visual img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:6px;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .hero-caption{
+    color:#64748b;
+    font-size:13px;
+    margin:12px 2px 0;
+    line-height:1.45;
+  }
+  .hero-metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:18px;
+  }
+  .hero-metric{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 10px;
+    background:#f8fafc;
     text-align:center;
+  }
+  .hero-metric b{display:block;font-size:21px;line-height:1.1;color:var(--ink);}
+  .hero-metric span{display:block;color:var(--muted);font-size:12px;margin-top:4px;}
+  .stars{
+    height:1px;
+    margin:18px auto 56px;
+    max-width:var(--textw);
+    background:linear-gradient(90deg,transparent,var(--line),transparent);
+    overflow:hidden;
+    color:transparent;
+  }
+  section{
+    max-width:var(--textw);
+    margin:0 auto;
+    padding:12px 0;
+    scroll-margin-top:78px;
+  }
+  h2{
+    font-size:34px;
+    line-height:1.16;
+    font-weight:820;
+    margin:0 0 18px;
+    text-align:center;
+    letter-spacing:0;
+  }
+  h2:after{
+    content:"";
+    display:block;
+    width:58px;
+    height:3px;
+    margin:14px auto 0;
+    border-radius:3px;
+    background:linear-gradient(90deg,var(--teal),var(--blue),var(--coral));
   }
   h3{
-    font-size:19px;
-    font-weight:700;
-    margin:30px 0 8px;
+    font-size:21px;
+    font-weight:800;
+    margin:34px 0 8px;
   }
-  p{margin:0 0 16px;text-align:justify;}
-  .lead{font-size:18px;}
-
+  h4{letter-spacing:0;}
+  p{margin:0 0 16px;text-align:left;}
+  .lead{
+    font-size:18px;
+    color:#334155;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:24px 26px;
+    box-shadow:0 12px 34px rgba(15,23,42,.06);
+  }
   ul,ol{margin:0 0 16px;padding-left:1.4em;}
   li{margin:0 0 9px;}
-
   .small{font-size:14px;color:var(--muted);}
   em.term{font-style:italic;}
-  strong{font-weight:700;}
-
-  /* Figures */
-  figure{margin:26px 0;text-align:center;}
+  strong{font-weight:800;}
+  figure{
+    margin:32px auto;
+    text-align:center;
+  }
   figure img{
     max-width:100%;
     height:auto;
-    border:1px solid var(--rule);
-    border-radius:4px;
+    border:1px solid var(--line);
+    border-radius:8px;
     background:#fff;
+    box-shadow:0 14px 34px rgba(15,23,42,.08);
   }
-  figure img.bare{border:none;}
+  figure img.bare{border:none;box-shadow:none;}
   figcaption{
+    max-width:760px;
+    margin:12px auto 0;
+    color:#64748b;
     font-size:14px;
-    color:var(--muted);
-    margin-top:10px;
     text-align:left;
-    line-height:1.5;
+    line-height:1.55;
   }
   figcaption b{color:var(--ink);}
-
-  /* Key numbers */
   .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:14px;
-    margin:26px 0 8px;
+    margin:28px 0 10px;
   }
   .stat{
-    border:1px solid var(--rule);
-    border-radius:6px;
-    padding:16px 10px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 12px;
     text-align:center;
-    background:var(--soft);
+    background:#fff;
+    box-shadow:0 10px 26px rgba(15,23,42,.05);
   }
-  .stat .num{font-size:26px;font-weight:700;line-height:1.1;}
+  .stat:nth-child(3n+1){border-top:4px solid var(--teal);}
+  .stat:nth-child(3n+2){border-top:4px solid var(--blue);}
+  .stat:nth-child(3n){border-top:4px solid var(--coral);}
+  .stat .num{font-size:30px;font-weight:850;line-height:1.1;}
   .stat .lab{font-size:13px;color:var(--muted);margin-top:6px;}
-  @media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr);}}
-
-  /* Tables */
   .tablewrap{overflow-x:auto;margin:22px 0;}
   table{
     border-collapse:collapse;
@@ -124,94 +268,171 @@
     font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
   }
   th,td{
-    border-bottom:1px solid var(--rule);
+    border-bottom:1px solid var(--line);
     padding:7px 9px;
     text-align:center;
     white-space:nowrap;
   }
-  th{font-weight:700;border-bottom:1.5px solid #ccc;}
+  th{font-weight:800;border-bottom:1.5px solid #cbd5e1;}
   td.model,th.model{text-align:left;white-space:nowrap;}
-  thead tr.grp th{
-    background:var(--soft);
-    font-size:12.5px;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:.04em;
-  }
+  thead tr.grp th,
   tr.divider td{
-    background:var(--soft);
-    text-align:left;
-    font-weight:700;
-    font-size:12.5px;
+    background:#f8fafc;
     color:var(--muted);
+    font-size:12.5px;
+    font-weight:800;
     text-transform:uppercase;
     letter-spacing:.04em;
   }
-  td.best{font-weight:700;}
+  td.best{font-weight:800;}
   td.second{text-decoration:underline;}
-  tbody tr:hover{background:#fafafe;}
-
-  /* mode cards */
-  .modes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0;}
-  .mode{border:1px solid var(--rule);border-radius:6px;padding:14px 16px;background:#fff;}
-  .mode .tag{font-family:-apple-system,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--link);text-transform:uppercase;}
-  .mode h4{margin:6px 0 6px;font-size:16px;}
-  .mode p{font-size:14px;color:var(--muted);text-align:left;margin:0;}
-  @media(max-width:620px){.modes{grid-template-columns:1fr;}}
-
-  /* archetypes */
-  .arch{border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0;}
-  .arch h4{margin:0 0 4px;font-size:17px;}
-  .arch h4 .rn{color:var(--link);font-family:-apple-system,Arial,sans-serif;font-size:13px;margin-right:8px;}
-  .arch p{margin:0;font-size:15px;color:#444;}
-
-  /* findings */
+  tbody tr:hover{background:#f8fbff;}
+  .modes{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin:24px 0;
+  }
+  .mode{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px;
+    background:#fff;
+    box-shadow:0 10px 28px rgba(15,23,42,.05);
+  }
+  .mode:nth-child(1){border-top:4px solid var(--teal);}
+  .mode:nth-child(2){border-top:4px solid var(--gold);}
+  .mode:nth-child(3){border-top:4px solid var(--coral);}
+  .mode .tag{
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.08em;
+    color:var(--blue);
+    text-transform:uppercase;
+  }
+  .mode h4{margin:7px 0 7px;font-size:17px;}
+  .mode p{font-size:14px;color:var(--muted);margin:0;}
+  .arch{
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:8px;
+    padding:16px 18px;
+    margin:14px 0;
+    background:#fff;
+  }
+  .arch:nth-of-type(2){border-left-color:var(--teal);}
+  .arch:nth-of-type(3){border-left-color:var(--gold);}
+  .arch:nth-of-type(4){border-left-color:var(--coral);}
+  .arch h4{margin:0 0 5px;font-size:17px;}
+  .arch h4 .rn{color:var(--blue);font-size:13px;margin-right:8px;font-weight:850;}
+  .arch p{margin:0;font-size:15px;color:#475569;}
   .takeaway{
-    background:var(--soft);
-    border-left:3px solid var(--link);
-    padding:12px 18px;
-    margin:18px 0;
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:5px solid var(--teal);
+    border-radius:8px;
+    padding:16px 20px;
+    margin:22px 0;
     font-size:16px;
+    box-shadow:0 10px 28px rgba(15,23,42,.05);
   }
   .takeaway b{color:var(--ink);}
-
-  /* citation */
   pre.cite{
-    background:var(--soft);
-    border:1px solid var(--rule);
-    border-radius:6px;
-    padding:16px;
+    background:#0f172a;
+    color:#e5edf7;
+    border:1px solid #1e293b;
+    border-radius:8px;
+    padding:18px;
     font-size:13px;
-    line-height:1.5;
+    line-height:1.55;
     overflow-x:auto;
     font-family:"SF Mono",Menlo,Consolas,monospace;
     white-space:pre;
     text-align:left;
   }
-  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:50px;}
-  .anon-note{font-size:13.5px;color:var(--muted);text-align:center;font-style:italic;margin-top:6px;}
+  footer{
+    max-width:var(--textw);
+    margin:52px auto 0;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+  @media(max-width:900px){
+    .nav{align-items:flex-start;flex-direction:column;gap:8px;}
+    .navlinks{flex-wrap:wrap;gap:12px;}
+    header.hero{grid-template-columns:1fr;min-height:auto;padding:38px 0;}
+    h1{font-size:42px;}
+    .subtitle{font-size:18px;}
+  }
+  @media(max-width:620px){
+    body{font-size:16px;}
+    .wrap{padding:0 18px 64px;}
+    .nav{padding:10px 18px;}
+    .navlinks{font-size:13px;}
+    h1{font-size:34px;}
+    h2{font-size:28px;}
+    .hero-metrics,
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .modes{grid-template-columns:1fr;}
+    .lead{padding:18px;}
+    figure{margin:26px -2px;}
+  }
 </style>
 </head>
 <body>
+<div class="topbar">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#">Trip+</a>
+    <div class="navlinks">
+      <a href="#abstract">Abstract</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#results">Results</a>
+      <a href="#cite">BibTeX</a>
+    </div>
+  </nav>
+</div>
 <div class="wrap">
 
   <!-- ===================== HEADER ===================== -->
-  <header>
-    <h1>Trip+: Benchmarking Agents in<br>Personalized Interactive Travel Planning</h1>
-    <div class="authors">Anonymous ACL submission</div>
-    <div class="venue">Under review · A personalized, multi-turn travel-planning benchmark for language agents</div>
-    <div class="links">
-      [&nbsp;<a href="assets/Trip_Plus_paper.pdf">Paper</a>&nbsp;]
-      <span class="sep">·</span>
-      [&nbsp;<a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a>&nbsp;]
-      <span class="sep">·</span>
-      [&nbsp;<a href="#benchmark">Benchmark</a>&nbsp;]
-      <span class="sep">·</span>
-      [&nbsp;<a href="#results">Results</a>&nbsp;]
-      <span class="sep">·</span>
-      [&nbsp;<a href="#cite">BibTeX</a>&nbsp;]
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Interactive travel-planning benchmark</div>
+      <h1>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</h1>
+      <p class="subtitle">
+        A stateful benchmark for evaluating whether language agents can build feasible,
+        profile-aligned, and intent-consistent travel itineraries across evolving multi-turn
+        conversations.
+      </p>
+      <div class="authors">Anonymous ACL submission</div>
+      <div class="venue">Under review · Code and data released anonymously</div>
+      <div class="links">
+        <a href="assets/Trip_Plus_paper.pdf">Paper</a>
+        <a href="https://anonymous.4open.science/r/trip-plus-BE40" target="_blank" rel="noopener">Code &amp; Data</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#results">Results</a>
+        <a href="#cite">BibTeX</a>
+      </div>
+      <div class="anon-note">
+        Trip+ combines traveler profiles, fixed travel evidence, dynamic user turns, and a
+        four-layer verifier to test realistic personalized planning.
+      </div>
     </div>
-    <div class="anon-note">Code and data are released anonymously and will be fully open-sourced.</div>
+    <div class="hero-visual">
+      <img src="assets/figures/fig2_overview.png" alt="Overall design of Trip+">
+      <div class="hero-caption">
+        Trip+ evaluates the full loop: user state, travel evidence, agent response mode,
+        itinerary feasibility, profile suitability, and multi-turn preservation.
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-metric"><b>153</b><span>instances</span></div>
+        <div class="hero-metric"><b>570</b><span>turns</span></div>
+        <div class="hero-metric"><b>18</b><span>models</span></div>
+        <div class="hero-metric"><b>40</b><span>cities</span></div>
+      </div>
+    </div>
   </header>
 
   <div class="stars">∗ &nbsp; ∗ &nbsp; ∗</div>
