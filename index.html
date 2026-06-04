@@ -25,10 +25,11 @@
     margin:0;
     background:#fff;
     color:var(--ink);
+    --page-zoom:1;
     font-family:"Times New Roman",Times,serif;
     font-size:19px;
     line-height:1.62;
-    overflow-x:hidden;
+    overflow-x:auto;
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--blue);text-decoration:none;}
@@ -59,6 +60,60 @@
   }
   .navlinks a{color:#334155;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px 80px;}
+  .wrap[data-page-root]{
+    zoom:var(--page-zoom);
+    transform-origin:top center;
+  }
+  @supports not (zoom:1){
+    .wrap[data-page-root]{
+      transform:scale(var(--page-zoom));
+      width:calc(100% / var(--page-zoom));
+    }
+  }
+  .page-zoom-controls{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid #cbd5e1;
+    border-radius:999px;
+    background:rgba(255,255,255,.94);
+    padding:6px 8px;
+    box-shadow:0 12px 32px rgba(15,23,42,.14);
+    font-family:"Times New Roman",Times,serif;
+  }
+  .page-zoom-controls span:first-child{
+    color:#475569;
+    font-size:12px;
+    font-weight:850;
+    padding:0 3px 0 5px;
+  }
+  .page-zoom-controls button{
+    width:30px;
+    height:30px;
+    border:1px solid #cbd5e1;
+    border-radius:50%;
+    background:#fff;
+    color:#334155;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:900;
+    line-height:1;
+  }
+  .page-zoom-controls button:hover{
+    border-color:#2563eb;
+    color:#2563eb;
+  }
+  .page-zoom-value{
+    min-width:42px;
+    text-align:center;
+    color:#64748b;
+    font-size:12px;
+    font-weight:850;
+  }
   header.hero{
     max-width:980px;
     margin:0 auto;
@@ -291,6 +346,12 @@
     margin:34px 0 36px 50%;
     transform:translateX(-50%);
   }
+  .story-figure figcaption{
+    max-width:1040px;
+    font-size:17px;
+    line-height:1.5;
+    text-align:left;
+  }
   .story-shell{
     --story-scale:1;
     position:relative;
@@ -416,7 +477,7 @@
   }
   .story-board{
     width:1080px;
-    min-height:540px;
+    min-height:680px;
     margin:0 auto;
     zoom:var(--story-scale);
   }
@@ -428,7 +489,7 @@
     min-width:0;
     display:none;
     max-width:1040px;
-    min-height:540px;
+    min-height:680px;
     margin:0 auto;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
@@ -972,7 +1033,7 @@
   }
   .construction-map{
     position:relative;
-    height:600px;
+    height:700px;
     overflow:hidden;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
@@ -1211,15 +1272,15 @@
     position:absolute;
     left:26px;
     right:26px;
-    bottom:12px;
+    bottom:24px;
     z-index:1;
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
   }
   .scenario-card{
-    min-height:108px;
-    padding:8px 8px;
+    min-height:156px;
+    padding:12px 10px;
     border-radius:18px;
     text-align:center;
   }
@@ -1239,6 +1300,14 @@
     color:#17202a;
     font-size:15px;
     line-height:1.05;
+  }
+  .scenario-card .scenario-desc{
+    min-height:32px;
+    margin:0 auto 6px;
+    color:#64748b;
+    font-size:12px;
+    font-weight:850;
+    line-height:1.15;
   }
   .scenario-card .scenario-tag{
     display:inline-block;
@@ -1619,6 +1688,14 @@
   }
   .itinerary-row:last-child{border-bottom:0;}
   .itinerary-row b{color:#17202a;}
+  .itinerary-more{
+    margin-top:6px;
+    text-align:center;
+    color:#b45309;
+    font-size:18px;
+    font-weight:900;
+    line-height:1;
+  }
   .verifier-box{
     display:grid;
     grid-template-columns:58px 1fr;
@@ -1797,7 +1874,7 @@
     display:flex;
     align-items:center;
     gap:9px;
-    font-size:12px;
+    font-size:14px;
     font-weight:900;
     line-height:1.18;
   }
@@ -1805,6 +1882,14 @@
     width:32px;
     height:32px;
     object-fit:contain;
+  }
+  .stateful-card span{
+    display:block;
+    color:#64748b;
+    font-size:12px;
+    font-weight:850;
+    line-height:1.15;
+    margin-top:3px;
   }
   @keyframes packetMove{
     0%{transform:translateX(0);opacity:0;}
@@ -1920,7 +2005,8 @@
     border-radius:8px;
     padding:16px 20px;
     margin:22px 0;
-    font-size:16px;
+    font-size:20px;
+    line-height:1.58;
     box-shadow:0 10px 28px rgba(15,23,42,.05);
   }
   .takeaway b{color:var(--ink);}
@@ -1971,8 +2057,8 @@
     .wide-figure,
     .story-figure{width:100%;margin-left:0;transform:none;}
     .story-stage{padding:12px;overflow:auto;}
-    .story-board{width:1080px;min-height:540px;}
-    .story-panel{min-height:540px;padding:18px;}
+    .story-board{width:1080px;min-height:680px;}
+    .story-panel{min-height:680px;padding:18px;}
     .story-panel h3{font-size:24px;}
     .seed-profile-row,
     .profile-rule-row{
@@ -2011,6 +2097,13 @@
 </style>
 </head>
 <body>
+<div class="page-zoom-controls" aria-label="Page zoom controls">
+  <span>Page</span>
+  <button type="button" data-page-zoom="out" aria-label="Zoom page out">-</button>
+  <span class="page-zoom-value" data-page-zoom-value>100%</span>
+  <button type="button" data-page-zoom="in" aria-label="Zoom page in">+</button>
+  <button type="button" data-page-zoom="reset" aria-label="Reset page zoom">1x</button>
+</div>
 <div class="topbar">
   <nav class="nav" aria-label="Primary">
     <a class="brand" href="#">Trip+</a>
@@ -2023,7 +2116,7 @@
     </div>
   </nav>
 </div>
-<div class="wrap">
+<div class="wrap" data-page-root>
 
   <!-- ===================== HEADER ===================== -->
   <header class="hero">
@@ -2117,7 +2210,7 @@
             <button class="story-btn" type="button" data-story-fullscreen>Full</button>
             <span class="story-zoom" aria-label="Zoom controls">
               <button class="story-btn" type="button" data-story-zoom="out" aria-label="Zoom out">-</button>
-              <span class="story-zoom-value" data-story-zoom-value>90%</span>
+              <span class="story-zoom-value" data-story-zoom-value>100%</span>
               <button class="story-btn" type="button" data-story-zoom="in" aria-label="Zoom in">+</button>
               <button class="story-btn" type="button" data-story-zoom="reset" aria-label="Reset zoom">1x</button>
             </span>
@@ -2142,7 +2235,7 @@
               <section class="story-panel panel-benchmark" data-story-panel="benchmark">
                 <h3><span class="story-badge">1</span>Benchmark Construction</h3>
                 <div class="construction-map">
-                  <svg class="construction-lines" viewBox="0 0 1040 600" aria-hidden="true">
+                  <svg class="construction-lines" viewBox="0 0 1040 700" aria-hidden="true">
                     <defs>
                       <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
                         <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"></path>
@@ -2157,10 +2250,10 @@
                     <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M232 198 C270 230, 345 250, 415 286"></path>
                     <path class="construction-line green" marker-end="url(#arrow-green)" d="M808 198 C770 230, 690 250, 625 286"></path>
                     <path class="construction-line orange" marker-end="url(#arrow-orange)" d="M520 286 L520 306"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M420 424 C300 452, 160 462, 136 482"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M490 426 C420 462, 380 470, 376 488"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M550 426 C620 462, 660 470, 664 488"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M620 424 C740 452, 880 462, 904 482"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M420 430 C292 476, 160 496, 136 526"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M490 432 C420 488, 380 506, 376 530"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M550 432 C620 488, 660 506, 664 530"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M620 430 C748 476, 880 496, 904 526"></path>
                   </svg>
 
                   <div class="story-node construction-source sandbox-source" data-story-steps="0,2">
@@ -2220,6 +2313,7 @@
                     <div class="story-node scenario-card blue" data-story-steps="4">
                       <span class="roman">I</span>
                       <h4>User-State Evolution</h4>
+                      <div class="scenario-desc">Budget, schedule, and must-visits evolve over turns.</div>
                       <div class="scenario-tag">4-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/budget.png" alt="">
@@ -2232,6 +2326,7 @@
                     <div class="story-node scenario-card orange" data-story-steps="4">
                       <span class="roman">II</span>
                       <h4>Request Resolution</h4>
+                      <div class="scenario-desc">Resolve conflicts, ambiguity, or missing edit targets.</div>
                       <div class="scenario-tag">3-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/senior.png" alt="">
@@ -2242,6 +2337,7 @@
                     <div class="story-node scenario-card green" data-story-steps="4">
                       <span class="roman">III</span>
                       <h4>Environment Replanning</h4>
+                      <div class="scenario-desc">Replan after weather, closure, crowd, or traffic changes.</div>
                       <div class="scenario-tag">3-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/rain.png" alt="">
@@ -2252,6 +2348,7 @@
                     <div class="story-node scenario-card purple" data-story-steps="4">
                       <span class="roman">IV</span>
                       <h4>Long-Horizon Alignment</h4>
+                      <div class="scenario-desc">Preserve earlier intent while later turns accumulate.</div>
                       <div class="scenario-tag">5-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/like.png" alt="">
@@ -2319,6 +2416,7 @@
                           <div class="itinerary-row"><b>09:30</b><span>Disneyland visit block</span><span>POI</span></div>
                           <div class="itinerary-row"><b>12:10</b><span>walk to nearby restaurant</span><span>meal</span></div>
                           <div class="itinerary-row"><b>14:00</b><span>revise for rain / fatigue</span><span>state</span></div>
+                          <div class="itinerary-more">...</div>
                         </div>
                       </div>
                     </div>
@@ -2397,8 +2495,8 @@
                       <div><b>Stateful Multi-Turn Evaluation</b><span>fulfill + preserve</span></div>
                     </div>
                     <div class="stateful-grid">
-                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/check.png" alt="">Request fulfillment</div>
-                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/thinking.png" alt="">Intent preservation</div>
+                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/check.png" alt=""><div>Request fulfillment<span>new or revised need solved</span></div></div>
+                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/thinking.png" alt=""><div>Intent preservation<span>prior constraints still kept</span></div></div>
                     </div>
                   </div>
                 </div>
@@ -2419,8 +2517,7 @@
           </div>
         </div>
       </div>
-      <figcaption><b>Interactive Pipeline.</b> A browser-native presentation view for explaining how Trip+
-        constructs benchmark tasks, runs an agent planning loop, and evaluates each turn.</figcaption>
+      <figcaption><b>Interactive Pipeline.</b> A browser-native presentation view for explaining how Trip+ constructs benchmark tasks, runs an agent planning loop, and evaluates each turn.</figcaption>
     </figure>
 
     <figure class="wide-figure">
@@ -2908,6 +3005,32 @@
   setZoom(zoom);
   render();
   start();
+})();
+
+(() => {
+  const root = document.querySelector('[data-page-root]');
+  const value = document.querySelector('[data-page-zoom-value]');
+  const buttons = [...document.querySelectorAll('[data-page-zoom]')];
+  if (!root || !value || !buttons.length) return;
+
+  let pageZoom = 1;
+
+  const setPageZoom = next => {
+    pageZoom = Math.min(1.3, Math.max(.75, next));
+    document.body.style.setProperty('--page-zoom', pageZoom.toFixed(2));
+    value.textContent = `${Math.round(pageZoom * 100)}%`;
+  };
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.pageZoom;
+      if (action === 'in') setPageZoom(pageZoom + .05);
+      if (action === 'out') setPageZoom(pageZoom - .05);
+      if (action === 'reset') setPageZoom(1);
+    });
+  });
+
+  setPageZoom(pageZoom);
 })();
 </script>
 </body>
