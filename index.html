@@ -25,7 +25,7 @@
     margin:0;
     background:#fff;
     color:var(--ink);
-    font-family:ui-serif,Georgia,"Times New Roman",serif;
+    font-family:"Times New Roman",Times,serif;
     font-size:19px;
     line-height:1.62;
     overflow-x:hidden;
@@ -224,7 +224,7 @@
     border-collapse:collapse;
     width:100%;
     font-size:13.5px;
-    font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-family:"Times New Roman",Times,serif;
   }
   th,td{
     border-bottom:1px solid var(--line);
@@ -298,7 +298,7 @@
     background:linear-gradient(180deg,#fbfdff 0%,#f8fafc 100%);
     box-shadow:0 24px 60px rgba(15,23,42,.13);
     overflow:hidden;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-family:"Times New Roman",Times,serif;
     color:#17202a;
   }
   .story-top{
@@ -319,7 +319,7 @@
     margin-bottom:4px;
   }
   .story-title{
-    font-family:Georgia,"Times New Roman",serif;
+    font-family:"Times New Roman",Times,serif;
     font-size:30px;
     font-weight:850;
     line-height:1.08;
@@ -444,7 +444,7 @@
     align-items:center;
     gap:10px;
     margin:0 0 14px;
-    font-family:Georgia,"Times New Roman",serif;
+    font-family:"Times New Roman",Times,serif;
     font-size:28px;
     line-height:1.1;
   }
@@ -457,7 +457,7 @@
     border-radius:50%;
     border:2px solid currentColor;
     background:#fff;
-    font-family:Georgia,"Times New Roman",serif;
+    font-family:"Times New Roman",Times,serif;
     font-weight:850;
   }
   .panel-benchmark{border-color:#bfd3f5;}
@@ -575,18 +575,18 @@
   }
   .story-benchmark-grid{
     display:grid;
-    grid-template-columns:.95fr 1.05fr;
-    gap:12px;
+    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    gap:14px;
     align-items:start;
   }
   .story-benchmark-grid .interaction-node{
     grid-column:1 / -1;
   }
   .sandbox-node{
-    min-height:296px;
+    min-height:250px;
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:10px;
   }
   .sandbox-header{
     display:flex;
@@ -598,7 +598,7 @@
     display:flex;
     align-items:center;
     gap:9px;
-    font-size:15px;
+    font-size:16px;
     font-weight:900;
     color:#17202a;
   }
@@ -613,25 +613,25 @@
   }
   .sandbox-evidence{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:8px;
   }
   .evidence-tile{
-    min-height:56px;
+    min-height:52px;
     border:1px solid #dbe3ed;
     border-radius:13px;
     background:#fff;
     padding:8px;
     text-align:center;
     color:#475569;
-    font-size:10.5px;
+    font-size:12px;
     font-weight:850;
     line-height:1.15;
   }
   .evidence-tile img{
     display:block;
-    width:30px;
-    height:30px;
+    width:28px;
+    height:28px;
     object-fit:contain;
     margin:0 auto 4px;
   }
@@ -656,6 +656,69 @@
     color:#315fa9;
     font-size:12px;
     margin-bottom:4px;
+  }
+  .task-node{
+    background:linear-gradient(180deg,#fff,#f8fbff);
+  }
+  .task-seed-board{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .task-highlight{
+    position:relative;
+    min-height:66px;
+    border:2px solid #93c5fd;
+    border-radius:14px;
+    background:#eff6ff;
+    color:#315fa9;
+    padding:9px 9px 8px 48px;
+    font-size:13px;
+    font-weight:900;
+    line-height:1.1;
+  }
+  .task-highlight img{
+    position:absolute;
+    left:10px;
+    top:50%;
+    width:32px;
+    height:32px;
+    object-fit:contain;
+    transform:translateY(-50%);
+  }
+  .task-highlight span{
+    display:block;
+    margin-top:3px;
+    color:#64748b;
+    font-size:10px;
+    font-weight:850;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .hard-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-top:8px;
+  }
+  .hard-chip{
+    min-height:52px;
+    border:1px solid #fed7aa;
+    border-radius:12px;
+    background:#fff7ed;
+    color:#c05621;
+    text-align:center;
+    padding:7px 4px;
+    font-size:11.5px;
+    font-weight:850;
+    line-height:1.08;
+  }
+  .hard-chip img{
+    display:block;
+    width:26px;
+    height:26px;
+    object-fit:contain;
+    margin:0 auto 4px;
   }
   .construction-stack{
     display:grid;
@@ -712,6 +775,104 @@
     font-weight:800;
     color:#334155;
   }
+  .profile-board{
+    border:2px dashed #9bb7ec;
+    border-radius:22px;
+    background:#fbfdff;
+    padding:9px;
+  }
+  .profile-board-title{
+    color:#315fa9;
+    font-size:16px;
+    font-weight:900;
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .profile-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+  }
+  .profile-item{
+    position:relative;
+    min-height:68px;
+    border:1px solid #dbe3ed;
+    border-radius:13px;
+    background:#fff;
+    padding:7px 4px;
+    text-align:center;
+    color:#315fa9;
+    font-size:10.5px;
+    font-weight:850;
+    line-height:1.08;
+  }
+  .profile-item img{
+    display:block;
+    width:34px;
+    height:34px;
+    object-fit:contain;
+    margin:0 auto 4px;
+  }
+  .profile-item.selected{
+    border:2px solid #2563eb;
+    background:#eff6ff;
+    box-shadow:0 10px 22px rgba(37,99,235,.16);
+  }
+  .profile-item.selected:after{
+    content:"Selected";
+    position:absolute;
+    top:-9px;
+    right:8px;
+    border-radius:999px;
+    background:#2563eb;
+    color:#fff;
+    padding:2px 7px;
+    font-size:9px;
+    font-weight:900;
+  }
+  .base-query-composer{
+    display:grid;
+    grid-template-columns:1fr 38px 1fr;
+    gap:8px;
+    align-items:center;
+  }
+  .composer-card{
+    border:1.5px solid #bfdbfe;
+    border-radius:14px;
+    background:#eff6ff;
+    color:#315fa9;
+    min-height:74px;
+    padding:8px;
+    font-size:12px;
+    font-weight:900;
+    line-height:1.18;
+    text-align:center;
+  }
+  .composer-card img{
+    display:block;
+    width:34px;
+    height:34px;
+    object-fit:contain;
+    margin:0 auto 5px;
+  }
+  .composer-plus{
+    color:#2563eb;
+    font-size:30px;
+    font-weight:900;
+    text-align:center;
+  }
+  .base-query-output{
+    margin-top:10px;
+    border:2px solid #315fa9;
+    border-radius:16px;
+    background:#fff;
+    color:#315fa9;
+    padding:12px 14px;
+    text-align:center;
+    font-size:17px;
+    font-weight:900;
+    line-height:1.18;
+  }
   .rule-list{
     display:grid;
     gap:6px;
@@ -740,6 +901,73 @@
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:8px;
+  }
+  .interaction-matrix{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:2px solid #9bb7ec;
+    border-radius:20px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .interaction-scene{
+    min-height:104px;
+    border-right:1px dashed #9bb7ec;
+    border-bottom:1px dashed #9bb7ec;
+    padding:9px;
+    color:#315fa9;
+  }
+  .interaction-scene:nth-child(2n){
+    border-right:0;
+  }
+  .interaction-scene:nth-child(n+3){
+    border-bottom:0;
+  }
+  .interaction-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#315fa9;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.05;
+    margin-bottom:8px;
+  }
+  .roman{
+    font-size:27px;
+    font-weight:900;
+    line-height:1;
+  }
+  .interaction-icons{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    color:#315fa9;
+    font-size:20px;
+    font-weight:900;
+  }
+  .interaction-icons img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+  }
+  .interaction-note{
+    margin-top:6px;
+    color:#315fa9;
+    font-size:12px;
+    font-weight:850;
+    text-align:center;
+  }
+  .resolution-bubble{
+    border:2px solid #315fa9;
+    border-radius:10px;
+    background:#dbeafe;
+    color:#315fa9;
+    padding:6px 9px;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.05;
   }
   .turn-card{
     min-height:78px;
@@ -1297,7 +1525,7 @@
     font-size:13px;
     line-height:1.55;
     overflow-x:auto;
-    font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-family:"Times New Roman",Times,serif;
     white-space:pre;
     text-align:left;
   }
@@ -1334,11 +1562,10 @@
     figure{margin:26px -2px;}
     .wide-figure,
     .story-figure{width:100%;margin-left:0;transform:none;}
-    .story-stage{padding:12px;}
-    .story-board{width:100%;min-height:0;zoom:1!important;}
-    .story-panel{min-height:0;padding:14px;}
+    .story-stage{padding:12px;overflow:auto;}
+    .story-board{width:1080px;min-height:540px;}
+    .story-panel{min-height:540px;padding:18px;}
     .story-panel h3{font-size:24px;}
-    .story-benchmark-grid,
     .seed-profile-row,
     .profile-rule-row,
     .agent-mainline,
@@ -1350,6 +1577,9 @@
     }
     .sandbox-evidence,
     .story-chip-grid,
+    .task-seed-board,
+    .hard-grid,
+    .profile-grid,
     .tool-grid,
     .agent-mainline .tool-grid,
     .metric-grid,
@@ -1500,8 +1730,8 @@
         </div>
         <div class="story-nav" aria-label="Story steps">
           <button class="story-step is-active" type="button" data-story-target="0">1 Sandbox</button>
-          <button class="story-step" type="button" data-story-target="1">2 City + Date</button>
-          <button class="story-step" type="button" data-story-target="2">3 Traveler</button>
+          <button class="story-step" type="button" data-story-target="1">2 Task Seed</button>
+          <button class="story-step" type="button" data-story-target="2">3 Profile</button>
           <button class="story-step" type="button" data-story-target="3">4 Base Query</button>
           <button class="story-step" type="button" data-story-target="4">5 Multi-turn</button>
           <button class="story-step" type="button" data-story-target="5">6 Tool Use</button>
@@ -1521,7 +1751,7 @@
                     <div class="sandbox-header">
                       <div class="sandbox-title">
                         <img class="story-icon sm" src="assets/figures/pipeline-icons/tools.png" alt="">
-                        Fixed travel data sandbox
+                        Travel Data Sandbox
                       </div>
                       <div class="sandbox-count">40 cities · 11 tools</div>
                     </div>
@@ -1534,62 +1764,102 @@
                       <div class="evidence-tile"><img src="assets/figures/pipeline-icons/weather.png" alt="">Weather</div>
                     </div>
                     <div class="sandbox-map">
-                      <div class="sandbox-mini"><b>Fixed evidence</b>same records for agents and evaluators</div>
-                      <div class="sandbox-mini"><b>Context</b>weather, queue, closure, heat / cold</div>
+                      <div class="sandbox-mini"><b>City pool</b>destinations · dates · routes</div>
+                      <div class="sandbox-mini"><b>Context</b>weather · queues · closures</div>
                     </div>
                   </div>
 
                   <div class="construction-stack">
-                    <div class="seed-profile-row">
-                      <div class="story-node" data-story-steps="1">
-                        <div class="story-node-title"><span>Extract task seed</span><span>City + date</span></div>
-                        <div class="story-chip-grid">
-                          <div class="story-chip blue seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong</div>
-                          <div class="story-chip orange seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/schedule.png" alt="">4 days</div>
-                          <div class="story-chip green seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/poi.png" alt="">Disneyland</div>
-                          <div class="story-chip seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/weather.png" alt="">Weather</div>
-                        </div>
+                    <div class="story-node task-node" data-story-steps="1">
+                      <div class="story-node-title"><span>Task Seed</span><span>highlighted task</span></div>
+                      <div class="task-seed-board">
+                        <div class="task-highlight"><img src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong<span>Destination</span></div>
+                        <div class="task-highlight"><img src="assets/figures/pipeline-icons/schedule.png" alt="">4 days<span>Date / duration</span></div>
+                        <div class="task-highlight"><img src="assets/figures/pipeline-icons/poi.png" alt="">Disneyland<span>Highlighted POI</span></div>
+                        <div class="task-highlight"><img src="assets/figures/pipeline-icons/weather.png" alt="">Weather<span>Local context</span></div>
                       </div>
-
-                      <div class="story-node" data-story-steps="2">
-                        <div class="story-node-title"><span>Pick traveler profile</span><span>User memory</span></div>
-                        <div class="profile-row">
-                          <div class="persona is-selected"><img class="story-icon sm" src="assets/figures/pipeline-icons/family.png" alt=""><span>family</span></div>
-                          <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/senior.png" alt=""><span>senior</span></div>
-                          <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/backpacker.png" alt=""><span>backpacker</span></div>
-                        </div>
-                        <div class="story-chip-grid" style="margin-top:10px">
-                          <div class="story-chip blue">observable profile</div>
-                          <div class="story-chip orange">hidden rules</div>
-                        </div>
+                      <div class="hard-grid">
+                        <div class="hard-chip"><img src="assets/figures/pipeline-icons/poi.png" alt="">Attraction</div>
+                        <div class="hard-chip"><img src="assets/figures/pipeline-icons/train.png" alt="">Transport</div>
+                        <div class="hard-chip"><img src="assets/figures/pipeline-icons/hotel.png" alt="">Hotel</div>
+                        <div class="hard-chip"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">Restaurant</div>
+                        <div class="hard-chip"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget</div>
                       </div>
                     </div>
 
                     <div class="story-node" data-story-steps="2">
-                      <div class="story-node-title"><span>Profile-derived soft rules</span><span>Evaluator only</span></div>
-                      <div class="profile-rule-row">
-                        <div class="query-card">Family of five<br>comfort-aware<br>Disneyland required</div>
-                        <div class="rule-list">
-                          <div class="rule-pill family-rule">Family: child-friendly · rest · low walking</div>
-                          <div class="rule-pill senior-rule">Senior: relaxed pace · early meals</div>
-                          <div class="rule-pill">Backpacker: budget · transit · dense route</div>
+                      <div class="story-node-title"><span>Traveler Profile</span><span>select one</span></div>
+                      <div class="profile-board">
+                        <div class="profile-board-title">11 Diverse Traveler Profiles</div>
+                        <div class="profile-grid">
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/backpacker.png" alt="">Backpacker</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/couple.png" alt="">Couples</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/senior.png" alt="">Senior</div>
+                          <div class="profile-item selected"><img src="assets/figures/pipeline-icons/family.png" alt="">Three-Generation<br>Family</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/student.png" alt="">Student</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/foodfirst.png" alt="">Food-first</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/friends.png" alt="">Friends</div>
+                          <div class="profile-item"><img src="assets/figures/pipeline-icons/business.png" alt="">Businessman</div>
                         </div>
                       </div>
                     </div>
 
                     <div class="story-node" data-story-steps="3">
-                      <div class="story-node-title"><span>Render base query</span><span>Utterance</span></div>
-                      <div class="query-card">Family of five · 4-day Hong Kong · must visit Disneyland</div>
+                      <div class="story-node-title"><span>Base Query</span><span>profile + task</span></div>
+                      <div class="base-query-composer">
+                        <div class="composer-card"><img src="assets/figures/pipeline-icons/family.png" alt="">Three-Generation<br>Family</div>
+                        <div class="composer-plus">+</div>
+                        <div class="composer-card"><img src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong · 4 days<br>Disneyland</div>
+                      </div>
+                      <div class="base-query-output">We, a three-generation family of five, need a 4-day Hong Kong trip and must visit Disneyland.</div>
                     </div>
                   </div>
 
                   <div class="story-node interaction-node" data-story-steps="4">
-                    <div class="story-node-title"><span>Generate multi-turn interactions</span><span>Oracle</span></div>
-                    <div class="turn-lane">
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/budget.png" alt=""><b><span class="rn">I</span>User State</b>budget · schedule · must-visit</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/question.png" alt=""><b><span class="rn">II</span>Resolution</b>clarify · conflict · infeasible</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/rain.png" alt=""><b><span class="rn">III</span>Replan</b>weather · closure · traffic</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/thinking.png" alt=""><b><span class="rn">IV</span>Alignment</b>new request · preserve intent</div>
+                    <div class="story-node-title"><span>Four Diverse Interactions</span><span>multi-turn oracle</span></div>
+                    <div class="interaction-matrix">
+                      <div class="interaction-scene">
+                        <div class="interaction-title"><span class="roman">I</span>User-state evolution</div>
+                        <div class="interaction-icons">
+                          <img src="assets/figures/pipeline-icons/budget.png" alt="">
+                          <span>→</span>
+                          <img src="assets/figures/pipeline-icons/schedule.png" alt="">
+                          <span>→</span>
+                          <img src="assets/figures/pipeline-icons/location.png" alt="">
+                        </div>
+                        <div class="interaction-note">Add budget · Change schedule · New must-visit</div>
+                      </div>
+                      <div class="interaction-scene">
+                        <div class="interaction-title"><span class="roman">II</span>Request Resolution</div>
+                        <div class="interaction-icons">
+                          <img src="assets/figures/pipeline-icons/senior.png" alt="">
+                          <span>→</span>
+                          <div class="resolution-bubble">5 POIs<br>one day</div>
+                          <span>?</span>
+                        </div>
+                        <div class="interaction-note">Ask clarification · conflict · ambiguous date</div>
+                      </div>
+                      <div class="interaction-scene">
+                        <div class="interaction-title"><span class="roman">III</span>Environment-driven replanning</div>
+                        <div class="interaction-icons">
+                          <img src="assets/figures/pipeline-icons/rain.png" alt="">
+                          <img src="assets/figures/pipeline-icons/closed.png" alt="">
+                          <img src="assets/figures/pipeline-icons/crowd.png" alt="">
+                          <img src="assets/figures/pipeline-icons/temperature.png" alt="">
+                        </div>
+                        <div class="interaction-note">Weather · Closure · Queue · Heat / cold</div>
+                      </div>
+                      <div class="interaction-scene">
+                        <div class="interaction-title"><span class="roman">IV</span>Long-horizon alignment</div>
+                        <div class="interaction-icons">
+                          <img src="assets/figures/pipeline-icons/like.png" alt="">
+                          <span>→</span>
+                          <img src="assets/figures/pipeline-icons/question.png" alt="">
+                          <span>→</span>
+                          <img src="assets/figures/pipeline-icons/rain.png" alt="">
+                        </div>
+                        <div class="interaction-note">Turn 1 requirement · Turn 2 ambiguity · Turn 3 disruption</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1651,7 +1921,7 @@
 
                     <div class="agent-bottom">
                       <div class="story-node agent-revision" data-story-steps="5,7">
-                        <div class="agent-check">sandbox evidence</div>
+                        <div class="agent-check">sandbox data</div>
                         <div class="agent-check">profile rules</div>
                         <div class="agent-check">turn state</div>
                         <div class="agent-check">verifier feedback</div>
@@ -1738,7 +2008,7 @@
             </div>
             <div class="story-caption-live">
               <b data-story-label>Step 1 / 11</b>
-              <p data-story-caption>Fixed sandbox: 40 cities, 11 tools, shared evidence.</p>
+              <p data-story-caption>Sandbox: 40 cities, 11 tools, routes, POIs, hotels, meals, and weather.</p>
             </div>
           </div>
         </div>
@@ -1774,15 +2044,14 @@
       <div class="stat"><div class="num">7.2M</div><div class="lab">in-city transit records</div></div>
     </div>
     <p class="small" style="text-align:center;">
-      The fixed sandbox additionally contains 309K train rows, 38K flight rows, and thousands of
-      attractions, restaurants, hotels, subway stations, and weather-day records — a reproducible
-      evidence snapshot shared by both agents and evaluators.
+      The sandbox additionally contains 309K train rows, 38K flight rows, and thousands of
+      attractions, restaurants, hotels, subway stations, and weather-day records.
     </p>
 
     <figure>
       <img src="assets/figures/fig3_stats.png" alt="Dataset statistics of Trip+">
       <figcaption><b>Figure 3.</b> Dataset statistics: (a) instances per traveler profile
-        (8–23 each), (b) 40-city sandbox evidence volume, and (c) expected response modes by
+        (8–23 each), (b) 40-city sandbox data volume, and (c) expected response modes by
         interaction type. Planning dominates; clarification and no-solution cases appear mainly
         in request-resolution and long-horizon interactions.</figcaption>
     </figure>
@@ -1799,14 +2068,13 @@
       evaluation target) and is only then rendered into a natural-language user utterance.
     </p>
 
-    <h3>1 · Fixed travel-data sandbox</h3>
+    <h3>1 · Travel-data sandbox</h3>
     <p>
-      A normalized evidence snapshot over <strong>40 diverse Chinese cities</strong> covering
+      A normalized travel-data sandbox over <strong>40 diverse Chinese cities</strong> covering
       different destination types, seasons, and local conditions. It provides reproducible
-      evidence for POIs, hotels, restaurants, weather, local mobility, and intercity transport,
+      data for POIs, hotels, restaurants, weather, local mobility, and intercity transport,
       exposed through <strong>11 OpenAI-compatible tools</strong> (train/flight query, hotel,
       attractions, restaurants, location search, road route, city transport plan, city weather).
-      Evaluators verify grounding against the same fixed snapshot.
     </p>
 
     <h3>2 · Eleven traveler profiles</h3>
@@ -2060,31 +2328,31 @@
   const steps = [
     {
       label: 'Step 1 / 11',
-      caption: 'Fixed sandbox: 40 cities, 11 tools, shared evidence.',
+      caption: 'Sandbox: 40 cities, 11 tools, routes, POIs, hotels, meals, and weather.',
       panel: 'benchmark',
       dot: 0
     },
     {
       label: 'Step 2 / 11',
-      caption: 'Extract seed: Hong Kong, 4 days, Disneyland, weather.',
+      caption: 'Task seed: destination, date / duration, POI, transport, hotel, meal, budget.',
       panel: 'benchmark',
       dot: 118
     },
     {
       label: 'Step 3 / 11',
-      caption: 'Pick profile: visible memory plus hidden soft rules.',
+      caption: 'Traveler profile: select Three-Generation Family from 11 profile types.',
       panel: 'benchmark',
       dot: 236
     },
     {
       label: 'Step 4 / 11',
-      caption: 'Render the seed into a base query.',
+      caption: 'Base query = selected profile + highlighted task seed.',
       panel: 'benchmark',
       dot: 354
     },
     {
       label: 'Step 5 / 11',
-      caption: 'Expand into four multi-turn interaction archetypes.',
+      caption: 'Four interactions: user state, request resolution, environment replanning, long-horizon alignment.',
       panel: 'benchmark',
       dot: 472
     },
@@ -2140,8 +2408,13 @@
   const zoomValue = shell.querySelector('[data-story-zoom-value]');
   const zoomButtons = [...shell.querySelectorAll('[data-story-zoom]')];
 
+  const getInitialZoom = () => {
+    const width = shell.getBoundingClientRect().width || window.innerWidth || 1080;
+    return Math.min(.9, Math.max(.5, (width - 48) / 1080));
+  };
+
   let current = 0;
-  let zoom = .9;
+  let zoom = getInitialZoom();
   let isPlaying = true;
   let timer = null;
 
@@ -2189,7 +2462,7 @@
   };
 
   const setZoom = value => {
-    zoom = Math.min(1.45, Math.max(.72, value));
+    zoom = Math.min(1.5, Math.max(.5, value));
     board.style.setProperty('--story-scale', zoom.toFixed(2));
     zoomValue.textContent = `${Math.round(zoom * 100)}%`;
   };
