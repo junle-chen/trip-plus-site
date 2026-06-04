@@ -290,7 +290,7 @@
     transform:translateX(-50%);
   }
   .story-shell{
-    --story-scale:.9;
+    --story-scale:.8;
     position:relative;
     border:1px solid #d9e2ee;
     border-radius:18px;
@@ -305,7 +305,7 @@
     align-items:flex-start;
     justify-content:space-between;
     gap:18px;
-    padding:20px 22px 14px;
+    padding:18px 22px 12px;
     border-bottom:1px solid #e2e8f0;
     background:rgba(255,255,255,.88);
   }
@@ -383,7 +383,7 @@
   .story-nav{
     display:flex;
     gap:8px;
-    padding:12px 18px;
+    padding:10px 18px;
     overflow-x:auto;
     border-bottom:1px solid #e2e8f0;
     background:#fff;
@@ -406,7 +406,7 @@
   }
   .story-stage{
     overflow:auto;
-    padding:22px;
+    padding:18px;
     background:
       radial-gradient(circle at 18% 10%,rgba(37,99,235,.08),transparent 28%),
       radial-gradient(circle at 88% 22%,rgba(34,197,94,.08),transparent 24%),
@@ -414,7 +414,7 @@
   }
   .story-board{
     width:1080px;
-    min-height:650px;
+    min-height:600px;
     margin:0 auto;
     zoom:var(--story-scale);
   }
@@ -426,7 +426,7 @@
     min-width:0;
     display:none;
     max-width:1040px;
-    min-height:560px;
+    min-height:600px;
     margin:0 auto;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
@@ -442,9 +442,9 @@
     display:flex;
     align-items:center;
     gap:10px;
-    margin:0 0 18px;
+    margin:0 0 14px;
     font-family:Georgia,"Times New Roman",serif;
-    font-size:30px;
+    font-size:28px;
     line-height:1.1;
   }
   .story-badge{
@@ -574,13 +574,107 @@
   }
   .story-benchmark-grid{
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px;
+    grid-template-columns:.95fr 1.05fr;
+    gap:12px;
     align-items:start;
   }
-  .story-benchmark-grid .story-node:first-child,
-  .story-benchmark-grid .story-node:last-child{
+  .story-benchmark-grid .interaction-node{
     grid-column:1 / -1;
+  }
+  .sandbox-node{
+    min-height:332px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .sandbox-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .sandbox-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:15px;
+    font-weight:900;
+    color:#17202a;
+  }
+  .sandbox-count{
+    border:1px solid #bfdbfe;
+    border-radius:999px;
+    background:#eff6ff;
+    color:#315fa9;
+    padding:6px 10px;
+    font-size:11px;
+    font-weight:900;
+  }
+  .sandbox-evidence{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .evidence-tile{
+    min-height:62px;
+    border:1px solid #dbe3ed;
+    border-radius:13px;
+    background:#fff;
+    padding:8px;
+    text-align:center;
+    color:#475569;
+    font-size:10px;
+    font-weight:850;
+    line-height:1.15;
+  }
+  .evidence-tile img{
+    display:block;
+    width:30px;
+    height:30px;
+    object-fit:contain;
+    margin:0 auto 4px;
+  }
+  .sandbox-map{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:auto;
+  }
+  .sandbox-mini{
+    border:1px solid #dbe3ed;
+    border-radius:13px;
+    background:#f8fafc;
+    padding:8px;
+    color:#475569;
+    font-size:10px;
+    font-weight:800;
+    line-height:1.25;
+  }
+  .sandbox-mini b{
+    display:block;
+    color:#315fa9;
+    font-size:12px;
+    margin-bottom:4px;
+  }
+  .construction-stack{
+    display:grid;
+    gap:12px;
+  }
+  .seed-profile-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .seed-chip{
+    min-height:58px;
+    align-items:center;
+    font-size:13px;
+  }
+  .profile-rule-row{
+    display:grid;
+    grid-template-columns:1fr 1.25fr;
+    gap:10px;
+    align-items:start;
   }
   .profile-row{
     display:flex;
@@ -617,38 +711,153 @@
     font-weight:800;
     color:#334155;
   }
+  .rule-list{
+    display:grid;
+    gap:6px;
+  }
+  .rule-pill{
+    border:1px solid #fed7aa;
+    border-radius:11px;
+    background:#fff7ed;
+    color:#c05621;
+    padding:7px 9px;
+    font-size:10.5px;
+    font-weight:850;
+    line-height:1.2;
+  }
+  .rule-pill.family-rule{
+    border-color:#bfdbfe;
+    background:#eff6ff;
+    color:#315fa9;
+  }
+  .rule-pill.senior-rule{
+    border-color:#bbf7d0;
+    background:#f0fdf4;
+    color:#15803d;
+  }
   .turn-lane{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:8px;
   }
   .turn-card{
-    min-height:78px;
+    min-height:94px;
     border:1px solid #dbe3ed;
     border-radius:12px;
     background:#fff;
-    padding:8px;
-    text-align:center;
-    font-size:11px;
-    font-weight:800;
+    padding:10px;
+    text-align:left;
+    font-size:10.5px;
+    font-weight:750;
     color:#475569;
+    line-height:1.24;
   }
   .turn-card img{
     display:block;
-    width:30px;
-    height:30px;
+    width:28px;
+    height:28px;
     object-fit:contain;
-    margin:0 auto 5px;
+    margin:0 0 7px;
+  }
+  .turn-card b{
+    display:block;
+    color:#17202a;
+    font-size:12px;
+    line-height:1.15;
+    margin-bottom:4px;
+  }
+  .turn-card .rn{
+    color:#2563eb;
+    font-weight:950;
+    margin-right:4px;
   }
   .agent-flow{
     display:grid;
     gap:12px;
   }
-  .agent-core{
+  .agent-canvas{
+    position:relative;
     display:grid;
-    grid-template-columns:1fr 92px 1fr;
-    align-items:center;
+    grid-template-columns:190px 1fr 210px;
+    grid-template-rows:auto auto;
+    gap:12px;
+  }
+  .agent-query{
+    min-height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     gap:10px;
+  }
+  .agent-loop{
+    min-height:190px;
+    overflow:hidden;
+  }
+  .agent-loop-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns:96px 1fr;
+    gap:14px;
+    align-items:center;
+    min-height:142px;
+  }
+  .agent-checks{
+    display:grid;
+    gap:7px;
+  }
+  .agent-check{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    border:1px solid #fed7aa;
+    border-radius:999px;
+    background:#fffaf2;
+    color:#b45309;
+    padding:5px 8px;
+    font-size:11px;
+    font-weight:850;
+  }
+  .agent-check:before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#f59e0b;
+  }
+  .agent-revision{
+    display:grid;
+    gap:8px;
+    min-height:190px;
+  }
+  .revision-note{
+    border:1px dashed #fed7aa;
+    border-radius:13px;
+    background:#fffaf2;
+    padding:9px;
+    color:#b45309;
+    font-size:11px;
+    font-weight:850;
+    line-height:1.22;
+  }
+  .agent-route{
+    position:absolute;
+    left:36px;
+    right:40px;
+    top:52%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#f59e0b,transparent);
+    opacity:.55;
+  }
+  .agent-packet{
+    position:absolute;
+    left:96px;
+    top:calc(50% - 7px);
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#f97316;
+    box-shadow:0 0 0 8px rgba(249,115,22,.14);
+    animation:packetMove 3.2s ease-in-out infinite;
   }
   .robot-hub{
     position:relative;
@@ -672,11 +881,11 @@
   }
   .tool-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(6,1fr);
     gap:8px;
   }
   .tool-pill{
-    min-height:58px;
+    min-height:66px;
     border:1px solid #fed7aa;
     border-radius:12px;
     background:#fffaf2;
@@ -710,6 +919,33 @@
   .mode-pill.plan{border-color:#86efac;color:#15803d;background:#f0fdf4;}
   .mode-pill.ask{border-color:#fbbf24;color:#d97706;background:#fffbeb;}
   .mode-pill.no{border-color:#f87171;color:#dc2626;background:#fff1f2;}
+  .mode-caption{
+    margin-top:9px;
+    border:1px dashed #fed7aa;
+    border-radius:12px;
+    background:#fffaf2;
+    color:#b45309;
+    padding:8px 10px;
+    font-size:11px;
+    font-weight:800;
+    line-height:1.25;
+    text-align:center;
+  }
+  .agent-mode .mode-switch{
+    grid-template-columns:1fr;
+  }
+  .agent-mode .mode-pill{
+    padding:8px 7px;
+    font-size:12px;
+  }
+  .agent-itinerary-node{
+    grid-column:2 / 4;
+  }
+  .agent-output-row{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:12px;
+  }
   .itinerary{
     border:1px solid #fed7aa;
     border-radius:14px;
@@ -728,46 +964,220 @@
   }
   .itinerary-row:last-child{border-bottom:0;}
   .itinerary-row b{color:#17202a;}
+  .verifier-box{
+    display:grid;
+    grid-template-columns:52px 1fr;
+    gap:10px;
+    align-items:center;
+    height:100%;
+    border:1px solid #dbe3ed;
+    border-radius:14px;
+    background:#fff;
+    padding:12px;
+  }
+  .verifier-box img{
+    width:52px;
+    height:52px;
+    object-fit:contain;
+  }
+  .verifier-box b{
+    display:block;
+    font-size:14px;
+  }
+  .verifier-box span{
+    display:block;
+    color:#64748b;
+    font-size:11px;
+    line-height:1.25;
+    margin-top:4px;
+  }
   .eval-layers{
     display:grid;
-    gap:9px;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
   }
   .eval-layer{
     position:relative;
-    display:grid;
-    grid-template-columns:38px 1fr auto;
-    gap:9px;
-    align-items:center;
+    display:block;
     border:1px solid #dbe3ed;
     border-radius:13px;
     background:#fff;
-    padding:9px;
+    padding:12px;
   }
-  .eval-layer img{
+  .eval-layer-wide{
+    grid-column:1 / -1;
+  }
+  .eval-head{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:10px;
+  }
+  .eval-head img{
     width:34px;
     height:34px;
     object-fit:contain;
   }
-  .eval-layer b{
+  .eval-head b{
     display:block;
-    font-size:13px;
+    font-size:14px;
     line-height:1.15;
+    color:#17202a;
   }
-  .eval-layer span{
+  .eval-head span{
     display:block;
     font-size:11px;
     color:#64748b;
     line-height:1.15;
+    margin-top:2px;
   }
-  .eval-score{
-    min-width:42px;
-    border-radius:999px;
+  .eval-mode-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+  }
+  .metric-card{
+    min-height:78px;
+    border:1px solid #d9efcf;
+    border-radius:12px;
     background:#f0fdf4;
+    padding:8px 5px;
     color:#15803d;
+    text-align:center;
+    font-size:10px;
+    font-weight:850;
+    line-height:1.16;
+  }
+  .metric-card img{
+    display:block;
+    width:30px;
+    height:30px;
+    object-fit:contain;
+    margin:0 auto 5px;
+  }
+  .requirement-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .requirement-box{
+    min-height:86px;
+    border:1.5px solid #93c5fd;
+    border-radius:14px;
+    background:#eff6ff;
+    color:#315fa9;
+    padding:10px;
+    font-size:11px;
+    font-weight:800;
+    line-height:1.24;
+  }
+  .requirement-box.soft{
+    border-color:#c4b5fd;
+    background:#f5f3ff;
+    color:#7c3aed;
+  }
+  .requirement-box b{
+    display:block;
+    color:inherit;
+    font-size:13px;
+    margin-bottom:4px;
+  }
+  .comfort-row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+  }
+  .comfort-metric{
+    border:1px solid #d9efcf;
+    border-radius:11px;
+    background:#f8fff7;
+    color:#4f8f3c;
+    padding:7px 4px;
+    text-align:center;
+    font-size:9.5px;
+    font-weight:850;
+    line-height:1.12;
+  }
+  .comfort-metric img{
+    display:block;
+    width:25px;
+    height:25px;
+    object-fit:contain;
+    margin:0 auto 4px;
+  }
+  .score-scale{
+    display:flex;
+    justify-content:center;
+    gap:3px;
+    margin-top:5px;
+  }
+  .score-scale span{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#e5f6df;
+    color:#4f8f3c;
+    font-size:8px;
+    font-weight:900;
+  }
+  .stateful-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .stateful-card{
+    border:1.5px solid #fbbf24;
+    border-radius:14px;
+    background:#fffbeb;
+    color:#b7791f;
+    padding:10px;
+    display:flex;
+    align-items:center;
+    gap:9px;
     font-size:12px;
     font-weight:900;
-    text-align:center;
-    padding:5px 7px;
+    line-height:1.18;
+  }
+  .stateful-card img{
+    width:32px;
+    height:32px;
+    object-fit:contain;
+  }
+  @keyframes packetMove{
+    0%{transform:translateX(0);opacity:0;}
+    18%{opacity:1;}
+    50%{transform:translateX(238px);opacity:1;}
+    82%{opacity:1;}
+    100%{transform:translateX(0);opacity:0;}
+  }
+  .story-shell:fullscreen{
+    width:100vw;
+    height:100vh;
+    border:0;
+    border-radius:0;
+    background:#f8fafc;
+  }
+  .story-shell:fullscreen .story-top{
+    padding:14px 22px 10px;
+  }
+  .story-shell:fullscreen .story-nav{
+    padding:9px 18px;
+  }
+  .story-shell:fullscreen .story-stage{
+    height:calc(100vh - 150px);
+    display:flex;
+    align-items:center;
+  }
+  .story-shell:fullscreen .story-board{
+    margin:auto;
   }
   .story-flowline{
     position:relative;
@@ -1022,7 +1432,7 @@
             <button class="story-btn" type="button" data-story-fullscreen>Full</button>
             <span class="story-zoom" aria-label="Zoom controls">
               <button class="story-btn" type="button" data-story-zoom="out" aria-label="Zoom out">-</button>
-              <span class="story-zoom-value" data-story-zoom-value>90%</span>
+              <span class="story-zoom-value" data-story-zoom-value>80%</span>
               <button class="story-btn" type="button" data-story-zoom="in" aria-label="Zoom in">+</button>
               <button class="story-btn" type="button" data-story-zoom="reset" aria-label="Reset zoom">1x</button>
             </span>
@@ -1047,58 +1457,79 @@
               <section class="story-panel panel-benchmark" data-story-panel="benchmark">
                 <h3><span class="story-badge">1</span>Benchmark Construction</h3>
                 <div class="story-benchmark-grid">
-                  <div class="story-node" data-story-steps="0">
-                    <div class="story-node-title"><span>Fixed travel sandbox</span><span>Evidence</span></div>
-                    <div class="story-icons">
-                      <img class="story-icon" src="assets/figures/pipeline-icons/airplane.png" alt="">
-                      <img class="story-icon" src="assets/figures/pipeline-icons/train.png" alt="">
-                      <img class="story-icon" src="assets/figures/pipeline-icons/hotel.png" alt="">
-                      <img class="story-icon" src="assets/figures/pipeline-icons/restaurant.png" alt="">
-                      <img class="story-icon" src="assets/figures/pipeline-icons/weather.png" alt="">
+                  <div class="story-node sandbox-node" data-story-steps="0">
+                    <div class="sandbox-header">
+                      <div class="sandbox-title">
+                        <img class="story-icon sm" src="assets/figures/pipeline-icons/tools.png" alt="">
+                        Fixed travel data sandbox
+                      </div>
+                      <div class="sandbox-count">40 cities · 11 tools</div>
                     </div>
-                    <div class="story-chip-grid" style="margin-top:10px">
-                      <div class="story-chip blue">40 cities</div>
-                      <div class="story-chip green">11 tools</div>
-                      <div class="story-chip orange">routes + hotels</div>
-                      <div class="story-chip">POIs + weather</div>
+                    <div class="sandbox-evidence">
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/airplane.png" alt="">Intercity<br>transport</div>
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/taxi.png" alt="">Local<br>mobility</div>
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/poi.png" alt="">POIs and<br>routes</div>
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/hotel.png" alt="">Hotels</div>
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">Restaurants</div>
+                      <div class="evidence-tile"><img src="assets/figures/pipeline-icons/weather.png" alt="">Weather and<br>context</div>
                     </div>
-                  </div>
-
-                  <div class="story-node" data-story-steps="1">
-                    <div class="story-node-title"><span>Extract task seed</span><span>City + date</span></div>
-                    <div class="story-chip-grid">
-                      <div class="story-chip blue"><img class="story-icon sm" src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong</div>
-                      <div class="story-chip orange"><img class="story-icon sm" src="assets/figures/pipeline-icons/schedule.png" alt="">4 days</div>
-                      <div class="story-chip green"><img class="story-icon sm" src="assets/figures/pipeline-icons/poi.png" alt="">Disneyland</div>
-                      <div class="story-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/weather.png" alt="">weather context</div>
+                    <div class="sandbox-map">
+                      <div class="sandbox-mini"><b>Evidence snapshot</b>Agents retrieve facts through tools; evaluators verify against the same fixed records.</div>
+                      <div class="sandbox-mini"><b>Environment context</b>Weather risk, crowd queues, closures, heat / cold, and local mobility constraints.</div>
                     </div>
                   </div>
 
-                  <div class="story-node" data-story-steps="2">
-                    <div class="story-node-title"><span>Pick traveler profile</span><span>Rules</span></div>
-                    <div class="profile-row">
-                      <div class="persona is-selected"><img class="story-icon sm" src="assets/figures/pipeline-icons/family.png" alt=""><span>family</span></div>
-                      <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/senior.png" alt=""><span>senior</span></div>
-                      <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/backpacker.png" alt=""><span>backpacker</span></div>
+                  <div class="construction-stack">
+                    <div class="seed-profile-row">
+                      <div class="story-node" data-story-steps="1">
+                        <div class="story-node-title"><span>Extract task seed</span><span>City + date</span></div>
+                        <div class="story-chip-grid">
+                          <div class="story-chip blue seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/location.png" alt="">Destination<br>Hong Kong</div>
+                          <div class="story-chip orange seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/schedule.png" alt="">Duration<br>4 days</div>
+                          <div class="story-chip green seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/poi.png" alt="">Must visit<br>Disneyland</div>
+                          <div class="story-chip seed-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/weather.png" alt="">Weather<br>context</div>
+                        </div>
+                      </div>
+
+                      <div class="story-node" data-story-steps="2">
+                        <div class="story-node-title"><span>Pick traveler profile</span><span>User memory</span></div>
+                        <div class="profile-row">
+                          <div class="persona is-selected"><img class="story-icon sm" src="assets/figures/pipeline-icons/family.png" alt=""><span>family</span></div>
+                          <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/senior.png" alt=""><span>senior</span></div>
+                          <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/backpacker.png" alt=""><span>backpacker</span></div>
+                        </div>
+                        <div class="story-chip-grid" style="margin-top:10px">
+                          <div class="story-chip blue">observable profile</div>
+                          <div class="story-chip orange">hidden rules</div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="story-chip-grid" style="margin-top:10px">
-                      <div class="story-chip blue">observable profile</div>
-                      <div class="story-chip orange">pace, budget, comfort</div>
+
+                    <div class="story-node" data-story-steps="2">
+                      <div class="story-node-title"><span>Profile-derived soft rules</span><span>Evaluator only</span></div>
+                      <div class="profile-rule-row">
+                        <div class="query-card">Visible memory: family of five, comfort-aware, must visit Disneyland.</div>
+                        <div class="rule-list">
+                          <div class="rule-pill family-rule">Family: child-friendly POIs, rest blocks, low walking burden.</div>
+                          <div class="rule-pill senior-rule">Senior: relaxed pace, early meals, avoid long queues / transfers.</div>
+                          <div class="rule-pill">Backpacker: budget sensitivity, transit-friendly, denser activities.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="story-node" data-story-steps="3">
+                      <div class="story-node-title"><span>Render base query</span><span>Utterance</span></div>
+                      <div class="query-card">We are a family of five planning a 4-day Hong Kong trip. We must visit Disneyland.</div>
                     </div>
                   </div>
 
-                  <div class="story-node" data-story-steps="3">
-                    <div class="story-node-title"><span>Render base query</span><span>Utterance</span></div>
-                    <div class="query-card">Family of five, 4-day Hong Kong trip, must visit Disneyland.</div>
-                  </div>
-
-                  <div class="story-node" data-story-steps="4">
+                  <div class="story-node interaction-node" data-story-steps="4">
                     <div class="story-node-title"><span>Generate multi-turn interactions</span><span>Oracle</span></div>
                     <div class="turn-lane">
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/budget.png" alt="">Add budget</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/schedule.png" alt="">Change date</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/rain.png" alt="">Weather risk</div>
-                      <div class="turn-card"><img src="assets/figures/pipeline-icons/question.png" alt="">Ambiguity</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/budget.png" alt=""><b><span class="rn">I</span>User-state Evolution</b>Add budget, change schedule, add a new must-visit place.</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/question.png" alt=""><b><span class="rn">II</span>Request Resolution</b>Clarify ambiguous date, impossible density, or profile conflicts.</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/rain.png" alt=""><b><span class="rn">III</span>Environment Replanning</b>React to weather, closures, heat, queues, and traffic disruptions.</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/thinking.png" alt=""><b><span class="rn">IV</span>Long-Horizon Alignment</b>Preserve earlier intent while new requirements arrive across turns.</div>
                     </div>
                   </div>
                 </div>
@@ -1107,38 +1538,62 @@
               <section class="story-panel panel-agent" data-story-panel="agent">
                 <h3><span class="story-badge">2</span>Agent Planning</h3>
                 <div class="agent-flow">
-                  <div class="story-node" data-story-steps="5">
-                    <div class="story-node-title"><span>Ground query with tools</span><span>Evidence seeking</span></div>
-                    <div class="agent-core">
-                      <div class="query-card" style="font-size:13px">base query + active user state</div>
-                      <div class="robot-hub"><img class="story-icon lg" src="assets/figures/pipeline-icons/robot.png" alt=""></div>
-                      <div class="tool-grid">
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/train.png" alt="">transport</div>
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/hotel.png" alt="">hotel</div>
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/poi.png" alt="">POI</div>
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">meal</div>
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/weather.png" alt="">weather</div>
-                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/taxi.png" alt="">route</div>
+                  <div class="agent-canvas">
+                    <div class="story-node agent-query" data-story-steps="5">
+                      <div class="story-node-title"><span>Base query + turn state</span><span>Input</span></div>
+                      <div class="query-card">Family of five, 4-day Hong Kong trip, must visit Disneyland.</div>
+                      <div class="revision-note">Active updates: budget, date changes, weather risk, ambiguity.</div>
+                    </div>
+
+                    <div class="story-node agent-loop" data-story-steps="5">
+                      <div class="story-node-title"><span>Tool-grounded planning loop</span><span>Sandbox access</span></div>
+                      <div class="agent-loop-inner">
+                        <div class="robot-hub"><img class="story-icon lg" src="assets/figures/pipeline-icons/robot.png" alt=""></div>
+                        <div class="tool-grid">
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/airplane.png" alt="">intercity</div>
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/taxi.png" alt="">mobility</div>
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/poi.png" alt="">POI</div>
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/hotel.png" alt="">hotel</div>
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">meal</div>
+                          <div class="tool-pill"><img src="assets/figures/pipeline-icons/weather.png" alt="">weather</div>
+                        </div>
+                        <div class="agent-route" aria-hidden="true"></div>
+                        <div class="agent-packet" aria-hidden="true"></div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="story-node" data-story-steps="6">
-                    <div class="story-node-title"><span>Choose response mode</span><span>Plan / Ask / NoSol</span></div>
-                    <div class="mode-switch">
-                      <div class="mode-pill plan">Plan</div>
-                      <div class="mode-pill ask">Clarification</div>
-                      <div class="mode-pill no">NoSolution</div>
+                    <div class="story-node agent-revision" data-story-steps="5,7">
+                      <div class="story-node-title"><span>Revision memory</span><span>Every turn</span></div>
+                      <div class="agent-check">Sandbox evidence</div>
+                      <div class="agent-check">Profile-derived rules</div>
+                      <div class="agent-check">Accumulated turn state</div>
+                      <div class="agent-check">Verifier feedback</div>
                     </div>
-                  </div>
 
-                  <div class="story-node" data-story-steps="7">
-                    <div class="story-node-title"><span>Generate minute-level itinerary</span><span>Plan</span></div>
-                    <div class="itinerary">
-                      <div class="itinerary-row"><b>09:00</b><span>hotel -> attraction taxi</span><span>$12</span></div>
-                      <div class="itinerary-row"><b>09:30</b><span>Disneyland visit block</span><span>POI</span></div>
-                      <div class="itinerary-row"><b>12:10</b><span>meal near attraction</span><span>meal</span></div>
-                      <div class="itinerary-row"><b>14:00</b><span>revise for weather / fatigue</span><span>state</span></div>
+                    <div class="story-node agent-mode" data-story-steps="6">
+                      <div class="story-node-title"><span>Decide response mode</span><span>Mode</span></div>
+                      <div class="mode-switch">
+                        <div class="mode-pill plan">Plan</div>
+                        <div class="mode-pill ask">Clarification</div>
+                        <div class="mode-pill no">NoSolution</div>
+                      </div>
+                      <div class="mode-caption">The mode is evaluated before itinerary content: plan if solvable, ask if missing/conflicting, reject if evidence makes hard constraints impossible.</div>
+                    </div>
+
+                    <div class="story-node agent-itinerary-node" data-story-steps="7">
+                      <div class="story-node-title"><span>Minute-level itinerary</span><span>Output</span></div>
+                      <div class="agent-output-row">
+                        <div class="itinerary">
+                          <div class="itinerary-row"><b>09:00</b><span>hotel -> attraction taxi</span><span>route</span></div>
+                          <div class="itinerary-row"><b>09:30</b><span>Disneyland visit block</span><span>POI</span></div>
+                          <div class="itinerary-row"><b>12:10</b><span>walk to nearby restaurant</span><span>meal</span></div>
+                          <div class="itinerary-row"><b>14:00</b><span>revise for rain / fatigue</span><span>state</span></div>
+                        </div>
+                        <div class="verifier-box">
+                          <img src="assets/figures/pipeline-icons/verifier.png" alt="">
+                          <div><b>Every-turn verifier</b><span>Checks sandbox grounding, profile rules, turn state, and LLM-as-judge signals.</span></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1147,30 +1602,62 @@
               <section class="story-panel panel-eval" data-story-panel="evaluation">
                 <h3><span class="story-badge">3</span>Every-Turn Evaluation</h3>
                 <div class="eval-layers">
-                  <div class="eval-layer" data-story-steps="8">
-                    <img src="assets/figures/pipeline-icons/check.png" alt="">
-                    <div><b>Response-mode gate</b><span>Does the agent plan, clarify, or reject correctly?</span></div>
-                    <div class="eval-score">gate</div>
+                  <div class="eval-layer eval-layer-wide" data-story-steps="8">
+                    <div class="eval-head">
+                      <img src="assets/figures/pipeline-icons/check.png" alt="">
+                      <div><b>1 Response Mode</b><span>Gate the action before scoring the itinerary.</span></div>
+                    </div>
+                    <div class="eval-mode-row">
+                      <div class="mode-pill plan">Plan</div>
+                      <div class="mode-pill ask">Clarification</div>
+                      <div class="mode-pill no">NoSolution</div>
+                    </div>
                   </div>
-                  <div class="eval-layer" data-story-steps="8">
-                    <img src="assets/figures/pipeline-icons/puzzle.png" alt="">
-                    <div><b>Itinerary feasibility</b><span>structure, grounded entities, timing, routes, cost</span></div>
-                    <div class="eval-score">det.</div>
+                  <div class="eval-layer eval-layer-wide" data-story-steps="8">
+                    <div class="eval-head">
+                      <img src="assets/figures/pipeline-icons/puzzle.png" alt="">
+                      <div><b>2 Itinerary Feasibility</b><span>Deterministic checks against the fixed evidence snapshot.</span></div>
+                    </div>
+                    <div class="metric-grid">
+                      <div class="metric-card"><img src="assets/figures/pipeline-icons/puzzle.png" alt="">Structural<br>completeness</div>
+                      <div class="metric-card"><img src="assets/figures/pipeline-icons/location.png" alt="">Grounded<br>entities</div>
+                      <div class="metric-card"><img src="assets/figures/pipeline-icons/time.png" alt="">Coherent<br>timing</div>
+                      <div class="metric-card"><img src="assets/figures/pipeline-icons/train.png" alt="">Transport<br>evidence</div>
+                      <div class="metric-card"><img src="assets/figures/pipeline-icons/cost.png" alt="">Cost<br>consistency</div>
+                    </div>
                   </div>
                   <div class="eval-layer" data-story-steps="9">
-                    <img src="assets/figures/pipeline-icons/verifier.png" alt="">
-                    <div><b>Requirement satisfaction</b><span>hard constraints + profile-conditioned soft preferences</span></div>
-                    <div class="eval-score">rules</div>
+                    <div class="eval-head">
+                      <img src="assets/figures/pipeline-icons/verifier.png" alt="">
+                      <div><b>3 Requirement Satisfaction</b><span>Hard constraints plus profile-conditioned soft rules.</span></div>
+                    </div>
+                    <div class="requirement-grid">
+                      <div class="requirement-box"><b>Hard constraints</b>dates, route, party size, budget, required places, dining.</div>
+                      <div class="requirement-box soft"><b>Soft preferences</b>pacing, walking burden, interest coverage, comfort.</div>
+                    </div>
                   </div>
                   <div class="eval-layer" data-story-steps="9">
-                    <img src="assets/figures/pipeline-icons/physical.png" alt="">
-                    <div><b>User simulation</b><span>physical, schedule, environment, budget, preference comfort</span></div>
-                    <div class="eval-score">1-5</div>
+                    <div class="eval-head">
+                      <img src="assets/figures/pipeline-icons/robot.png" alt="">
+                      <div><b>4 Profile-Conditioned User Simulation</b><span>Replay minute-level activities and score experience.</span></div>
+                    </div>
+                    <div class="comfort-row">
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/physical.png" alt="">Physical<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/schedule.png" alt="">Schedule<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/weather.png" alt="">Environment<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/like.png" alt="">Preference<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                    </div>
                   </div>
-                  <div class="eval-layer" data-story-steps="10">
-                    <img src="assets/figures/pipeline-icons/thinking.png" alt="">
-                    <div><b>Stateful multi-turn judge</b><span>new request fulfilled, previous intent preserved</span></div>
-                    <div class="eval-score">MT</div>
+                  <div class="eval-layer eval-layer-wide" data-story-steps="10">
+                    <div class="eval-head">
+                      <img src="assets/figures/pipeline-icons/thinking.png" alt="">
+                      <div><b>Stateful Multi-Turn Evaluation</b><span>Judge whether the new turn is solved without forgetting prior commitments.</span></div>
+                    </div>
+                    <div class="stateful-grid">
+                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/check.png" alt="">Request fulfillment<br>newly added or revised requirement solved?</div>
+                      <div class="stateful-card"><img src="assets/figures/pipeline-icons/thinking.png" alt="">Intent preservation<br>previous user intent still valid?</div>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -1507,19 +1994,19 @@
   const steps = [
     {
       label: 'Step 1 / 11',
-      caption: 'Freeze a reproducible travel-data sandbox so both agents and evaluators share the same evidence.',
+      caption: 'Build the fixed travel-data sandbox: 40 cities, 11 travel tools, and reproducible evidence for both agents and evaluators.',
       panel: 'benchmark',
       dot: 0
     },
     {
       label: 'Step 2 / 11',
-      caption: 'Sample city, dates, destination, weather, and tool-grounded evidence from the sandbox.',
+      caption: 'Extract a task seed from the sandbox: destination Hong Kong, four days, required POIs, dates, weather, and local context.',
       panel: 'benchmark',
       dot: 118
     },
     {
       label: 'Step 3 / 11',
-      caption: 'Choose one traveler profile; the agent sees memory, while hidden suitability rules drive evaluation.',
+      caption: 'Pick a traveler profile. The agent sees user memory, while hidden profile-derived soft rules define what counts as suitable.',
       panel: 'benchmark',
       dot: 236
     },
@@ -1531,25 +2018,25 @@
     },
     {
       label: 'Step 5 / 11',
-      caption: 'Construct state-first multi-turn interactions: updates, ambiguity, disruptions, and long-horizon preservation.',
+      caption: 'Expand the seed into four interaction archetypes: evolving user state, request resolution, environment-driven replanning, and long-horizon alignment.',
       panel: 'benchmark',
       dot: 472
     },
     {
       label: 'Step 6 / 11',
-      caption: 'The agent grounds the query with travel tools: transport, hotel, POI, meals, weather, and routes.',
+      caption: 'The agent grounds the base query and active turn state by calling sandbox tools for transport, mobility, POIs, hotels, meals, and weather.',
       panel: 'agent',
       dot: 590
     },
     {
       label: 'Step 7 / 11',
-      caption: 'At every turn, the agent must pick the correct response mode: Plan, Clarification, or NoSolution.',
+      caption: 'Before generating content, the agent must select the right response mode: Plan, Clarification, or NoSolution.',
       panel: 'agent',
       dot: 708
     },
     {
       label: 'Step 8 / 11',
-      caption: 'When planning is appropriate, the agent outputs a minute-level itinerary with timing, transport, activities, meals, and costs.',
+      caption: 'When planning is appropriate, the agent produces a minute-level itinerary and revises it every turn using sandbox evidence and turn state.',
       panel: 'agent',
       dot: 826
     },
@@ -1588,7 +2075,7 @@
   const zoomButtons = [...shell.querySelectorAll('[data-story-zoom]')];
 
   let current = 0;
-  let zoom = .9;
+  let zoom = .8;
   let isPlaying = true;
   let timer = null;
 
