@@ -413,34 +413,38 @@
       linear-gradient(180deg,#fbfdff,#f8fafc);
   }
   .story-board{
-    width:1160px;
+    width:1080px;
     min-height:650px;
     margin:0 auto;
     zoom:var(--story-scale);
   }
   .story-board-grid{
-    display:grid;
-    grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) minmax(0,1.1fr);
-    gap:18px;
-    align-items:stretch;
+    display:block;
   }
   .story-panel{
     position:relative;
     min-width:0;
+    display:none;
+    max-width:1040px;
+    min-height:560px;
+    margin:0 auto;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
     background:rgba(255,255,255,.96);
-    padding:16px;
+    padding:22px;
     box-shadow:0 16px 36px rgba(15,23,42,.08);
     transition:opacity .28s ease,transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+  }
+  .story-panel.is-focus{
+    display:block;
   }
   .story-panel h3{
     display:flex;
     align-items:center;
     gap:10px;
-    margin:0 0 12px;
+    margin:0 0 18px;
     font-family:Georgia,"Times New Roman",serif;
-    font-size:26px;
+    font-size:30px;
     line-height:1.1;
   }
   .story-badge{
@@ -464,9 +468,12 @@
   .panel-agent h3{color:#c67b11;}
   .panel-eval .story-badge,
   .panel-eval h3{color:#4f8f3c;}
-  .story-panel.is-dim,
-  .story-node.is-dim{
-    opacity:.38;
+  .story-panel.is-dim{
+    opacity:.75;
+  }
+  .story-node.is-dim,
+  .eval-layer.is-dim{
+    opacity:.72;
   }
   .story-node{
     position:relative;
@@ -478,13 +485,20 @@
     transition:opacity .28s ease,transform .28s ease,box-shadow .28s ease,border-color .28s ease,background .28s ease;
   }
   .story-node.is-focus,
-  .story-panel.is-focus{
+  .eval-layer.is-focus{
     opacity:1;
     transform:translateY(-4px);
     border-color:#2563eb;
     box-shadow:0 18px 42px rgba(37,99,235,.18);
   }
-  .story-node.is-focus:after{
+  .story-panel.is-focus{
+    opacity:1;
+    transform:none;
+    border-color:#2563eb;
+    box-shadow:0 20px 46px rgba(37,99,235,.16);
+  }
+  .story-node.is-focus:after,
+  .eval-layer.is-focus:after{
     content:"";
     position:absolute;
     inset:-5px;
@@ -719,6 +733,7 @@
     gap:9px;
   }
   .eval-layer{
+    position:relative;
     display:grid;
     grid-template-columns:38px 1fr auto;
     gap:9px;
@@ -1004,6 +1019,7 @@
             <button class="story-btn is-active" type="button" data-story-play>Pause</button>
             <button class="story-btn" type="button" data-story-prev>Prev</button>
             <button class="story-btn" type="button" data-story-next>Next</button>
+            <button class="story-btn" type="button" data-story-fullscreen>Full</button>
             <span class="story-zoom" aria-label="Zoom controls">
               <button class="story-btn" type="button" data-story-zoom="out" aria-label="Zoom out">-</button>
               <span class="story-zoom-value" data-story-zoom-value>90%</span>
@@ -1561,6 +1577,7 @@
   const play = shell.querySelector('[data-story-play]');
   const prev = shell.querySelector('[data-story-prev]');
   const next = shell.querySelector('[data-story-next]');
+  const fullscreen = shell.querySelector('[data-story-fullscreen]');
   const label = shell.querySelector('[data-story-label]');
   const caption = shell.querySelector('[data-story-caption]');
   const flow = shell.querySelector('[data-story-flow]');
@@ -1632,6 +1649,19 @@
   next.addEventListener('click', () => {
     setPlaying(false);
     setStep(current + 1);
+  });
+  fullscreen.addEventListener('click', async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        fullscreen.textContent = 'Full';
+      } else {
+        await shell.requestFullscreen();
+        fullscreen.textContent = 'Exit';
+      }
+    } catch {
+      fullscreen.textContent = 'Full';
+    }
   });
   stepButtons.forEach(button => {
     button.addEventListener('click', () => {
