@@ -40,9 +40,9 @@
     z-index:0;
     pointer-events:none;
     background:
-      linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.9) 42%,rgba(255,255,255,.94)),
+      linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,.92) 42%,rgba(255,255,255,.96)),
       url("assets/figures/travel-bg.svg") center top / cover no-repeat;
-    opacity:.72;
+    opacity:.48;
   }
   a{color:var(--blue);text-decoration:none;}
   a:hover{text-decoration:underline;}
@@ -149,6 +149,21 @@
     margin:0 auto 38px;
     letter-spacing:0;
     max-width:960px;
+  }
+  .title-heading{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+  }
+  .title-icon{
+    width:66px;
+    height:66px;
+    object-fit:contain;
+    flex:0 0 auto;
+  }
+  .title-text{
+    display:block;
   }
   .subtitle{
     max-width:1000px;
@@ -551,6 +566,18 @@
   .panel-eval h3{color:#4f8f3c;}
   .panel-agent h3{
     font-size:31px;
+  }
+  .panel-eval{
+    min-height:620px;
+  }
+  .panel-eval h3{
+    font-size:32px;
+    margin-bottom:18px;
+  }
+  .panel-eval .story-badge{
+    width:42px;
+    height:42px;
+    font-size:30px;
   }
   .panel-agent .story-node-title{
     font-size:15px;
@@ -1793,15 +1820,15 @@
   .eval-layers{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:9px;
+    gap:13px;
   }
   .eval-layer{
     position:relative;
     display:block;
     border:1px solid #dbe3ed;
-    border-radius:13px;
+    border-radius:16px;
     background:#fff;
-    padding:9px 12px;
+    padding:14px 16px;
   }
   .eval-layer-wide{
     grid-column:1 / -1;
@@ -1809,23 +1836,23 @@
   .eval-head{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:7px;
+    gap:12px;
+    margin-bottom:10px;
   }
   .eval-head img{
-    width:42px;
-    height:42px;
+    width:52px;
+    height:52px;
     object-fit:contain;
   }
   .eval-head b{
     display:block;
-    font-size:16px;
+    font-size:20px;
     line-height:1.15;
     color:#17202a;
   }
   .eval-head span{
     display:block;
-    font-size:12px;
+    font-size:14px;
     color:#64748b;
     line-height:1.15;
     margin-top:2px;
@@ -1833,31 +1860,36 @@
   .eval-mode-row{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:8px;
+    gap:10px;
+  }
+  .panel-eval .mode-pill{
+    padding:14px 8px;
+    font-size:22px;
+    border-radius:16px;
   }
   .metric-grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:7px;
+    gap:9px;
   }
   .metric-card{
-    min-height:68px;
+    min-height:82px;
     border:1px solid #d9efcf;
     border-radius:12px;
     background:#f0fdf4;
-    padding:8px 5px;
+    padding:10px 6px;
     color:#15803d;
     text-align:center;
-    font-size:11px;
+    font-size:13px;
     font-weight:850;
     line-height:1.16;
   }
   .metric-card img{
     display:block;
-    width:34px;
-    height:34px;
+    width:42px;
+    height:42px;
     object-fit:contain;
-    margin:0 auto 5px;
+    margin:0 auto 6px;
   }
   .requirement-grid{
     display:grid;
@@ -1865,13 +1897,13 @@
     gap:10px;
   }
   .requirement-box{
-    min-height:70px;
+    min-height:84px;
     border:1.5px solid #93c5fd;
     border-radius:14px;
     background:#eff6ff;
     color:#315fa9;
-    padding:10px;
-    font-size:12px;
+    padding:13px;
+    font-size:14px;
     font-weight:800;
     line-height:1.24;
   }
@@ -1883,31 +1915,31 @@
   .requirement-box b{
     display:block;
     color:inherit;
-    font-size:15px;
+    font-size:18px;
     margin-bottom:4px;
   }
   .comfort-row{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:8px;
+    gap:9px;
   }
   .comfort-metric{
     border:1px solid #d9efcf;
-    border-radius:11px;
+    border-radius:13px;
     background:#f8fff7;
     color:#4f8f3c;
-    padding:7px 4px;
+    padding:10px 4px;
     text-align:center;
-    font-size:10.5px;
+    font-size:12px;
     font-weight:850;
     line-height:1.12;
   }
   .comfort-metric img{
     display:block;
-    width:30px;
-    height:30px;
+    width:38px;
+    height:38px;
     object-fit:contain;
-    margin:0 auto 4px;
+    margin:0 auto 6px;
   }
   .score-scale{
     display:flex;
@@ -1919,12 +1951,12 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    width:15px;
-    height:15px;
+    width:17px;
+    height:17px;
     border-radius:50%;
     background:#e5f6df;
     color:#4f8f3c;
-    font-size:8.5px;
+    font-size:9.5px;
     font-weight:900;
   }
   .stateful-grid{
@@ -1954,23 +1986,23 @@
     border-radius:14px;
     background:#fffbeb;
     color:#b7791f;
-    padding:10px;
+    padding:13px;
     display:flex;
     align-items:center;
-    gap:9px;
-    font-size:14px;
+    gap:11px;
+    font-size:16px;
     font-weight:900;
     line-height:1.18;
   }
   .stateful-card img{
-    width:32px;
-    height:32px;
+    width:42px;
+    height:42px;
     object-fit:contain;
   }
   .stateful-card span{
     display:block;
     color:#64748b;
-    font-size:12px;
+    font-size:13px;
     font-weight:850;
     line-height:1.15;
     margin-top:3px;
@@ -2121,6 +2153,7 @@
     .navlinks{flex-wrap:wrap;gap:12px;}
     header.hero{padding:44px 0 30px;}
     h1{font-size:40px;}
+    .title-icon{width:56px;height:56px;}
     .authors{font-size:26px;}
     .subtitle{font-size:20px;}
     .links{font-size:22px;}
@@ -2133,6 +2166,8 @@
     .nav{padding:10px 18px;}
     .navlinks{font-size:13px;}
     h1{font-size:31px;}
+    .title-heading{gap:10px;}
+    .title-icon{width:44px;height:44px;}
     h2{font-size:28px;}
     .stats{grid-template-columns:repeat(2,1fr);}
     .modes{grid-template-columns:1fr;}
@@ -2147,6 +2182,7 @@
     .panel-eval{min-height:560px;}
     .story-panel h3{font-size:24px;}
     .panel-agent h3{font-size:30px;}
+    .panel-eval h3{font-size:30px;}
     .seed-profile-row,
     .profile-rule-row{
       grid-template-columns:1fr;
@@ -2208,7 +2244,10 @@
   <!-- ===================== HEADER ===================== -->
   <header class="hero">
     <div>
-      <h1>Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</h1>
+      <h1 class="title-heading">
+        <img class="title-icon" src="assets/icon.png" alt="">
+        <span class="title-text">Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</span>
+      </h1>
       <div class="authors">Anonymous submission</div>
       <p class="subtitle">
         Under review · A personalized, multi-turn travel-planning benchmark for language agents
