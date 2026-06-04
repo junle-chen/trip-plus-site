@@ -23,7 +23,8 @@
   html{scroll-behavior:smooth;scroll-padding-top:78px;-webkit-text-size-adjust:100%;}
   body{
     margin:0;
-    background:#fff;
+    position:relative;
+    background:#f8fbff;
     color:var(--ink);
     --page-zoom:1;
     font-family:"Times New Roman",Times,serif;
@@ -31,6 +32,17 @@
     line-height:1.62;
     overflow-x:auto;
     -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.9) 42%,rgba(255,255,255,.94)),
+      url("assets/figures/travel-bg.svg") center top / cover no-repeat;
+    opacity:.72;
   }
   a{color:var(--blue);text-decoration:none;}
   a:hover{text-decoration:underline;}
@@ -61,6 +73,8 @@
   .navlinks a{color:#334155;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px 80px;}
   .wrap[data-page-root]{
+    position:relative;
+    z-index:1;
     zoom:var(--page-zoom);
     transform-origin:top center;
   }
@@ -535,6 +549,15 @@
   .panel-agent h3{color:#c67b11;}
   .panel-eval .story-badge,
   .panel-eval h3{color:#4f8f3c;}
+  .panel-agent h3{
+    font-size:31px;
+  }
+  .panel-agent .story-node-title{
+    font-size:15px;
+  }
+  .panel-agent .query-card{
+    font-size:14.5px;
+  }
   .story-panel.is-dim{
     opacity:.75;
   }
@@ -1439,7 +1462,7 @@
     background:#f8fafc;
     padding:8px;
     color:#475569;
-    font-size:12px;
+    font-size:13px;
     font-weight:850;
     line-height:1.12;
   }
@@ -1464,7 +1487,7 @@
     background:#eff6ff;
     color:#315fa9;
     padding:9px 10px;
-    font-size:13px;
+    font-size:14px;
     font-weight:900;
     line-height:1.08;
     min-height:58px;
@@ -1472,7 +1495,7 @@
   .state-pill span{
     display:block;
     color:#64748b;
-    font-size:11px;
+    font-size:12px;
     font-weight:850;
     margin-top:2px;
   }
@@ -1500,7 +1523,7 @@
     background:#fffaf2;
     color:#b45309;
     padding:8px 6px;
-    font-size:11px;
+    font-size:12px;
     font-weight:850;
     line-height:1.14;
     text-align:center;
@@ -1508,7 +1531,7 @@
   .tool-result b{
     display:block;
     color:#17202a;
-    font-size:11px;
+    font-size:12px;
     margin-bottom:2px;
   }
   .agent-checks{
@@ -1607,7 +1630,7 @@
     text-align:center;
     padding:7px 5px;
     color:#b45309;
-    font-size:12px;
+    font-size:13px;
     font-weight:850;
   }
   .tool-pill img{
@@ -1657,7 +1680,7 @@
   }
   .agent-mode .mode-pill{
     padding:13px 6px;
-    font-size:15px;
+    font-size:17px;
   }
   .agent-itinerary-node{
     grid-column:auto;
@@ -1685,13 +1708,13 @@
   }
   .cycle-title{
     color:#b45309;
-    font-size:13px;
+    font-size:15px;
     font-weight:900;
     line-height:1.1;
   }
   .cycle-row{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
   }
   .cycle-chip{
@@ -1704,7 +1727,7 @@
     border-radius:999px;
     background:#fff;
     color:#b45309;
-    font-size:11px;
+    font-size:13px;
     font-weight:900;
     line-height:1.05;
     text-align:center;
@@ -1727,7 +1750,7 @@
     align-items:center;
     border-bottom:1px dashed #f5d299;
     padding:5px 0;
-    font-size:13px;
+    font-size:14px;
     color:#475569;
   }
   .itinerary-row:last-child{border-bottom:0;}
@@ -2123,6 +2146,7 @@
     .panel-agent,
     .panel-eval{min-height:560px;}
     .story-panel h3{font-size:24px;}
+    .panel-agent h3{font-size:30px;}
     .seed-profile-row,
     .profile-rule-row{
       grid-template-columns:1fr;
@@ -2484,13 +2508,12 @@
                       </div>
                     </div>
 
-                    <div class="story-node agent-cycle" data-story-steps="5,6,7,8">
-                      <div class="cycle-title">Every-turn loop</div>
+                    <div class="story-node agent-cycle" data-story-steps="5,6,7">
+                      <div class="cycle-title">Call sequence</div>
                       <div class="cycle-row">
-                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/robot.png" alt="">read query</div>
-                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/tools.png" alt="">call tools</div>
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/tools.png" alt="">tool calls</div>
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/robot.png" alt="">LLM calls</div>
                         <div class="cycle-chip"><img src="assets/figures/pipeline-icons/check.png" alt="">choose mode</div>
-                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/verifier.png" alt="">verify & revise</div>
                       </div>
                     </div>
 
@@ -2939,13 +2962,13 @@
     },
     {
       label: 'Step 6 / 11',
-      caption: 'Read the query and call sandbox tools; the turn state is passed to the evaluator.',
+      caption: 'Run tool calls and LLM calls over sandbox evidence before deciding how to respond.',
       panel: 'agent',
       dot: 590
     },
     {
       label: 'Step 7 / 11',
-      caption: 'Choose response mode: Plan, Clarify, or NoSolution.',
+      caption: 'After evidence gathering and reasoning, choose response mode: Plan, Clarify, or NoSolution.',
       panel: 'agent',
       dot: 708
     },
