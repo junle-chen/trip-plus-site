@@ -1,176 +1,186 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
   <title id="title">Trip+ benchmark construction pipeline</title>
-  <desc id="desc">Four visual cards summarize how Trip+ builds the sandbox, seeds traveler profiles, generates multi-turn interactions, and evaluates every agent turn.</desc>
+  <desc id="desc">A presentation-style four-step overview showing sandbox environment, traveler profile, multi-turn interaction, and evaluation.</desc>
   <defs>
-    <filter id="cardShadow" x="-18%" y="-18%" width="136%" height="136%">
-      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.10"/>
+    <filter id="softShadow" x="-14%" y="-16%" width="128%" height="132%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.10"/>
     </filter>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2,2 L10,6 L2,10 Z" fill="#94a3b8"/>
+      <path d="M2,2 L10,6 L2,10 Z" fill="#9aa8bb"/>
     </marker>
     <style>
       .serif{font-family:Georgia, Times New Roman, serif;}
       .sans{font-family:-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;}
-      .title{font-size:30px;font-weight:800;fill:#17202a;}
-      .sub{font-size:15px;fill:#64748b;}
-      .num{font-size:18px;font-weight:800;}
-      .card-title{font-size:22px;font-weight:800;fill:#17202a;}
-      .chip{font-size:13px;font-weight:700;}
-      .tiny{font-size:12px;font-weight:700;}
-      .muted{fill:#64748b;}
+      .main-title{font-size:34px;font-weight:800;fill:#111827;}
+      .subtitle{font-size:15px;font-weight:600;fill:#64748b;}
+      .step-no{font-size:21px;font-weight:800;}
+      .step-title{font-size:25px;font-weight:800;fill:#17202a;}
+      .mini-title{font-size:15px;font-weight:800;}
+      .label{font-size:13px;font-weight:700;fill:#64748b;}
+      .micro{font-size:11px;font-weight:700;fill:#64748b;}
+      .blue{fill:#3b6ab7;}
+      .green{fill:#5a9f45;}
+      .orange{fill:#d8891c;}
+      .red{fill:#d83b38;}
+      .purple{fill:#7c3aed;}
     </style>
   </defs>
 
-  <rect width="1200" height="500" rx="30" fill="#f8fafc"/>
-  <text class="serif title" x="600" y="44" text-anchor="middle">Trip+ Benchmark Construction</text>
-  <text class="serif sub" x="600" y="71" text-anchor="middle">grounded travel evidence + profile memory + state-first multi-turn tasks + every-turn verification</text>
+  <rect width="1200" height="560" rx="30" fill="#fbfcff"/>
+  <text class="serif main-title" x="600" y="45" text-anchor="middle">Trip+ Benchmark Construction</text>
+  <text class="sans subtitle" x="600" y="74" text-anchor="middle">from grounded travel data to profile-aware, stateful, every-turn evaluation</text>
 
-  <g stroke="#94a3b8" stroke-width="3" fill="none" marker-end="url(#arrow)">
-    <line x1="295" y1="246" x2="325" y2="246"/>
-    <line x1="585" y1="246" x2="615" y2="246"/>
-    <line x1="875" y1="246" x2="905" y2="246"/>
+  <g stroke="#9aa8bb" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <line x1="293" y1="269" x2="322" y2="269"/>
+    <line x1="582" y1="269" x2="611" y2="269"/>
+    <line x1="873" y1="269" x2="902" y2="269"/>
   </g>
 
-  <!-- 1. Sandbox -->
-  <g transform="translate(40 105)" filter="url(#cardShadow)">
-    <rect width="255" height="290" rx="18" fill="#ffffff" stroke="#b7d1f3" stroke-width="2"/>
-    <circle cx="34" cy="34" r="18" fill="#eef6ff" stroke="#4d7fd6" stroke-width="2"/>
-    <text class="serif num" x="34" y="40" text-anchor="middle" fill="#2563eb">1</text>
-    <text class="serif card-title" x="128" y="42" text-anchor="middle">Build Sandbox</text>
+  <!-- Step 1 -->
+  <g transform="translate(42 105)" filter="url(#softShadow)">
+    <rect width="251" height="370" rx="20" fill="#ffffff" stroke="#a8c5ef" stroke-width="2"/>
+    <rect x="15" y="15" width="221" height="58" rx="16" fill="#eef6ff" stroke="#b7d1f3"/>
+    <circle cx="43" cy="44" r="18" fill="#ffffff" stroke="#4d7fd6" stroke-width="2"/>
+    <text class="serif step-no blue" x="43" y="51" text-anchor="middle">1</text>
+    <text class="serif step-title" x="138" y="51" text-anchor="middle">Sandbox</text>
 
-    <rect x="22" y="66" width="211" height="66" rx="14" fill="#eef6ff" stroke="#b7d1f3" stroke-width="1.5"/>
-    <text class="sans chip" x="128" y="89" text-anchor="middle" fill="#3b6ab7">Travel Data Snapshot</text>
-    <g transform="translate(38 101)" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
-      <path d="M0 18 L22 8 L58 8 L76 18"/>
-      <path d="M8 18 L18 30 L58 30 L70 18"/>
-      <path d="M108 30 V12 M96 30 V18 M120 30 V18 M90 30 H126"/>
-      <circle cx="158" cy="15" r="11"/>
-      <path d="M158 26 V32 M144 32 H176 M176 32 C181 22 181 15 176 8"/>
+    <rect x="22" y="91" width="207" height="100" rx="16" fill="#f8fbff" stroke="#c9dbf7"/>
+    <text class="sans mini-title blue" x="126" y="118" text-anchor="middle">Travel Data Sandbox</text>
+    <image href="pipeline-icons/airplane.png" x="37" y="132" width="32" height="32"/>
+    <image href="pipeline-icons/train.png" x="76" y="132" width="32" height="32"/>
+    <image href="pipeline-icons/transit.png" x="115" y="132" width="32" height="32"/>
+    <image href="pipeline-icons/hotel.png" x="154" y="132" width="32" height="32"/>
+    <image href="pipeline-icons/restaurant.png" x="193" y="132" width="32" height="32"/>
+
+    <g transform="translate(22 213)">
+      <rect width="96" height="58" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+      <image href="pipeline-icons/poi.png" x="11" y="12" width="34" height="34"/>
+      <text class="sans micro" x="67" y="24" text-anchor="middle">POIs</text>
+      <text class="sans micro" x="67" y="40" text-anchor="middle">hotels, meals</text>
+      <rect x="111" width="96" height="58" rx="14" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <image href="pipeline-icons/weather.png" x="122" y="12" width="34" height="34"/>
+      <text class="sans micro" x="166" y="24" text-anchor="middle">weather</text>
+      <text class="sans micro" x="166" y="40" text-anchor="middle">environment</text>
     </g>
 
-    <g transform="translate(24 151)">
-      <rect width="94" height="54" rx="12" fill="#fff7ed" stroke="#fed7aa"/>
-      <text class="sans tiny" x="47" y="22" text-anchor="middle" fill="#c05621">40 cities</text>
-      <text class="sans tiny muted" x="47" y="40" text-anchor="middle">&amp; dates</text>
-      <rect x="117" width="94" height="54" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/>
-      <text class="sans tiny" x="164" y="22" text-anchor="middle" fill="#15803d">POIs</text>
-      <text class="sans tiny muted" x="164" y="40" text-anchor="middle">hotels, meals</text>
-    </g>
-
-    <g transform="translate(24 218)">
-      <rect width="211" height="42" rx="12" fill="#f8fafc" stroke="#dbe3ed"/>
-      <path d="M18 24 C34 8 48 9 62 23 C75 35 91 35 108 19" fill="none" stroke="#4d7fd6" stroke-width="3" stroke-linecap="round"/>
-      <text class="sans tiny muted" x="145" y="18" text-anchor="middle">weather, routes,</text>
-      <text class="sans tiny muted" x="145" y="34" text-anchor="middle">local mobility tools</text>
-    </g>
-  </g>
-
-  <!-- 2. Profiles -->
-  <g transform="translate(330 105)" filter="url(#cardShadow)">
-    <rect width="255" height="290" rx="18" fill="#ffffff" stroke="#b7d1f3" stroke-width="2"/>
-    <circle cx="34" cy="34" r="18" fill="#eef6ff" stroke="#4d7fd6" stroke-width="2"/>
-    <text class="serif num" x="34" y="40" text-anchor="middle" fill="#2563eb">2</text>
-    <text class="serif card-title" x="136" y="42" text-anchor="middle">Seed Profiles</text>
-
-    <text class="sans chip" x="128" y="82" text-anchor="middle" fill="#3b6ab7">11 traveler personas</text>
-    <g transform="translate(38 99)">
-      <circle cx="26" cy="24" r="19" fill="#fed7aa" stroke="#17202a" stroke-width="2"/>
-      <path d="M8 67 C11 47 52 47 55 67 Z" fill="#67e8f9" stroke="#17202a" stroke-width="2"/>
-      <circle cx="93" cy="23" r="18" fill="#fde68a" stroke="#17202a" stroke-width="2"/>
-      <path d="M73 67 C76 48 116 48 120 67 Z" fill="#93c5fd" stroke="#17202a" stroke-width="2"/>
-      <circle cx="165" cy="23" r="18" fill="#fecaca" stroke="#17202a" stroke-width="2"/>
-      <path d="M145 67 C148 48 188 48 191 67 Z" fill="#bbf7d0" stroke="#17202a" stroke-width="2"/>
-      <text class="sans tiny muted" x="26" y="88" text-anchor="middle">family</text>
-      <text class="sans tiny muted" x="93" y="88" text-anchor="middle">senior</text>
-      <text class="sans tiny muted" x="165" y="88" text-anchor="middle">business</text>
-    </g>
-
-    <g transform="translate(24 224)">
-      <rect width="100" height="46" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
-      <text class="sans tiny" x="50" y="19" text-anchor="middle" fill="#2563eb">observable</text>
-      <text class="sans tiny muted" x="50" y="34" text-anchor="middle">memory</text>
-      <rect x="111" width="100" height="46" rx="12" fill="#fffbeb" stroke="#fde68a"/>
-      <text class="sans tiny" x="161" y="19" text-anchor="middle" fill="#b7791f">hidden</text>
-      <text class="sans tiny muted" x="161" y="34" text-anchor="middle">suitability</text>
+    <g transform="translate(22 293)">
+      <rect width="207" height="46" rx="14" fill="#eef6ff" stroke="#c9dbf7"/>
+      <image href="pipeline-icons/tools.png" x="14" y="9" width="28" height="28"/>
+      <text class="sans label" x="118" y="21" text-anchor="middle">40 cities, fixed dates,</text>
+      <text class="sans label" x="118" y="36" text-anchor="middle">11 travel tools</text>
     </g>
   </g>
 
-  <!-- 3. Interactions -->
-  <g transform="translate(620 105)" filter="url(#cardShadow)">
-    <rect width="255" height="290" rx="18" fill="#ffffff" stroke="#f5d7ab" stroke-width="2"/>
-    <circle cx="34" cy="34" r="18" fill="#fffbeb" stroke="#b7791f" stroke-width="2"/>
-    <text class="serif num" x="34" y="40" text-anchor="middle" fill="#b7791f">3</text>
-    <text class="serif card-title" x="142" y="42" text-anchor="middle">Generate Turns</text>
+  <!-- Step 2 -->
+  <g transform="translate(333 105)" filter="url(#softShadow)">
+    <rect width="249" height="370" rx="20" fill="#ffffff" stroke="#a8c5ef" stroke-width="2"/>
+    <rect x="15" y="15" width="219" height="58" rx="16" fill="#eef6ff" stroke="#b7d1f3"/>
+    <circle cx="43" cy="44" r="18" fill="#ffffff" stroke="#4d7fd6" stroke-width="2"/>
+    <text class="serif step-no blue" x="43" y="51" text-anchor="middle">2</text>
+    <text class="serif step-title" x="139" y="51" text-anchor="middle">Profiles</text>
 
-    <g transform="translate(24 67)">
-      <rect width="96" height="50" rx="12" fill="#f8fafc" stroke="#dbe3ed"/>
-      <text class="sans tiny" x="48" y="21" text-anchor="middle" fill="#475569">hidden state</text>
-      <text class="sans tiny muted" x="48" y="36" text-anchor="middle">delta + mode</text>
-      <path d="M128 25 H154" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
-      <rect x="164" width="67" height="50" rx="12" fill="#eef6ff" stroke="#bfdbfe"/>
-      <text class="sans tiny" x="198" y="22" text-anchor="middle" fill="#2563eb">user</text>
-      <text class="sans tiny muted" x="198" y="37" text-anchor="middle">utterance</text>
-    </g>
+    <text class="sans mini-title blue" x="125" y="109" text-anchor="middle">11 diverse traveler profiles</text>
+    <image href="pipeline-icons/backpacker.png" x="35" y="129" width="48" height="48"/>
+    <image href="pipeline-icons/couple.png" x="100" y="129" width="48" height="48"/>
+    <image href="pipeline-icons/senior.png" x="165" y="129" width="48" height="48"/>
+    <image href="pipeline-icons/family.png" x="35" y="198" width="48" height="48"/>
+    <image href="pipeline-icons/foodfirst.png" x="100" y="198" width="48" height="48"/>
+    <image href="pipeline-icons/business.png" x="165" y="198" width="48" height="48"/>
 
-    <g transform="translate(24 141)">
-      <rect width="100" height="42" rx="11" fill="#ecfdf5" stroke="#bbf7d0"/>
-      <text class="sans tiny" x="50" y="18" text-anchor="middle" fill="#15803d">state</text>
-      <text class="sans tiny muted" x="50" y="33" text-anchor="middle">evolution</text>
-      <rect x="111" width="100" height="42" rx="11" fill="#fff7ed" stroke="#fed7aa"/>
-      <text class="sans tiny" x="161" y="18" text-anchor="middle" fill="#c05621">request</text>
-      <text class="sans tiny muted" x="161" y="33" text-anchor="middle">resolution</text>
-      <rect y="53" width="100" height="42" rx="11" fill="#fef2f2" stroke="#fecaca"/>
-      <text class="sans tiny" x="50" y="71" text-anchor="middle" fill="#dc2626">replanning</text>
-      <text class="sans tiny muted" x="50" y="86" text-anchor="middle">weather/crowd</text>
-      <rect x="111" y="53" width="100" height="42" rx="11" fill="#faf5ff" stroke="#ddd6fe"/>
-      <text class="sans tiny" x="161" y="71" text-anchor="middle" fill="#7c3aed">long horizon</text>
-      <text class="sans tiny muted" x="161" y="86" text-anchor="middle">preserve intent</text>
+    <g transform="translate(22 288)">
+      <rect width="96" height="52" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text class="sans mini-title blue" x="48" y="22" text-anchor="middle">memory</text>
+      <text class="sans micro" x="48" y="38" text-anchor="middle">observable</text>
+      <rect x="111" width="96" height="52" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+      <text class="sans mini-title orange" x="159" y="22" text-anchor="middle">rules</text>
+      <text class="sans micro" x="159" y="38" text-anchor="middle">hidden suitability</text>
     </g>
   </g>
 
-  <!-- 4. Evaluation -->
-  <g transform="translate(910 105)" filter="url(#cardShadow)">
-    <rect width="255" height="290" rx="18" fill="#ffffff" stroke="#bfe3ad" stroke-width="2"/>
-    <circle cx="34" cy="34" r="18" fill="#f0fdf4" stroke="#6aa84f" stroke-width="2"/>
-    <text class="serif num" x="34" y="40" text-anchor="middle" fill="#4f8a34">4</text>
-    <text class="serif card-title" x="142" y="42" text-anchor="middle">Evaluate Turn</text>
+  <!-- Step 3 -->
+  <g transform="translate(624 105)" filter="url(#softShadow)">
+    <rect width="249" height="370" rx="20" fill="#ffffff" stroke="#f1d29d" stroke-width="2"/>
+    <rect x="15" y="15" width="219" height="58" rx="16" fill="#fffbeb" stroke="#f4d28b"/>
+    <circle cx="43" cy="44" r="18" fill="#ffffff" stroke="#d8891c" stroke-width="2"/>
+    <text class="serif step-no orange" x="43" y="51" text-anchor="middle">3</text>
+    <text class="serif step-title" x="141" y="51" text-anchor="middle">Interactions</text>
 
-    <g transform="translate(24 67)">
-      <rect width="62" height="34" rx="9" fill="#ecfdf5" stroke="#86efac"/>
-      <text class="sans chip" x="31" y="23" text-anchor="middle" fill="#15803d">Plan</text>
-      <rect x="70" width="86" height="34" rx="9" fill="#fffbeb" stroke="#fbbf24"/>
-      <text class="sans chip" x="113" y="23" text-anchor="middle" fill="#d97706">Clarify</text>
-      <rect x="164" width="69" height="34" rx="9" fill="#fff1f2" stroke="#f87171"/>
-      <text class="sans chip" x="199" y="23" text-anchor="middle" fill="#dc2626">NoSol</text>
+    <g transform="translate(24 95)">
+      <rect width="86" height="54" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+      <text class="sans label" x="43" y="22" text-anchor="middle">hidden</text>
+      <text class="sans label" x="43" y="38" text-anchor="middle">state</text>
+      <path d="M116 27 H145" stroke="#9aa8bb" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="154" width="71" height="54" rx="14" fill="#eef6ff" stroke="#bfdbfe"/>
+      <text class="sans label blue" x="190" y="22" text-anchor="middle">user</text>
+      <text class="sans label" x="190" y="38" text-anchor="middle">turn</text>
     </g>
 
-    <g transform="translate(24 126)">
-      <rect width="211" height="48" rx="13" fill="#f8fafc" stroke="#dbe3ed"/>
-      <circle cx="30" cy="24" r="12" fill="#ffffff" stroke="#17202a" stroke-width="2"/>
-      <path d="M30 13 V24 L39 30" stroke="#17202a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <path d="M72 17 H98 M72 30 H108" stroke="#17202a" stroke-width="3" stroke-linecap="round"/>
-      <text class="sans tiny" x="155" y="21" text-anchor="middle" fill="#15803d">feasibility</text>
-      <text class="sans tiny muted" x="155" y="36" text-anchor="middle">grounding, time, cost</text>
-    </g>
-
-    <g transform="translate(24 190)">
-      <rect width="100" height="50" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
-      <text class="sans tiny" x="50" y="20" text-anchor="middle" fill="#2563eb">requirements</text>
-      <text class="sans tiny muted" x="50" y="36" text-anchor="middle">hard + soft</text>
-      <rect x="111" width="100" height="50" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/>
-      <text class="sans tiny" x="161" y="20" text-anchor="middle" fill="#15803d">simulation</text>
-      <text class="sans tiny muted" x="161" y="36" text-anchor="middle">experience</text>
-    </g>
-
-    <g transform="translate(24 253)">
-      <path d="M22 16 L32 26 L53 6" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text class="sans tiny" x="140" y="14" text-anchor="middle" fill="#b7791f">request fulfillment</text>
-      <text class="sans tiny muted" x="140" y="30" text-anchor="middle">intent preservation</text>
+    <g transform="translate(22 177)">
+      <rect width="96" height="62" rx="14" fill="#ecfdf5" stroke="#bbf7d0"/>
+      <image href="pipeline-icons/budget.png" x="10" y="13" width="34" height="34"/>
+      <text class="sans micro" x="68" y="25" text-anchor="middle">state</text>
+      <text class="sans micro" x="68" y="40" text-anchor="middle">evolution</text>
+      <rect x="111" width="96" height="62" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+      <image href="pipeline-icons/question.png" x="122" y="13" width="34" height="34"/>
+      <text class="sans micro" x="166" y="25" text-anchor="middle">request</text>
+      <text class="sans micro" x="166" y="40" text-anchor="middle">resolution</text>
+      <rect y="77" width="96" height="62" rx="14" fill="#fef2f2" stroke="#fecaca"/>
+      <image href="pipeline-icons/closed.png" x="10" y="13" width="34" height="34"/>
+      <text class="sans micro" x="68" y="25" text-anchor="middle">environment</text>
+      <text class="sans micro" x="68" y="40" text-anchor="middle">replanning</text>
+      <rect x="111" y="77" width="96" height="62" rx="14" fill="#faf5ff" stroke="#ddd6fe"/>
+      <image href="pipeline-icons/like.png" x="122" y="13" width="34" height="34"/>
+      <text class="sans micro" x="166" y="25" text-anchor="middle">long-horizon</text>
+      <text class="sans micro" x="166" y="40" text-anchor="middle">alignment</text>
     </g>
   </g>
 
-  <g transform="translate(168 427)">
-    <rect width="864" height="42" rx="21" fill="#ffffff" stroke="#dbe3ed" stroke-width="2"/>
-    <text class="serif sub" x="432" y="27" text-anchor="middle">oracle fields: active user state -> expected response mode -> profile rules -> experience trace</text>
+  <!-- Step 4 -->
+  <g transform="translate(915 105)" filter="url(#softShadow)">
+    <rect width="243" height="370" rx="20" fill="#ffffff" stroke="#b9dcaa" stroke-width="2"/>
+    <rect x="15" y="15" width="213" height="58" rx="16" fill="#f0fdf4" stroke="#b9dcaa"/>
+    <circle cx="43" cy="44" r="18" fill="#ffffff" stroke="#5a9f45" stroke-width="2"/>
+    <text class="serif step-no green" x="43" y="51" text-anchor="middle">4</text>
+    <text class="serif step-title" x="139" y="51" text-anchor="middle">Evaluation</text>
+
+    <g transform="translate(20 94)">
+      <rect width="55" height="34" rx="10" fill="#ecfdf5" stroke="#86efac"/>
+      <text class="sans mini-title green" x="28" y="23" text-anchor="middle">Plan</text>
+      <rect x="64" width="79" height="34" rx="10" fill="#fffbeb" stroke="#fbbf24"/>
+      <text class="sans mini-title orange" x="104" y="23" text-anchor="middle">Clarify</text>
+      <rect x="152" width="72" height="34" rx="10" fill="#fff1f2" stroke="#f87171"/>
+      <text class="sans mini-title red" x="188" y="23" text-anchor="middle">NoSol</text>
+    </g>
+
+    <g transform="translate(21 155)">
+      <rect width="98" height="58" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+      <image href="pipeline-icons/puzzle.png" x="11" y="12" width="34" height="34"/>
+      <text class="sans micro" x="70" y="23" text-anchor="middle">feasible</text>
+      <text class="sans micro" x="70" y="39" text-anchor="middle">itinerary</text>
+      <rect x="109" width="98" height="58" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+      <image href="pipeline-icons/verifier.png" x="120" y="11" width="35" height="35"/>
+      <text class="sans micro" x="171" y="23" text-anchor="middle">verified</text>
+      <text class="sans micro" x="171" y="39" text-anchor="middle">evidence</text>
+
+      <rect y="75" width="98" height="58" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+      <image href="pipeline-icons/check.png" x="12" y="12" width="34" height="34"/>
+      <text class="sans micro" x="70" y="23" text-anchor="middle">hard + soft</text>
+      <text class="sans micro" x="70" y="39" text-anchor="middle">requirements</text>
+      <rect x="109" y="75" width="98" height="58" rx="14" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <image href="pipeline-icons/physical.png" x="120" y="12" width="34" height="34"/>
+      <text class="sans micro" x="171" y="23" text-anchor="middle">experience</text>
+      <text class="sans micro" x="171" y="39" text-anchor="middle">simulation</text>
+    </g>
+
+    <g transform="translate(20 326)">
+      <rect width="224" height="36" rx="12" fill="#fff7ed" stroke="#fbbf24"/>
+      <text class="sans label orange" x="112" y="16" text-anchor="middle">request fulfillment</text>
+      <text class="sans label" x="112" y="30" text-anchor="middle">+ intent preservation</text>
+    </g>
+  </g>
+
+  <g transform="translate(146 505)">
+    <rect width="908" height="36" rx="18" fill="#ffffff" stroke="#dbe3ed"/>
+    <text class="serif subtitle" x="454" y="23" text-anchor="middle">active user state -> profile-derived rules -> response mode -> minute-level plan -> stateful judge</text>
   </g>
 </svg>
