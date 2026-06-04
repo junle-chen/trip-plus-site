@@ -88,6 +88,7 @@
     font-style:italic;
     line-height:1.5;
     margin:24px auto 28px;
+    text-align:center;
   }
   .authors{
     color:#1f2937;
@@ -291,7 +292,7 @@
     transform:translateX(-50%);
   }
   .story-shell{
-    --story-scale:.9;
+    --story-scale:1;
     position:relative;
     border:1px solid #d9e2ee;
     border-radius:18px;
@@ -1210,15 +1211,15 @@
     position:absolute;
     left:26px;
     right:26px;
-    bottom:20px;
+    bottom:12px;
     z-index:1;
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
   }
   .scenario-card{
-    min-height:112px;
-    padding:12px 10px;
+    min-height:108px;
+    padding:8px 8px;
     border-radius:18px;
     text-align:center;
   }
@@ -1226,18 +1227,29 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    width:30px;
-    height:30px;
-    margin-bottom:5px;
+    width:27px;
+    height:27px;
+    margin-bottom:3px;
     border:2px solid currentColor;
     border-radius:50%;
-    font-size:16px;
+    font-size:15px;
   }
   .scenario-card h4{
-    margin:0 0 7px;
+    margin:0 0 4px;
     color:#17202a;
-    font-size:16px;
+    font-size:15px;
     line-height:1.05;
+  }
+  .scenario-card .scenario-tag{
+    display:inline-block;
+    margin:0 0 5px;
+    border:1px solid currentColor;
+    border-radius:999px;
+    background:rgba(255,255,255,.74);
+    padding:2px 8px;
+    font-size:10.5px;
+    font-weight:900;
+    line-height:1.1;
   }
   .scenario-card .scenario-icons{
     display:flex;
@@ -1249,8 +1261,8 @@
     font-weight:900;
   }
   .scenario-card .scenario-icons img{
-    width:30px;
-    height:30px;
+    width:27px;
+    height:27px;
     object-fit:contain;
   }
   .scenario-card.blue{border-color:#bfdbfe;background:#eff6ff;color:#315fa9;}
@@ -1313,9 +1325,14 @@
   }
   .agent-mainline{
     display:grid;
-    grid-template-columns:205px 430px 136px 1fr;
-    gap:12px;
+    grid-template-columns:minmax(0,184px) minmax(0,370px) minmax(0,120px) minmax(0,244px);
+    gap:10px;
     align-items:stretch;
+  }
+  .agent-mainline > .story-node,
+  .agent-bottom > .story-node,
+  .agent-bottom > .verifier-box{
+    min-width:0;
   }
   .flow-arrow{
     display:flex;
@@ -1329,7 +1346,7 @@
     display:none;
   }
   .agent-query{
-    min-height:252px;
+    min-height:232px;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
@@ -1349,7 +1366,7 @@
     background:#f8fafc;
     padding:8px;
     color:#475569;
-    font-size:11px;
+    font-size:12px;
     font-weight:850;
     line-height:1.12;
   }
@@ -1365,7 +1382,7 @@
   }
   .state-list{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
   }
   .state-pill{
@@ -1373,44 +1390,44 @@
     border-radius:13px;
     background:#eff6ff;
     color:#315fa9;
-    padding:8px 9px;
-    font-size:12px;
+    padding:9px 10px;
+    font-size:13px;
     font-weight:900;
     line-height:1.08;
-    min-height:56px;
+    min-height:58px;
   }
   .state-pill span{
     display:block;
     color:#64748b;
-    font-size:10px;
+    font-size:11px;
     font-weight:850;
     margin-top:2px;
   }
   .agent-loop{
-    min-height:252px;
+    min-height:232px;
     overflow:hidden;
   }
   .agent-loop-inner{
     position:relative;
     display:grid;
-    grid-template-columns:104px 1fr;
-    gap:12px;
+    grid-template-columns:96px 1fr;
+    gap:10px;
     align-items:center;
-    min-height:134px;
+    min-height:128px;
   }
   .tool-result-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:10px;
+    gap:7px;
+    margin-top:9px;
   }
   .tool-result{
     border:1px solid #fed7aa;
     border-radius:11px;
     background:#fffaf2;
     color:#b45309;
-    padding:8px 7px;
-    font-size:10.5px;
+    padding:8px 6px;
+    font-size:11px;
     font-weight:850;
     line-height:1.14;
     text-align:center;
@@ -1482,8 +1499,8 @@
   }
   .robot-hub{
     position:relative;
-    width:106px;
-    height:106px;
+    width:96px;
+    height:96px;
     border-radius:50%;
     border:2px solid #f0bf72;
     background:#fff7ed;
@@ -1495,7 +1512,7 @@
   .robot-hub:before{
     content:"";
     position:absolute;
-    inset:-8px;
+    inset:-7px;
     border:2px dashed rgba(198,123,17,.35);
     border-radius:50%;
     animation:spinSlow 8s linear infinite;
@@ -1507,9 +1524,10 @@
   }
   .agent-mainline .tool-grid{
     grid-template-columns:repeat(3,1fr);
+    gap:7px;
   }
   .tool-pill{
-    min-height:64px;
+    min-height:60px;
     border:1px solid #fed7aa;
     border-radius:12px;
     background:#fffaf2;
@@ -1559,18 +1577,18 @@
     grid-template-columns:1fr;
   }
   .agent-mode{
-    min-height:252px;
+    min-height:232px;
     display:flex;
     flex-direction:column;
     gap:10px;
   }
   .agent-mode .mode-pill{
-    padding:13px 7px;
+    padding:13px 6px;
     font-size:15px;
   }
   .agent-itinerary-node{
     grid-column:auto;
-    min-height:252px;
+    min-height:232px;
   }
   .agent-output-row{
     display:grid;
@@ -1579,8 +1597,8 @@
   }
   .agent-bottom{
     display:grid;
-    grid-template-columns:1.28fr .72fr;
-    gap:12px;
+    grid-template-columns:1.22fr .78fr;
+    gap:10px;
     align-items:stretch;
   }
   .itinerary{
@@ -1591,40 +1609,40 @@
   }
   .itinerary-row{
     display:grid;
-    grid-template-columns:70px 1fr 64px;
-    gap:8px;
+    grid-template-columns:56px 1fr 44px;
+    gap:6px;
     align-items:center;
     border-bottom:1px dashed #f5d299;
     padding:5px 0;
-    font-size:12px;
+    font-size:13px;
     color:#475569;
   }
   .itinerary-row:last-child{border-bottom:0;}
   .itinerary-row b{color:#17202a;}
   .verifier-box{
     display:grid;
-    grid-template-columns:64px 1fr;
-    gap:12px;
+    grid-template-columns:58px 1fr;
+    gap:11px;
     align-items:center;
     height:100%;
     border:1px solid #dbe3ed;
     border-radius:14px;
     background:#fff;
-    padding:12px 14px;
+    padding:12px;
   }
   .verifier-box img{
-    width:64px;
-    height:64px;
+    width:58px;
+    height:58px;
     object-fit:contain;
   }
   .verifier-box b{
     display:block;
-    font-size:16px;
+    font-size:17px;
   }
   .verifier-box span{
     display:block;
     color:#64748b;
-    font-size:12px;
+    font-size:13px;
     line-height:1.25;
     margin-top:4px;
   }
@@ -2202,6 +2220,7 @@
                     <div class="story-node scenario-card blue" data-story-steps="4">
                       <span class="roman">I</span>
                       <h4>User-State Evolution</h4>
+                      <div class="scenario-tag">4-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/budget.png" alt="">
                         <span>→</span>
@@ -2213,6 +2232,7 @@
                     <div class="story-node scenario-card orange" data-story-steps="4">
                       <span class="roman">II</span>
                       <h4>Request Resolution</h4>
+                      <div class="scenario-tag">3-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/senior.png" alt="">
                         <span>→</span>
@@ -2222,6 +2242,7 @@
                     <div class="story-node scenario-card green" data-story-steps="4">
                       <span class="roman">III</span>
                       <h4>Environment Replanning</h4>
+                      <div class="scenario-tag">3-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/rain.png" alt="">
                         <img src="assets/figures/pipeline-icons/closed.png" alt="">
@@ -2231,6 +2252,7 @@
                     <div class="story-node scenario-card purple" data-story-steps="4">
                       <span class="roman">IV</span>
                       <h4>Long-Horizon Alignment</h4>
+                      <div class="scenario-tag">5-turn scenario</div>
                       <div class="scenario-icons">
                         <img src="assets/figures/pipeline-icons/like.png" alt="">
                         <span>→</span>
@@ -2307,8 +2329,7 @@
                         <div class="state-list">
                           <div class="state-pill">response target<span>Plan / Clarify / NoSolution</span></div>
                           <div class="state-pill">active requirements<span>destination, date, POI, budget</span></div>
-                          <div class="state-pill">profile rules<span>pace, mobility, comfort</span></div>
-                          <div class="state-pill">turn deltas<span>new budget, weather, ambiguity</span></div>
+                          <div class="state-pill">state changes<span>new requirement, weather change</span></div>
                         </div>
                       </div>
                       <div class="verifier-box" data-story-steps="7,8,9,10">
@@ -2737,7 +2758,7 @@
     },
     {
       label: 'Step 5 / 11',
-      caption: 'Instantiate four multi-turn scenario families from the base query.',
+      caption: 'Generate four multi-turn scenario families from the base query.',
       panel: 'benchmark',
       dot: 472
     },
@@ -2793,13 +2814,8 @@
   const zoomValue = shell.querySelector('[data-story-zoom-value]');
   const zoomButtons = [...shell.querySelectorAll('[data-story-zoom]')];
 
-  const getInitialZoom = () => {
-    const width = shell.getBoundingClientRect().width || window.innerWidth || 1080;
-    return Math.min(.9, Math.max(.5, (width - 48) / 1080));
-  };
-
   let current = 0;
-  let zoom = getInitialZoom();
+  let zoom = 1;
   let isPlaying = true;
   let timer = null;
 
