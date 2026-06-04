@@ -971,7 +971,7 @@
   }
   .construction-map{
     position:relative;
-    height:520px;
+    height:600px;
     overflow:hidden;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
@@ -1105,7 +1105,7 @@
   }
   .task-construction-band{
     position:absolute;
-    top:214px;
+    top:206px;
     left:142px;
     z-index:2;
     width:756px;
@@ -1150,16 +1150,16 @@
   }
   .base-query-hub{
     position:absolute;
-    top:310px;
-    left:276px;
+    top:302px;
+    left:252px;
     z-index:3;
-    width:488px;
-    min-height:86px;
+    width:536px;
+    min-height:106px;
     border:3px solid #315fa9;
     border-radius:22px;
     background:#fff;
     box-shadow:0 16px 34px rgba(49,95,169,.15);
-    padding:12px 20px;
+    padding:12px 18px 14px;
     text-align:center;
   }
   .base-query-hub .query-label{
@@ -1177,16 +1177,40 @@
   .base-query-hub p{
     margin:0;
     color:#17202a;
-    font-size:20px;
+    font-size:19px;
     font-weight:900;
     line-height:1.25;
     text-align:center;
+  }
+  .query-facts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-top:10px;
+  }
+  .query-fact{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    min-height:30px;
+    border:1px solid #bfdbfe;
+    border-radius:999px;
+    background:#eff6ff;
+    color:#315fa9;
+    font-size:12px;
+    font-weight:900;
+  }
+  .query-fact img{
+    width:21px;
+    height:21px;
+    object-fit:contain;
   }
   .scenario-grid{
     position:absolute;
     left:26px;
     right:26px;
-    bottom:18px;
+    bottom:20px;
     z-index:1;
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -1289,8 +1313,8 @@
   }
   .agent-mainline{
     display:grid;
-    grid-template-columns:150px 34px 352px 34px 142px 34px 1fr;
-    gap:0;
+    grid-template-columns:148px 142px 314px 116px 1fr;
+    gap:10px;
     align-items:stretch;
   }
   .flow-arrow{
@@ -1301,15 +1325,45 @@
     font-size:24px;
     font-weight:900;
   }
+  .agent-mainline .flow-arrow{
+    display:none;
+  }
   .agent-query{
-    min-height:186px;
+    min-height:236px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     gap:10px;
   }
+  .agent-state{
+    min-height:236px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .state-list{
+    display:grid;
+    gap:7px;
+  }
+  .state-pill{
+    border:1px solid #bfdbfe;
+    border-radius:13px;
+    background:#eff6ff;
+    color:#315fa9;
+    padding:7px 8px;
+    font-size:12px;
+    font-weight:900;
+    line-height:1.12;
+  }
+  .state-pill span{
+    display:block;
+    color:#64748b;
+    font-size:10px;
+    font-weight:850;
+    margin-top:2px;
+  }
   .agent-loop{
-    min-height:186px;
+    min-height:236px;
     overflow:hidden;
   }
   .agent-loop-inner{
@@ -1318,7 +1372,29 @@
     grid-template-columns:82px 1fr;
     gap:10px;
     align-items:center;
-    min-height:142px;
+    min-height:118px;
+  }
+  .tool-result-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:7px;
+    margin-top:9px;
+  }
+  .tool-result{
+    border:1px solid #fed7aa;
+    border-radius:11px;
+    background:#fffaf2;
+    color:#b45309;
+    padding:7px 8px;
+    font-size:11px;
+    font-weight:850;
+    line-height:1.14;
+  }
+  .tool-result b{
+    display:block;
+    color:#17202a;
+    font-size:11px;
+    margin-bottom:2px;
   }
   .agent-checks{
     display:grid;
@@ -1458,8 +1534,8 @@
     grid-template-columns:1fr;
   }
   .agent-mode .mode-pill{
-    padding:8px 7px;
-    font-size:12px;
+    padding:12px 7px;
+    font-size:14px;
   }
   .agent-itinerary-node{
     grid-column:auto;
@@ -1471,7 +1547,7 @@
   }
   .agent-bottom{
     display:grid;
-    grid-template-columns:1.25fr .75fr;
+    grid-template-columns:1.2fr .8fr;
     gap:12px;
   }
   .itinerary{
@@ -1522,7 +1598,7 @@
   .eval-layers{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
+    gap:10px;
   }
   .eval-layer{
     position:relative;
@@ -1530,7 +1606,7 @@
     border:1px solid #dbe3ed;
     border-radius:13px;
     background:#fff;
-    padding:12px;
+    padding:10px 12px;
   }
   .eval-layer-wide{
     grid-column:1 / -1;
@@ -1538,23 +1614,23 @@
   .eval-head{
     display:flex;
     align-items:center;
-    gap:9px;
-    margin-bottom:10px;
+    gap:10px;
+    margin-bottom:8px;
   }
   .eval-head img{
-    width:34px;
-    height:34px;
+    width:42px;
+    height:42px;
     object-fit:contain;
   }
   .eval-head b{
     display:block;
-    font-size:14px;
+    font-size:16px;
     line-height:1.15;
     color:#17202a;
   }
   .eval-head span{
     display:block;
-    font-size:11px;
+    font-size:12px;
     color:#64748b;
     line-height:1.15;
     margin-top:2px;
@@ -1562,29 +1638,29 @@
   .eval-mode-row{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
+    gap:8px;
   }
   .metric-grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:8px;
+    gap:7px;
   }
   .metric-card{
-    min-height:78px;
+    min-height:76px;
     border:1px solid #d9efcf;
     border-radius:12px;
     background:#f0fdf4;
     padding:8px 5px;
     color:#15803d;
     text-align:center;
-    font-size:10px;
+    font-size:11px;
     font-weight:850;
     line-height:1.16;
   }
   .metric-card img{
     display:block;
-    width:30px;
-    height:30px;
+    width:34px;
+    height:34px;
     object-fit:contain;
     margin:0 auto 5px;
   }
@@ -1594,13 +1670,13 @@
     gap:10px;
   }
   .requirement-box{
-    min-height:86px;
+    min-height:78px;
     border:1.5px solid #93c5fd;
     border-radius:14px;
     background:#eff6ff;
     color:#315fa9;
     padding:10px;
-    font-size:11px;
+    font-size:12px;
     font-weight:800;
     line-height:1.24;
   }
@@ -1612,48 +1688,48 @@
   .requirement-box b{
     display:block;
     color:inherit;
-    font-size:13px;
+    font-size:15px;
     margin-bottom:4px;
   }
   .comfort-row{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:7px;
+    gap:8px;
   }
   .comfort-metric{
     border:1px solid #d9efcf;
     border-radius:11px;
     background:#f8fff7;
     color:#4f8f3c;
-    padding:7px 4px;
+    padding:8px 4px;
     text-align:center;
-    font-size:9.5px;
+    font-size:10.5px;
     font-weight:850;
     line-height:1.12;
   }
   .comfort-metric img{
     display:block;
-    width:25px;
-    height:25px;
+    width:30px;
+    height:30px;
     object-fit:contain;
     margin:0 auto 4px;
   }
   .score-scale{
     display:flex;
     justify-content:center;
-    gap:3px;
+    gap:2px;
     margin-top:5px;
   }
   .score-scale span{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    width:13px;
-    height:13px;
+    width:15px;
+    height:15px;
     border-radius:50%;
     background:#e5f6df;
     color:#4f8f3c;
-    font-size:8px;
+    font-size:8.5px;
     font-weight:900;
   }
   .stateful-grid{
@@ -1848,12 +1924,7 @@
     .story-panel{min-height:540px;padding:18px;}
     .story-panel h3{font-size:24px;}
     .seed-profile-row,
-    .profile-rule-row,
-    .agent-mainline,
-    .agent-bottom,
-    .eval-layers,
-    .requirement-grid,
-    .stateful-grid{
+    .profile-rule-row{
       grid-template-columns:1fr;
     }
     .sandbox-evidence,
@@ -1861,10 +1932,7 @@
     .task-seed-board,
     .hard-grid,
     .profile-grid,
-    .tool-grid,
-    .agent-mainline .tool-grid,
-    .metric-grid,
-    .comfort-row{
+    .tool-grid{
       grid-template-columns:repeat(2,1fr);
     }
     .turn-lane{
@@ -1873,10 +1941,6 @@
     .flow-arrow{
       min-height:22px;
       transform:rotate(90deg);
-    }
-    .agent-query,
-    .agent-loop{
-      min-height:0;
     }
     .robot-hub{
       width:76px;
@@ -1992,7 +2056,6 @@
       <div class="story-shell" data-story-shell>
         <div class="story-top">
           <div>
-            <div class="story-kicker">Interactive Presentation View</div>
             <h3 class="story-title">How Trip+ Constructs, Plans, and Evaluates</h3>
             <p class="story-note">Autoplay or click a step.</p>
           </div>
@@ -2028,7 +2091,7 @@
               <section class="story-panel panel-benchmark" data-story-panel="benchmark">
                 <h3><span class="story-badge">1</span>Benchmark Construction</h3>
                 <div class="construction-map">
-                  <svg class="construction-lines" viewBox="0 0 1040 520" aria-hidden="true">
+                  <svg class="construction-lines" viewBox="0 0 1040 600" aria-hidden="true">
                     <defs>
                       <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
                         <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"></path>
@@ -2043,10 +2106,10 @@
                     <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M232 198 C270 230, 345 250, 415 286"></path>
                     <path class="construction-line green" marker-end="url(#arrow-green)" d="M808 198 C770 230, 690 250, 625 286"></path>
                     <path class="construction-line orange" marker-end="url(#arrow-orange)" d="M520 286 L520 306"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M420 390 C300 410, 160 414, 136 430"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M490 398 C420 420, 380 430, 376 438"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M550 398 C620 420, 660 430, 664 438"></path>
-                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M620 390 C740 410, 880 414, 904 430"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M420 424 C300 452, 160 462, 136 482"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M490 426 C420 462, 380 470, 376 488"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M550 426 C620 462, 660 470, 664 488"></path>
+                    <path class="construction-line blue" marker-end="url(#arrow-blue)" d="M620 424 C740 452, 880 462, 904 482"></path>
                   </svg>
 
                   <div class="story-node construction-source sandbox-source" data-story-steps="0,2">
@@ -2087,14 +2150,19 @@
                       <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong</div>
                       <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/schedule.png" alt="">4 days</div>
                       <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/poi.png" alt="">Disneyland</div>
-                      <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/train.png" alt="">Transport</div>
-                      <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget</div>
+                      <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/airplane.png" alt="">Flight</div>
+                      <div class="query-pill" data-story-steps="2,3"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget 10k</div>
                     </div>
                   </div>
 
                   <div class="story-node base-query-hub" data-story-steps="3,4">
                     <div class="query-label">Base Query</div>
                     <p>Three-generation family · 4-day Hong Kong trip · must visit Disneyland.</p>
+                    <div class="query-facts">
+                      <div class="query-fact"><img src="assets/figures/pipeline-icons/airplane.png" alt="">flight preferred</div>
+                      <div class="query-fact"><img src="assets/figures/pipeline-icons/budget.png" alt="">budget 10,000</div>
+                      <div class="query-fact"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">family meals</div>
+                    </div>
                   </div>
 
                   <div class="scenario-grid">
@@ -2148,9 +2216,20 @@
                   <div class="agent-canvas">
                     <div class="agent-mainline">
                       <div class="story-node agent-query" data-story-steps="5">
-                        <div class="story-node-title"><span>Query + State</span><span>Input</span></div>
-                        <div class="query-card">Family · Hong Kong · 4 days · Disneyland</div>
-                        <div class="revision-note">budget · date · weather · ambiguity</div>
+                        <div class="story-node-title"><span>Query</span><span>Input</span></div>
+                        <div class="query-card">Three-generation family · Hong Kong · 4 days · Disneyland · flight · budget 10,000</div>
+                      </div>
+
+                      <div class="flow-arrow" aria-hidden="true">→</div>
+
+                      <div class="story-node agent-state" data-story-steps="5,7">
+                        <div class="story-node-title"><span>Turn State</span><span>Memory</span></div>
+                        <div class="state-list">
+                          <div class="state-pill">active requirements<span>destination, duration, POI</span></div>
+                          <div class="state-pill">profile rules<span>senior + child comfort</span></div>
+                          <div class="state-pill">turn deltas<span>budget, date, weather</span></div>
+                          <div class="state-pill">oracle target<span>plan / clarify / no-solution</span></div>
+                        </div>
                       </div>
 
                       <div class="flow-arrow" aria-hidden="true">→</div>
@@ -2169,6 +2248,12 @@
                           </div>
                           <div class="agent-route" aria-hidden="true"></div>
                           <div class="agent-packet" aria-hidden="true"></div>
+                        </div>
+                        <div class="tool-result-grid">
+                          <div class="tool-result"><b>Flight</b>direct route found</div>
+                          <div class="tool-result"><b>POI</b>Disneyland open</div>
+                          <div class="tool-result"><b>Hotel</b>family room available</div>
+                          <div class="tool-result"><b>Weather</b>rain risk in afternoon</div>
                         </div>
                       </div>
 
@@ -2215,7 +2300,7 @@
               <section class="story-panel panel-eval" data-story-panel="evaluation">
                 <h3><span class="story-badge">3</span>Every-Turn Evaluation</h3>
                 <div class="eval-layers">
-                  <div class="eval-layer eval-layer-wide" data-story-steps="8">
+                  <div class="eval-layer" data-story-steps="8">
                     <div class="eval-head">
                       <img src="assets/figures/pipeline-icons/check.png" alt="">
                       <div><b>1 Response Mode</b><span>gate first</span></div>
@@ -2226,7 +2311,7 @@
                       <div class="mode-pill no">NoSolution</div>
                     </div>
                   </div>
-                  <div class="eval-layer eval-layer-wide" data-story-steps="8">
+                  <div class="eval-layer" data-story-steps="8">
                     <div class="eval-head">
                       <img src="assets/figures/pipeline-icons/puzzle.png" alt="">
                       <div><b>2 Itinerary Feasibility</b><span>deterministic checks</span></div>
@@ -2255,11 +2340,11 @@
                       <div><b>4 User Simulation</b><span>experience score</span></div>
                     </div>
                     <div class="comfort-row">
-                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/physical.png" alt="">Physical<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
-                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/schedule.png" alt="">Schedule<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
-                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/weather.png" alt="">Environment<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
-                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
-                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/like.png" alt="">Preference<div class="score-scale"><span>1</span><span>3</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/physical.png" alt="">Physical<div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/schedule.png" alt="">Schedule<div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/weather.png" alt="">Environment<div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/budget.png" alt="">Budget<div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+                      <div class="comfort-metric"><img src="assets/figures/pipeline-icons/like.png" alt="">Preference<div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
                     </div>
                   </div>
                   <div class="eval-layer eval-layer-wide" data-story-steps="10">
@@ -2623,7 +2708,7 @@
     },
     {
       label: 'Step 4 / 11',
-      caption: 'Combine profile + task seed into a concrete base query.',
+      caption: 'Combine profile + task seed into a concrete base query with flight and budget constraints.',
       panel: 'benchmark',
       dot: 354
     },
@@ -2635,7 +2720,7 @@
     },
     {
       label: 'Step 6 / 11',
-      caption: 'Tool calls ground the active query in the sandbox.',
+      caption: 'Read the query, maintain turn state, and call sandbox tools with returned evidence.',
       panel: 'agent',
       dot: 590
     },
@@ -2659,7 +2744,7 @@
     },
     {
       label: 'Step 10 / 11',
-      caption: 'Score hard constraints, soft preferences, and user comfort.',
+      caption: 'Score hard/soft requirements and user simulation on a 1-5 experience scale.',
       panel: 'evaluation',
       dot: 1003
     },
