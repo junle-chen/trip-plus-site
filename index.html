@@ -477,7 +477,7 @@
   }
   .story-board{
     width:1080px;
-    min-height:680px;
+    min-height:620px;
     margin:0 auto;
     zoom:var(--story-scale);
   }
@@ -489,7 +489,7 @@
     min-width:0;
     display:none;
     max-width:1040px;
-    min-height:680px;
+    min-height:620px;
     margin:0 auto;
     border:1.5px solid #dbe3ed;
     border-radius:18px;
@@ -525,6 +525,10 @@
   .panel-benchmark{border-color:#bfd3f5;}
   .panel-agent{border-color:#f5d299;}
   .panel-eval{border-color:#bfe5b6;}
+  .panel-agent,
+  .panel-eval{
+    min-height:560px;
+  }
   .panel-benchmark .story-badge,
   .panel-benchmark h3{color:#2f67bd;}
   .panel-agent .story-badge,
@@ -1385,16 +1389,16 @@
   }
   .agent-flow{
     display:grid;
-    gap:12px;
+    gap:10px;
   }
   .agent-canvas{
     position:relative;
     display:grid;
-    gap:12px;
+    gap:10px;
   }
   .agent-mainline{
     display:grid;
-    grid-template-columns:minmax(0,184px) minmax(0,370px) minmax(0,120px) minmax(0,244px);
+    grid-template-columns:minmax(0,178px) minmax(0,382px) minmax(0,116px) minmax(0,250px);
     gap:10px;
     align-items:stretch;
   }
@@ -1415,7 +1419,7 @@
     display:none;
   }
   .agent-query{
-    min-height:232px;
+    min-height:220px;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
@@ -1473,7 +1477,7 @@
     margin-top:2px;
   }
   .agent-loop{
-    min-height:232px;
+    min-height:220px;
     overflow:hidden;
   }
   .agent-loop-inner{
@@ -1646,7 +1650,7 @@
     grid-template-columns:1fr;
   }
   .agent-mode{
-    min-height:232px;
+    min-height:220px;
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -1657,7 +1661,7 @@
   }
   .agent-itinerary-node{
     grid-column:auto;
-    min-height:232px;
+    min-height:220px;
   }
   .agent-output-row{
     display:grid;
@@ -1669,6 +1673,46 @@
     grid-template-columns:1.22fr .78fr;
     gap:10px;
     align-items:stretch;
+  }
+  .agent-cycle{
+    display:grid;
+    grid-template-columns:132px 1fr;
+    gap:10px;
+    align-items:center;
+    border-color:#fed7aa;
+    background:linear-gradient(90deg,#fffaf2,#fff);
+    padding:10px 12px;
+  }
+  .cycle-title{
+    color:#b45309;
+    font-size:13px;
+    font-weight:900;
+    line-height:1.1;
+  }
+  .cycle-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+  }
+  .cycle-chip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    min-height:34px;
+    border:1px solid #fed7aa;
+    border-radius:999px;
+    background:#fff;
+    color:#b45309;
+    font-size:11px;
+    font-weight:900;
+    line-height:1.05;
+    text-align:center;
+  }
+  .cycle-chip img{
+    width:22px;
+    height:22px;
+    object-fit:contain;
   }
   .itinerary{
     border:1px solid #fed7aa;
@@ -1726,7 +1770,7 @@
   .eval-layers{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:9px;
   }
   .eval-layer{
     position:relative;
@@ -1734,7 +1778,7 @@
     border:1px solid #dbe3ed;
     border-radius:13px;
     background:#fff;
-    padding:10px 12px;
+    padding:9px 12px;
   }
   .eval-layer-wide{
     grid-column:1 / -1;
@@ -1743,7 +1787,7 @@
     display:flex;
     align-items:center;
     gap:10px;
-    margin-bottom:8px;
+    margin-bottom:7px;
   }
   .eval-head img{
     width:42px;
@@ -1774,7 +1818,7 @@
     gap:7px;
   }
   .metric-card{
-    min-height:76px;
+    min-height:68px;
     border:1px solid #d9efcf;
     border-radius:12px;
     background:#f0fdf4;
@@ -1798,7 +1842,7 @@
     gap:10px;
   }
   .requirement-box{
-    min-height:78px;
+    min-height:70px;
     border:1.5px solid #93c5fd;
     border-radius:14px;
     background:#eff6ff;
@@ -1829,7 +1873,7 @@
     border-radius:11px;
     background:#f8fff7;
     color:#4f8f3c;
-    padding:8px 4px;
+    padding:7px 4px;
     text-align:center;
     font-size:10.5px;
     font-weight:850;
@@ -1864,6 +1908,23 @@
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
+  }
+  .eval-output-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:9px;
+  }
+  .eval-output-pill{
+    border:1px solid #fed7aa;
+    border-radius:999px;
+    background:#fffaf2;
+    color:#b7791f;
+    padding:7px 8px;
+    text-align:center;
+    font-size:11px;
+    font-weight:900;
+    line-height:1.1;
   }
   .stateful-card{
     border:1.5px solid #fbbf24;
@@ -2057,8 +2118,10 @@
     .wide-figure,
     .story-figure{width:100%;margin-left:0;transform:none;}
     .story-stage{padding:12px;overflow:auto;}
-    .story-board{width:1080px;min-height:680px;}
-    .story-panel{min-height:680px;padding:18px;}
+    .story-board{width:1080px;min-height:620px;}
+    .story-panel{min-height:620px;padding:18px;}
+    .panel-agent,
+    .panel-eval{min-height:560px;}
     .story-panel h3{font-size:24px;}
     .seed-profile-row,
     .profile-rule-row{
@@ -2421,6 +2484,16 @@
                       </div>
                     </div>
 
+                    <div class="story-node agent-cycle" data-story-steps="5,6,7,8">
+                      <div class="cycle-title">Every-turn loop</div>
+                      <div class="cycle-row">
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/robot.png" alt="">read query</div>
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/tools.png" alt="">call tools</div>
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/check.png" alt="">choose mode</div>
+                        <div class="cycle-chip"><img src="assets/figures/pipeline-icons/verifier.png" alt="">verify & revise</div>
+                      </div>
+                    </div>
+
                     <div class="agent-bottom">
                       <div class="story-node agent-state" data-story-steps="5,7,8,9,10">
                         <div class="story-node-title"><span>Turn State</span><span>For Evaluation</span></div>
@@ -2497,6 +2570,11 @@
                     <div class="stateful-grid">
                       <div class="stateful-card"><img src="assets/figures/pipeline-icons/check.png" alt=""><div>Request fulfillment<span>new or revised need solved</span></div></div>
                       <div class="stateful-card"><img src="assets/figures/pipeline-icons/thinking.png" alt=""><div>Intent preservation<span>prior constraints still kept</span></div></div>
+                    </div>
+                    <div class="eval-output-strip">
+                      <div class="eval-output-pill">mode correctness</div>
+                      <div class="eval-output-pill">plan quality</div>
+                      <div class="eval-output-pill">state reliability</div>
                     </div>
                   </div>
                 </div>
