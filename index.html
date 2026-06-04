@@ -284,16 +284,551 @@
   .arch h4{margin:0 0 5px;font-size:17px;}
   .arch h4 .rn{color:var(--blue);font-size:13px;margin-right:8px;font-weight:850;}
   .arch p{margin:0;font-size:15px;color:#475569;}
-  .pipeline-figure{
-    width:min(var(--maxw), calc(100vw - 48px));
-    margin:28px 0 32px 50%;
+  .story-figure{
+    width:min(1200px, calc(100vw - 48px));
+    margin:34px 0 36px 50%;
     transform:translateX(-50%);
   }
-  .pipeline-figure img{
-    width:100%;
-    border:0;
+  .story-shell{
+    --story-scale:.9;
+    position:relative;
+    border:1px solid #d9e2ee;
+    border-radius:18px;
+    background:linear-gradient(180deg,#fbfdff 0%,#f8fafc 100%);
+    box-shadow:0 24px 60px rgba(15,23,42,.13);
+    overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    color:#17202a;
+  }
+  .story-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+    padding:20px 22px 14px;
+    border-bottom:1px solid #e2e8f0;
+    background:rgba(255,255,255,.88);
+  }
+  .story-kicker{
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#2563eb;
+    margin-bottom:4px;
+  }
+  .story-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:30px;
+    font-weight:850;
+    line-height:1.08;
+    margin:0;
+  }
+  .story-note{
+    margin:7px 0 0;
+    color:#64748b;
+    font-size:14px;
+    line-height:1.35;
+  }
+  .story-controls{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+    min-width:240px;
+  }
+  .story-btn{
+    appearance:none;
+    border:1px solid #cbd5e1;
+    border-radius:999px;
+    background:#fff;
+    color:#334155;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:750;
+    line-height:1;
+    padding:9px 12px;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+  }
+  .story-btn:hover,
+  .story-btn.is-active{
+    color:#fff;
+    background:#2563eb;
+    border-color:#2563eb;
+    text-decoration:none;
+  }
+  .story-zoom{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:4px;
+    border:1px solid #dbe3ed;
+    border-radius:999px;
+    background:#f8fafc;
+  }
+  .story-zoom .story-btn{
+    width:32px;
+    height:32px;
+    padding:0;
+    border-radius:50%;
+    box-shadow:none;
+  }
+  .story-zoom-value{
+    min-width:44px;
+    text-align:center;
+    font-size:12px;
+    color:#64748b;
+    font-weight:800;
+  }
+  .story-nav{
+    display:flex;
+    gap:8px;
+    padding:12px 18px;
+    overflow-x:auto;
+    border-bottom:1px solid #e2e8f0;
+    background:#fff;
+  }
+  .story-step{
+    flex:0 0 auto;
+    border:1px solid #dbe3ed;
+    border-radius:999px;
+    background:#fff;
+    color:#64748b;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:800;
+    padding:7px 12px;
+  }
+  .story-step.is-active{
+    border-color:#2563eb;
+    color:#2563eb;
+    background:#eff6ff;
+  }
+  .story-stage{
+    overflow:auto;
+    padding:22px;
+    background:
+      radial-gradient(circle at 18% 10%,rgba(37,99,235,.08),transparent 28%),
+      radial-gradient(circle at 88% 22%,rgba(34,197,94,.08),transparent 24%),
+      linear-gradient(180deg,#fbfdff,#f8fafc);
+  }
+  .story-board{
+    width:1160px;
+    min-height:650px;
+    margin:0 auto;
+    zoom:var(--story-scale);
+  }
+  .story-board-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) minmax(0,1.1fr);
+    gap:18px;
+    align-items:stretch;
+  }
+  .story-panel{
+    position:relative;
+    min-width:0;
+    border:1.5px solid #dbe3ed;
+    border-radius:18px;
+    background:rgba(255,255,255,.96);
+    padding:16px;
+    box-shadow:0 16px 36px rgba(15,23,42,.08);
+    transition:opacity .28s ease,transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+  }
+  .story-panel h3{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 12px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:26px;
+    line-height:1.1;
+  }
+  .story-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:2px solid currentColor;
+    background:#fff;
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:850;
+  }
+  .panel-benchmark{border-color:#bfd3f5;}
+  .panel-agent{border-color:#f5d299;}
+  .panel-eval{border-color:#bfe5b6;}
+  .panel-benchmark .story-badge,
+  .panel-benchmark h3{color:#2f67bd;}
+  .panel-agent .story-badge,
+  .panel-agent h3{color:#c67b11;}
+  .panel-eval .story-badge,
+  .panel-eval h3{color:#4f8f3c;}
+  .story-panel.is-dim,
+  .story-node.is-dim{
+    opacity:.38;
+  }
+  .story-node{
+    position:relative;
+    border:1px solid #dbe3ed;
+    border-radius:14px;
+    background:#fff;
+    padding:12px;
+    box-shadow:0 8px 20px rgba(15,23,42,.05);
+    transition:opacity .28s ease,transform .28s ease,box-shadow .28s ease,border-color .28s ease,background .28s ease;
+  }
+  .story-node.is-focus,
+  .story-panel.is-focus{
+    opacity:1;
+    transform:translateY(-4px);
+    border-color:#2563eb;
+    box-shadow:0 18px 42px rgba(37,99,235,.18);
+  }
+  .story-node.is-focus:after{
+    content:"";
+    position:absolute;
+    inset:-5px;
+    border:2px solid rgba(37,99,235,.28);
+    border-radius:18px;
+    pointer-events:none;
+    animation:storyPulse 1.8s ease-in-out infinite;
+  }
+  .story-node-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:0 0 8px;
+    font-size:13px;
+    font-weight:850;
+    color:#17202a;
+  }
+  .story-node-title span:last-child{
+    color:#64748b;
+    font-size:10px;
+    font-weight:850;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .story-icons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+  .story-icon{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    filter:drop-shadow(0 4px 5px rgba(15,23,42,.12));
+  }
+  .story-icon.sm{width:32px;height:32px;}
+  .story-icon.lg{width:58px;height:58px;}
+  .story-chip-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .story-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-height:34px;
+    border:1px solid #dbe3ed;
     border-radius:12px;
-    box-shadow:0 14px 34px rgba(15,23,42,.08);
+    background:#f8fafc;
+    padding:7px 9px;
+    color:#475569;
+    font-size:11px;
+    font-weight:750;
+    line-height:1.18;
+  }
+  .story-chip.blue{background:#eff6ff;border-color:#bfdbfe;color:#315fa9;}
+  .story-chip.green{background:#f0fdf4;border-color:#bbf7d0;color:#15803d;}
+  .story-chip.orange{background:#fff7ed;border-color:#fed7aa;color:#c05621;}
+  .story-chip.red{background:#fff1f2;border-color:#fecdd3;color:#dc2626;}
+  .story-chip.purple{background:#faf5ff;border-color:#ddd6fe;color:#7c3aed;}
+  .query-card{
+    border:2px solid #bfd3f5;
+    border-radius:16px;
+    background:#fff;
+    padding:12px 14px;
+    color:#315fa9;
+    font-size:13px;
+    font-weight:800;
+    line-height:1.35;
+  }
+  .story-benchmark-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    align-items:start;
+  }
+  .story-benchmark-grid .story-node:first-child,
+  .story-benchmark-grid .story-node:last-child{
+    grid-column:1 / -1;
+  }
+  .profile-row{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:10px;
+    align-items:center;
+  }
+  .persona{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid #dbe3ed;
+    border-radius:12px;
+    padding:6px 7px;
+    background:#fff;
+    opacity:.55;
+  }
+  .persona.is-selected{
+    opacity:1;
+    border-color:#2563eb;
+    background:#eff6ff;
+    box-shadow:0 8px 20px rgba(37,99,235,.12);
+  }
+  .persona:not(.is-selected){
+    width:42px;
+    justify-content:center;
+    padding:5px;
+  }
+  .persona:not(.is-selected) span{
+    display:none;
+  }
+  .persona span{
+    font-size:11px;
+    font-weight:800;
+    color:#334155;
+  }
+  .turn-lane{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+  }
+  .turn-card{
+    min-height:78px;
+    border:1px solid #dbe3ed;
+    border-radius:12px;
+    background:#fff;
+    padding:8px;
+    text-align:center;
+    font-size:11px;
+    font-weight:800;
+    color:#475569;
+  }
+  .turn-card img{
+    display:block;
+    width:30px;
+    height:30px;
+    object-fit:contain;
+    margin:0 auto 5px;
+  }
+  .agent-flow{
+    display:grid;
+    gap:12px;
+  }
+  .agent-core{
+    display:grid;
+    grid-template-columns:1fr 92px 1fr;
+    align-items:center;
+    gap:10px;
+  }
+  .robot-hub{
+    position:relative;
+    width:92px;
+    height:92px;
+    border-radius:50%;
+    border:2px solid #f0bf72;
+    background:#fff7ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 12px 26px rgba(198,123,17,.14);
+  }
+  .robot-hub:before{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border:2px dashed rgba(198,123,17,.35);
+    border-radius:50%;
+    animation:spinSlow 8s linear infinite;
+  }
+  .tool-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .tool-pill{
+    min-height:58px;
+    border:1px solid #fed7aa;
+    border-radius:12px;
+    background:#fffaf2;
+    text-align:center;
+    padding:7px 5px;
+    color:#b45309;
+    font-size:11px;
+    font-weight:850;
+  }
+  .tool-pill img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 3px;
+  }
+  .mode-switch{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .mode-pill{
+    border:2px solid #dbe3ed;
+    border-radius:14px;
+    padding:9px 8px;
+    background:#fff;
+    text-align:center;
+    font-weight:850;
+    color:#64748b;
+  }
+  .mode-pill.plan{border-color:#86efac;color:#15803d;background:#f0fdf4;}
+  .mode-pill.ask{border-color:#fbbf24;color:#d97706;background:#fffbeb;}
+  .mode-pill.no{border-color:#f87171;color:#dc2626;background:#fff1f2;}
+  .itinerary{
+    border:1px solid #fed7aa;
+    border-radius:14px;
+    background:#fffaf2;
+    padding:10px 12px;
+  }
+  .itinerary-row{
+    display:grid;
+    grid-template-columns:70px 1fr 64px;
+    gap:8px;
+    align-items:center;
+    border-bottom:1px dashed #f5d299;
+    padding:5px 0;
+    font-size:12px;
+    color:#475569;
+  }
+  .itinerary-row:last-child{border-bottom:0;}
+  .itinerary-row b{color:#17202a;}
+  .eval-layers{
+    display:grid;
+    gap:9px;
+  }
+  .eval-layer{
+    display:grid;
+    grid-template-columns:38px 1fr auto;
+    gap:9px;
+    align-items:center;
+    border:1px solid #dbe3ed;
+    border-radius:13px;
+    background:#fff;
+    padding:9px;
+  }
+  .eval-layer img{
+    width:34px;
+    height:34px;
+    object-fit:contain;
+  }
+  .eval-layer b{
+    display:block;
+    font-size:13px;
+    line-height:1.15;
+  }
+  .eval-layer span{
+    display:block;
+    font-size:11px;
+    color:#64748b;
+    line-height:1.15;
+  }
+  .eval-score{
+    min-width:42px;
+    border-radius:999px;
+    background:#f0fdf4;
+    color:#15803d;
+    font-size:12px;
+    font-weight:900;
+    text-align:center;
+    padding:5px 7px;
+  }
+  .story-flowline{
+    position:relative;
+    height:46px;
+    margin:18px 0 0;
+    border:1px solid #dbe3ed;
+    border-radius:999px;
+    background:#fff;
+    overflow:hidden;
+  }
+  .story-flowline:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    right:18px;
+    top:22px;
+    height:2px;
+    background:#cbd5e1;
+  }
+  .story-flowline:after{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:17px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#2563eb;
+    box-shadow:0 0 0 7px rgba(37,99,235,.12);
+    transform:translateX(var(--dot-x,0));
+    transition:transform .38s ease;
+  }
+  .story-flow-label{
+    position:absolute;
+    top:8px;
+    transform:translateX(-50%);
+    font-size:11px;
+    font-weight:850;
+    color:#64748b;
+    background:#fff;
+    padding:0 6px;
+  }
+  .story-flow-label:nth-child(1){left:11%;}
+  .story-flow-label:nth-child(2){left:31%;}
+  .story-flow-label:nth-child(3){left:51%;}
+  .story-flow-label:nth-child(4){left:72%;}
+  .story-flow-label:nth-child(5){left:91%;}
+  .story-caption-live{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:14px;
+    align-items:center;
+    margin-top:14px;
+    border:1px solid #dbe3ed;
+    border-radius:16px;
+    background:#fff;
+    padding:12px 14px;
+  }
+  .story-caption-live b{
+    color:#2563eb;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .story-caption-live p{
+    margin:0;
+    color:#334155;
+    font-size:15px;
+    line-height:1.35;
+  }
+  @keyframes storyPulse{
+    0%,100%{opacity:.4;transform:scale(.99);}
+    50%{opacity:1;transform:scale(1.015);}
+  }
+  @keyframes spinSlow{
+    to{transform:rotate(360deg);}
   }
   .takeaway{
     background:#fff;
@@ -336,6 +871,8 @@
     .authors{font-size:26px;}
     .subtitle{font-size:20px;}
     .links{font-size:22px;}
+    .story-top{flex-direction:column;}
+    .story-controls{justify-content:flex-start;min-width:0;}
   }
   @media(max-width:620px){
     body{font-size:16px;}
@@ -349,10 +886,16 @@
     .lead{padding:0;}
     figure{margin:26px -2px;}
     .wide-figure,
-    .pipeline-figure{width:100%;margin-left:0;transform:none;}
+    .story-figure{width:100%;margin-left:0;transform:none;}
+    .story-stage{padding:12px;}
+    .story-board{width:1080px;}
+    .story-title{font-size:24px;}
+    .story-caption-live{grid-template-columns:1fr;}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
+    .story-node.is-focus:after,
+    .robot-hub:before{animation:none;}
   }
 </style>
 </head>
@@ -449,11 +992,190 @@
       activity-level experience trace as jointly constructed oracle fields.
     </p>
 
-    <figure class="pipeline-figure">
-      <img src="assets/figures/benchmark_pipeline.svg" alt="Trip+ benchmark construction pipeline">
-      <figcaption><b>Pipeline.</b> Trip+ turns fixed travel evidence and traveler profiles into
-        multi-turn scenarios, then evaluates every agent response through feasibility,
-        requirements, user simulation, and state preservation.</figcaption>
+    <figure class="story-figure" id="trip-story">
+      <div class="story-shell" data-story-shell>
+        <div class="story-top">
+          <div>
+            <div class="story-kicker">Interactive Presentation View</div>
+            <h3 class="story-title">How Trip+ Constructs, Plans, and Evaluates</h3>
+            <p class="story-note">Use autoplay for a talk-track, or click any step to explain one part of the benchmark.</p>
+          </div>
+          <div class="story-controls" aria-label="Presentation controls">
+            <button class="story-btn is-active" type="button" data-story-play>Pause</button>
+            <button class="story-btn" type="button" data-story-prev>Prev</button>
+            <button class="story-btn" type="button" data-story-next>Next</button>
+            <span class="story-zoom" aria-label="Zoom controls">
+              <button class="story-btn" type="button" data-story-zoom="out" aria-label="Zoom out">-</button>
+              <span class="story-zoom-value" data-story-zoom-value>90%</span>
+              <button class="story-btn" type="button" data-story-zoom="in" aria-label="Zoom in">+</button>
+              <button class="story-btn" type="button" data-story-zoom="reset" aria-label="Reset zoom">1x</button>
+            </span>
+          </div>
+        </div>
+        <div class="story-nav" aria-label="Story steps">
+          <button class="story-step is-active" type="button" data-story-target="0">1 Sandbox</button>
+          <button class="story-step" type="button" data-story-target="1">2 City + Date</button>
+          <button class="story-step" type="button" data-story-target="2">3 Traveler</button>
+          <button class="story-step" type="button" data-story-target="3">4 Base Query</button>
+          <button class="story-step" type="button" data-story-target="4">5 Multi-turn</button>
+          <button class="story-step" type="button" data-story-target="5">6 Tool Use</button>
+          <button class="story-step" type="button" data-story-target="6">7 Mode</button>
+          <button class="story-step" type="button" data-story-target="7">8 Itinerary</button>
+          <button class="story-step" type="button" data-story-target="8">9 Feasible</button>
+          <button class="story-step" type="button" data-story-target="9">10 Experience</button>
+          <button class="story-step" type="button" data-story-target="10">11 Stateful</button>
+        </div>
+        <div class="story-stage">
+          <div class="story-board" data-story-board>
+            <div class="story-board-grid">
+              <section class="story-panel panel-benchmark" data-story-panel="benchmark">
+                <h3><span class="story-badge">1</span>Benchmark Construction</h3>
+                <div class="story-benchmark-grid">
+                  <div class="story-node" data-story-steps="0">
+                    <div class="story-node-title"><span>Fixed travel sandbox</span><span>Evidence</span></div>
+                    <div class="story-icons">
+                      <img class="story-icon" src="assets/figures/pipeline-icons/airplane.png" alt="">
+                      <img class="story-icon" src="assets/figures/pipeline-icons/train.png" alt="">
+                      <img class="story-icon" src="assets/figures/pipeline-icons/hotel.png" alt="">
+                      <img class="story-icon" src="assets/figures/pipeline-icons/restaurant.png" alt="">
+                      <img class="story-icon" src="assets/figures/pipeline-icons/weather.png" alt="">
+                    </div>
+                    <div class="story-chip-grid" style="margin-top:10px">
+                      <div class="story-chip blue">40 cities</div>
+                      <div class="story-chip green">11 tools</div>
+                      <div class="story-chip orange">routes + hotels</div>
+                      <div class="story-chip">POIs + weather</div>
+                    </div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="1">
+                    <div class="story-node-title"><span>Extract task seed</span><span>City + date</span></div>
+                    <div class="story-chip-grid">
+                      <div class="story-chip blue"><img class="story-icon sm" src="assets/figures/pipeline-icons/location.png" alt="">Hong Kong</div>
+                      <div class="story-chip orange"><img class="story-icon sm" src="assets/figures/pipeline-icons/schedule.png" alt="">4 days</div>
+                      <div class="story-chip green"><img class="story-icon sm" src="assets/figures/pipeline-icons/poi.png" alt="">Disneyland</div>
+                      <div class="story-chip"><img class="story-icon sm" src="assets/figures/pipeline-icons/weather.png" alt="">weather context</div>
+                    </div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="2">
+                    <div class="story-node-title"><span>Pick traveler profile</span><span>Rules</span></div>
+                    <div class="profile-row">
+                      <div class="persona is-selected"><img class="story-icon sm" src="assets/figures/pipeline-icons/family.png" alt=""><span>family</span></div>
+                      <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/senior.png" alt=""><span>senior</span></div>
+                      <div class="persona"><img class="story-icon sm" src="assets/figures/pipeline-icons/backpacker.png" alt=""><span>backpacker</span></div>
+                    </div>
+                    <div class="story-chip-grid" style="margin-top:10px">
+                      <div class="story-chip blue">observable profile</div>
+                      <div class="story-chip orange">pace, budget, comfort</div>
+                    </div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="3">
+                    <div class="story-node-title"><span>Render base query</span><span>Utterance</span></div>
+                    <div class="query-card">Family of five, 4-day Hong Kong trip, must visit Disneyland.</div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="4">
+                    <div class="story-node-title"><span>Generate multi-turn interactions</span><span>Oracle</span></div>
+                    <div class="turn-lane">
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/budget.png" alt="">Add budget</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/schedule.png" alt="">Change date</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/rain.png" alt="">Weather risk</div>
+                      <div class="turn-card"><img src="assets/figures/pipeline-icons/question.png" alt="">Ambiguity</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="story-panel panel-agent" data-story-panel="agent">
+                <h3><span class="story-badge">2</span>Agent Planning</h3>
+                <div class="agent-flow">
+                  <div class="story-node" data-story-steps="5">
+                    <div class="story-node-title"><span>Ground query with tools</span><span>Evidence seeking</span></div>
+                    <div class="agent-core">
+                      <div class="query-card" style="font-size:13px">base query + active user state</div>
+                      <div class="robot-hub"><img class="story-icon lg" src="assets/figures/pipeline-icons/robot.png" alt=""></div>
+                      <div class="tool-grid">
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/train.png" alt="">transport</div>
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/hotel.png" alt="">hotel</div>
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/poi.png" alt="">POI</div>
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/restaurant.png" alt="">meal</div>
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/weather.png" alt="">weather</div>
+                        <div class="tool-pill"><img src="assets/figures/pipeline-icons/taxi.png" alt="">route</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="6">
+                    <div class="story-node-title"><span>Choose response mode</span><span>Plan / Ask / NoSol</span></div>
+                    <div class="mode-switch">
+                      <div class="mode-pill plan">Plan</div>
+                      <div class="mode-pill ask">Clarification</div>
+                      <div class="mode-pill no">NoSolution</div>
+                    </div>
+                  </div>
+
+                  <div class="story-node" data-story-steps="7">
+                    <div class="story-node-title"><span>Generate minute-level itinerary</span><span>Plan</span></div>
+                    <div class="itinerary">
+                      <div class="itinerary-row"><b>09:00</b><span>hotel -> attraction taxi</span><span>$12</span></div>
+                      <div class="itinerary-row"><b>09:30</b><span>Disneyland visit block</span><span>POI</span></div>
+                      <div class="itinerary-row"><b>12:10</b><span>meal near attraction</span><span>meal</span></div>
+                      <div class="itinerary-row"><b>14:00</b><span>revise for weather / fatigue</span><span>state</span></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="story-panel panel-eval" data-story-panel="evaluation">
+                <h3><span class="story-badge">3</span>Every-Turn Evaluation</h3>
+                <div class="eval-layers">
+                  <div class="eval-layer" data-story-steps="8">
+                    <img src="assets/figures/pipeline-icons/check.png" alt="">
+                    <div><b>Response-mode gate</b><span>Does the agent plan, clarify, or reject correctly?</span></div>
+                    <div class="eval-score">gate</div>
+                  </div>
+                  <div class="eval-layer" data-story-steps="8">
+                    <img src="assets/figures/pipeline-icons/puzzle.png" alt="">
+                    <div><b>Itinerary feasibility</b><span>structure, grounded entities, timing, routes, cost</span></div>
+                    <div class="eval-score">det.</div>
+                  </div>
+                  <div class="eval-layer" data-story-steps="9">
+                    <img src="assets/figures/pipeline-icons/verifier.png" alt="">
+                    <div><b>Requirement satisfaction</b><span>hard constraints + profile-conditioned soft preferences</span></div>
+                    <div class="eval-score">rules</div>
+                  </div>
+                  <div class="eval-layer" data-story-steps="9">
+                    <img src="assets/figures/pipeline-icons/physical.png" alt="">
+                    <div><b>User simulation</b><span>physical, schedule, environment, budget, preference comfort</span></div>
+                    <div class="eval-score">1-5</div>
+                  </div>
+                  <div class="eval-layer" data-story-steps="10">
+                    <img src="assets/figures/pipeline-icons/thinking.png" alt="">
+                    <div><b>Stateful multi-turn judge</b><span>new request fulfilled, previous intent preserved</span></div>
+                    <div class="eval-score">MT</div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="story-flowline" data-story-flow style="--dot-x:0px">
+              <span class="story-flow-label">sandbox</span>
+              <span class="story-flow-label">profile</span>
+              <span class="story-flow-label">query</span>
+              <span class="story-flow-label">agent</span>
+              <span class="story-flow-label">evaluate</span>
+            </div>
+            <div class="story-caption-live">
+              <b data-story-label>Step 1 / 11</b>
+              <p data-story-caption>Freeze a reproducible travel-data sandbox so both agents and evaluators share the same evidence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>Interactive Pipeline.</b> A browser-native presentation view for explaining how Trip+
+        constructs benchmark tasks, runs an agent planning loop, and evaluates each turn.</figcaption>
     </figure>
 
     <figure class="wide-figure">
@@ -761,5 +1483,175 @@
   </footer>
 
 </div>
+<script>
+(() => {
+  const shell = document.querySelector('[data-story-shell]');
+  if (!shell) return;
+
+  const steps = [
+    {
+      label: 'Step 1 / 11',
+      caption: 'Freeze a reproducible travel-data sandbox so both agents and evaluators share the same evidence.',
+      panel: 'benchmark',
+      dot: 0
+    },
+    {
+      label: 'Step 2 / 11',
+      caption: 'Sample city, dates, destination, weather, and tool-grounded evidence from the sandbox.',
+      panel: 'benchmark',
+      dot: 118
+    },
+    {
+      label: 'Step 3 / 11',
+      caption: 'Choose one traveler profile; the agent sees memory, while hidden suitability rules drive evaluation.',
+      panel: 'benchmark',
+      dot: 236
+    },
+    {
+      label: 'Step 4 / 11',
+      caption: 'Render the structured seed into a natural-language base query that starts the task.',
+      panel: 'benchmark',
+      dot: 354
+    },
+    {
+      label: 'Step 5 / 11',
+      caption: 'Construct state-first multi-turn interactions: updates, ambiguity, disruptions, and long-horizon preservation.',
+      panel: 'benchmark',
+      dot: 472
+    },
+    {
+      label: 'Step 6 / 11',
+      caption: 'The agent grounds the query with travel tools: transport, hotel, POI, meals, weather, and routes.',
+      panel: 'agent',
+      dot: 590
+    },
+    {
+      label: 'Step 7 / 11',
+      caption: 'At every turn, the agent must pick the correct response mode: Plan, Clarification, or NoSolution.',
+      panel: 'agent',
+      dot: 708
+    },
+    {
+      label: 'Step 8 / 11',
+      caption: 'When planning is appropriate, the agent outputs a minute-level itinerary with timing, transport, activities, meals, and costs.',
+      panel: 'agent',
+      dot: 826
+    },
+    {
+      label: 'Step 9 / 11',
+      caption: 'Evaluation first checks the response mode and deterministic itinerary feasibility against the fixed evidence snapshot.',
+      panel: 'evaluation',
+      dot: 944
+    },
+    {
+      label: 'Step 10 / 11',
+      caption: 'Requirement scoring combines hard constraints, profile-conditioned soft preferences, and user-simulation comfort metrics.',
+      panel: 'evaluation',
+      dot: 1003
+    },
+    {
+      label: 'Step 11 / 11',
+      caption: 'The final stateful judge verifies whether new requests are fulfilled while earlier user intent is preserved.',
+      panel: 'evaluation',
+      dot: 1062
+    }
+  ];
+
+  const board = shell.querySelector('[data-story-board]');
+  const play = shell.querySelector('[data-story-play]');
+  const prev = shell.querySelector('[data-story-prev]');
+  const next = shell.querySelector('[data-story-next]');
+  const label = shell.querySelector('[data-story-label]');
+  const caption = shell.querySelector('[data-story-caption]');
+  const flow = shell.querySelector('[data-story-flow]');
+  const stepButtons = [...shell.querySelectorAll('[data-story-target]')];
+  const panels = [...shell.querySelectorAll('[data-story-panel]')];
+  const nodes = [...shell.querySelectorAll('[data-story-steps]')];
+  const zoomValue = shell.querySelector('[data-story-zoom-value]');
+  const zoomButtons = [...shell.querySelectorAll('[data-story-zoom]')];
+
+  let current = 0;
+  let zoom = .9;
+  let isPlaying = true;
+  let timer = null;
+
+  const nodeSteps = node => node.dataset.storySteps.split(',').map(value => Number(value.trim()));
+
+  const render = () => {
+    const step = steps[current];
+    label.textContent = step.label;
+    caption.textContent = step.caption;
+    flow.style.setProperty('--dot-x', `${step.dot}px`);
+
+    stepButtons.forEach(button => {
+      button.classList.toggle('is-active', Number(button.dataset.storyTarget) === current);
+    });
+
+    panels.forEach(panel => {
+      const active = panel.dataset.storyPanel === step.panel;
+      panel.classList.toggle('is-focus', active);
+      panel.classList.toggle('is-dim', !active);
+    });
+
+    nodes.forEach(node => {
+      const active = nodeSteps(node).includes(current);
+      node.classList.toggle('is-focus', active);
+      node.classList.toggle('is-dim', !active);
+    });
+  };
+
+  const setStep = value => {
+    current = (value + steps.length) % steps.length;
+    render();
+  };
+
+  const start = () => {
+    clearInterval(timer);
+    if (!isPlaying) return;
+    timer = setInterval(() => setStep(current + 1), 3600);
+  };
+
+  const setPlaying = value => {
+    isPlaying = value;
+    play.textContent = isPlaying ? 'Pause' : 'Play';
+    play.classList.toggle('is-active', isPlaying);
+    start();
+  };
+
+  const setZoom = value => {
+    zoom = Math.min(1.45, Math.max(.72, value));
+    board.style.setProperty('--story-scale', zoom.toFixed(2));
+    zoomValue.textContent = `${Math.round(zoom * 100)}%`;
+  };
+
+  play.addEventListener('click', () => setPlaying(!isPlaying));
+  prev.addEventListener('click', () => {
+    setPlaying(false);
+    setStep(current - 1);
+  });
+  next.addEventListener('click', () => {
+    setPlaying(false);
+    setStep(current + 1);
+  });
+  stepButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      setPlaying(false);
+      setStep(Number(button.dataset.storyTarget));
+    });
+  });
+  zoomButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const action = button.dataset.storyZoom;
+      if (action === 'in') setZoom(zoom + .1);
+      if (action === 'out') setZoom(zoom - .1);
+      if (action === 'reset') setZoom(1);
+    });
+  });
+
+  setZoom(zoom);
+  render();
+  start();
+})();
+</script>
 </body>
 </html>
