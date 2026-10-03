@@ -148,7 +148,7 @@
     font-size:46px;
     line-height:1.18;
     font-weight:800;
-    margin:0 auto 38px;
+    margin:0 auto 24px;
     letter-spacing:0;
     max-width:960px;
   }
@@ -173,7 +173,7 @@
     font-size:21px;
     font-style:italic;
     line-height:1.5;
-    margin:24px auto 28px;
+    margin:18px auto 28px;
     text-align:center;
   }
   .authors{
@@ -182,7 +182,23 @@
     line-height:1.2;
     margin:0;
   }
-  .venue{font-size:15px;color:var(--muted);font-style:normal;margin:4px 0 20px;}
+  .venue{
+    display:inline-block;
+    max-width:100%;
+    padding:7px 18px;
+    border:1px solid #b6d6cd;
+    border-radius:999px;
+    background:rgba(236,248,244,.88);
+    text-align:center;
+    color:var(--teal);
+    font-size:20px;
+    font-style:normal;
+    font-weight:600;
+    line-height:1.4;
+    margin:0 auto 0;
+  }
+  .venue span{white-space:nowrap;}
+  .resource-link{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;}
   .links{
     display:flex;
     flex-wrap:wrap;
@@ -2164,6 +2180,9 @@
   }
   @media(max-width:620px){
     body{font-size:16px;}
+    .venue{font-size:18px;}
+    .links{column-gap:12px;row-gap:10px;}
+    .links .sep{display:none;}
     .wrap{padding:0 18px 64px;}
     .nav{padding:10px 18px;}
     .navlinks{font-size:13px;}
@@ -2250,19 +2269,22 @@
         <img class="title-icon" src="assets/icon.png" alt="">
         <span class="title-text">Trip+: Benchmarking Agents in Personalized Interactive Travel Planning</span>
       </h1>
+      <p class="venue">Accepted at <strong>EMNLP 2026</strong> <span>(Main Conference)</span></p>
       <p class="subtitle">
         A personalized, multi-turn travel-planning benchmark for language agents
       </p>
       <div class="links">
-        <span class="bracket">[</span> <a href="https://arxiv.org/pdf/2606.21169" target="_blank" rel="noopener">Paper</a> <span class="bracket">]</span>
-        <span class="sep">·</span>
-        <span class="bracket">[</span> <a href="https://github.com/junle-chen/trip-plus" target="_blank" rel="noopener">Code &amp; Data</a> <span class="bracket">]</span>
-        <span class="sep">·</span>
-        <span class="bracket">[</span> <a href="#benchmark">Benchmark</a> <span class="bracket">]</span>
-        <span class="sep">·</span>
-        <span class="bracket">[</span> <a href="#results">Results</a> <span class="bracket">]</span>
-        <span class="sep">·</span>
-        <span class="bracket">[</span> <a href="#cite">BibTeX</a> <span class="bracket">]</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="https://arxiv.org/pdf/2606.21169" target="_blank" rel="noopener">Paper</a> <span class="bracket" aria-hidden="true">]</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="assets/TripPlus_EMNLP2026_Poster.pdf" target="_blank" rel="noopener" type="application/pdf" title="View the A0 poster (PDF, 6.6 MB)">Poster</a> <span class="bracket" aria-hidden="true">]</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="https://github.com/junle-chen/trip-plus" target="_blank" rel="noopener">Code &amp; Data</a> <span class="bracket" aria-hidden="true">]</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="#benchmark">Benchmark</a> <span class="bracket" aria-hidden="true">]</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="#results">Results</a> <span class="bracket" aria-hidden="true">]</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="resource-link"><span class="bracket" aria-hidden="true">[</span> <a href="#cite">BibTeX</a> <span class="bracket" aria-hidden="true">]</span></span>
       </div>
       <div class="anon-note">
         Code and data are available at <a href="https://github.com/junle-chen/trip-plus" target="_blank" rel="noopener">junle-chen/trip-plus</a>.
@@ -2954,7 +2976,7 @@
       url={https://arxiv.org/abs/2606.21169},
 }</pre>
     <p class="small" style="text-align:center;">
-      arXiv preprint. Code and data are available at
+      Accepted at EMNLP 2026 (Main Conference). The BibTeX above cites the arXiv version. Code and data are available at
       <a href="https://github.com/junle-chen/trip-plus" target="_blank" rel="noopener">junle-chen/trip-plus</a>.
     </p>
   </section>
